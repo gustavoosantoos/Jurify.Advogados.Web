@@ -5,10 +5,10 @@
 
     width: 100px;
     height: 100%;
-    -webkit-box-shadow: 4px 4px 5px 0px rgba(109,109,109,0.68);
-    -moz-box-shadow: 4px 4px 5px 0px rgba(109,109,109,0.68);
-    box-shadow: 4px 4px 5px 0px rgba(109,109,109,0.68);
-    transition: 2s;
+    -webkit-box-shadow: 4px 4px 5px 0px #a7a8b9;
+    -moz-box-shadow: 4px 4px 5px 0px #a7a8b9;
+    box-shadow: 4px 4px 5px 0px #a7a8b9;
+    transition: 1s;
 
     nav {
         button.togglemenu {
@@ -24,15 +24,15 @@
 
             cursor: pointer;
 
-            svg.svg-inline--fa {
+            span {
                 transition: .5s;
-                transform: none;
+                transform: rotate(0deg);
             }
 
             &.closed {
-                svg.svg-inline--fa {
-                    left: 100%;
-                    transform: rotate(90deg);
+                span {
+                    display: block;
+                    transform: rotate(180deg);
                 }
             }
 
@@ -46,12 +46,15 @@
             transition: .5s;
 
             li {
-                margin-bottom: 20px;
+                margin-bottom: 30px;
+                
                 font-size: 18pt;
+                color: #4c5a98;
+
                 transition: .5s;
 
                 &:hover {
-                    color: #6d6d6d;
+                    color: #cf767b;
                 }
             }
         }
