@@ -25,6 +25,7 @@
             cursor: pointer;
 
             span {
+                display: block;
                 transition: .5s;
                 transform: rotate(0deg);
             }
@@ -47,7 +48,7 @@
 
             li {
                 margin-bottom: 30px;
-                
+
                 font-size: 18pt;
                 color: #4c5a98;
 
