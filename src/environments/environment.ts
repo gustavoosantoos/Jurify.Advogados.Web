@@ -10,6 +10,10 @@ export const environment = {
     client_secret: 'jurify.web.lawyers',
     scope: 'jurify.api.lawyers',
     grant_type: 'password'
+  },
+  storage: {
+    token_identifier: 'jurify.web.lawyers.key',
+    user_info_identifier: 'jurify.web.lawyers.user'
   }
 };
 
