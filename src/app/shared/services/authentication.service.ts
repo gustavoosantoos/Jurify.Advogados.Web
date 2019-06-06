@@ -1,14 +1,16 @@
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AuthenticationAttemp } from '../model/authentication-attempt.model';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthenticationAttempResult } from '../model/authentication-attempt-result.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService implements OnInit {
+  private commonHeaders = {
+    headers: new HttpHeaders({ 'Content-Type' : 'application/x-www-form-urlencoded'})
+  };
+
   constructor(
     private http: HttpClient
   ) { }
@@ -27,17 +29,18 @@ export class AuthenticationService implements OnInit {
   }
 
   public async authenticate(username: string, password: string): Promise<boolean> {
-    const requestBody = new AuthenticationAttemp(
-      username,
-      password,
-      environment.authentication.scope,
-      environment.authentication.grant_type,
-      environment.authentication.client_id,
-      environment.authentication.client_secret
-    );
+    const requestBody = new HttpParams()
+      .set('username', username)
+      .set('password', password)
+      .set('scope', environment.authentication.scope)
+      .set('grant_type', environment.authentication.grant_type)
+      .set('client_id', environment.authentication.client_id)
+      .set('client_secret', environment.authentication.client_secret);
 
-    const url = environment.authentication.provider + '/connect/token';
-    const result = await this.http.post<AuthenticationAttempResult>(url, requestBody).toPromise();
+    const url = environment.authentication.provider + 'connect/token';
+    const result = await this.http
+      .post<AuthenticationAttempResult>(url, requestBody, this.commonHeaders)
+      .toPromise();
 
     if (!result || !result.access_token) {
       return false;
