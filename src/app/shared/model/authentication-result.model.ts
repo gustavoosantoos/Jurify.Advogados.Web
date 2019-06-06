@@ -1,3 +1,3 @@
 export class AuthenticationResult {
-  access_token: string
+  access_token: string;
 }
