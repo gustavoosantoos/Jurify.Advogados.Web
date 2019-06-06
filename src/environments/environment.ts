@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  authentication: {
+    provider: 'http://localhost:5000/',
+    client_id: 'jurify.web.lawyers',
+    client_secret: 'jurify.web.lawyers',
+    scope: 'jurify.api.lawyers',
+    grant_type: 'password'
+  }
 };
 
 /*
