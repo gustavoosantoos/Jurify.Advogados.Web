@@ -1,7 +1,7 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { AuthenticationAttempResult } from '../model/authentication-attempt-result.model';
+import { AuthenticationResult } from '../model/authentication-result.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class AuthenticationService implements OnInit {
 
   public isAuthenticated(): boolean {
     const tokenFromStorage = localStorage.getItem(environment.storage.token_identifier);
-    if (!tokenFromStorage || tokenFromStorage == '') {
+    if (!tokenFromStorage || tokenFromStorage === '') {
       return false;
     }
 
@@ -39,7 +39,7 @@ export class AuthenticationService implements OnInit {
 
     const url = environment.authentication.provider + 'connect/token';
     const result = await this.http
-      .post<AuthenticationAttempResult>(url, requestBody, this.commonHeaders)
+      .post<AuthenticationResult>(url, requestBody, this.commonHeaders)
       .toPromise();
 
     if (!result || !result.access_token) {
