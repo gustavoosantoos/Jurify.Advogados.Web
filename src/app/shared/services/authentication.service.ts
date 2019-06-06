@@ -7,10 +7,6 @@ import { AuthenticationResult } from '../model/authentication-result.model';
   providedIn: 'root'
 })
 export class AuthenticationService implements OnInit {
-  private commonHeaders = {
-    headers: new HttpHeaders({ 'Content-Type' : 'application/x-www-form-urlencoded'})
-  };
-
   constructor(
     private http: HttpClient
   ) { }
@@ -29,6 +25,12 @@ export class AuthenticationService implements OnInit {
   }
 
   public async authenticate(username: string, password: string): Promise<boolean> {
+    const url = environment.authentication.provider + 'connect/token';
+
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
+    };
+
     const requestBody = new HttpParams()
       .set('username', username)
       .set('password', password)
@@ -37,10 +39,7 @@ export class AuthenticationService implements OnInit {
       .set('client_id', environment.authentication.client_id)
       .set('client_secret', environment.authentication.client_secret);
 
-    const url = environment.authentication.provider + 'connect/token';
-    const result = await this.http
-      .post<AuthenticationResult>(url, requestBody, this.commonHeaders)
-      .toPromise();
+    const result = await this.http.post<AuthenticationResult>(url, requestBody, options).toPromise();
 
     if (!result || !result.access_token) {
       return false;
