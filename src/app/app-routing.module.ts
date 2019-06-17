@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard/home', pathMatch: 'full' },
-  { path: 'dashboard', loadChildren: './modules/dashboard/dashboard.module#DashboardModule' },
-  { path: 'autenticacao', loadChildren: './modules/autenticacao/autenticacao.module#AutenticacaoModule'}
+  { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'autenticacao', loadChildren: () => import('./modules/autenticacao/autenticacao.module').then(m => m.AutenticacaoModule)}
 ];
 
 @NgModule({
