@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   authentication: {
-    provider: 'http://localhost:5000/',
+    provider: 'http://jurify-autenticador.azurewebsites.net/',
     client_id: 'jurify.web.lawyers',
     client_secret: 'jurify.web.lawyers',
     scope: 'jurify.api.lawyers',
