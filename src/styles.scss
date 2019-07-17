@@ -5,6 +5,10 @@
     src: url(assets/fonts/Gilroy/Gilroy-Medium.otf);
 }
 
+body {
+    margin: 0;
+}
+
 #sidemenu {
     position: absolute;
     left: 0;
@@ -67,4 +71,12 @@
             }
         }
     }
+}
+
+.container {
+    padding: 0 130px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Gilroy';
 }
