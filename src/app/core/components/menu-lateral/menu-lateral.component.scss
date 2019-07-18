@@ -5,3 +5,46 @@ img.logo {
     border-bottom: 1px solid #ccc;
     padding-bottom: 15px;
 }
+
+ul.menu {
+    li {
+        a {
+            position: relative;
+
+            &:hover {
+                span.tooltip {
+                    opacity: 1;
+                }
+            }
+
+            span.tooltip {
+                opacity: 0;
+
+                position: absolute;
+                left: 0;
+                bottom: -25px;
+                padding: 5px;
+                border-radius: 3px;
+                background-color: #444554;
+
+                text-align: center;
+                color: #fff;
+                font-size: 10px;
+                font-family: Arial, Helvetica, sans-serif;
+                
+                transition: 1s;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    width: 0;
+                    top: -5px;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-bottom: 5px solid #444554;
+                }
+            }
+        }
+    }
+}
