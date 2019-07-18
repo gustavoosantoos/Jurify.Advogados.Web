@@ -1,3 +1,35 @@
 <div class="container">
   <h1>Clientes</h1>
+
+  <mat-form-field class="search">
+    <input matInput type="text" placeholder="Digite o nome do cliente para buscar" [(ngModel)]="value">
+    <button mat-button *ngIf="value" aria-label="Clear" matSuffix mat-icon-button (click)="value=''">
+      &times;
+    </button>
+  </mat-form-field>
+
+  <ul class="list-clientes">
+    <li>
+      <div class="info">
+        <span>Nome e Sobrenome Cliente</span>
+        <br>
+        <span class="nasc">Nascimento: 00/00/0000</span>
+      </div>
+      <div class="actions">
+        <button mat-button>Ver</button>
+        <button mat-button class="remove">Remover</button>
+      </div>
+    </li>
+    <li>
+      <div class="info">
+        <span>Nome e Sobrenome Cliente</span>
+        <br>
+        <span class="nasc">Nascimento: 00/00/0000</span>
+      </div>
+      <div class="actions">
+        <button mat-button>Ver</button>
+        <button mat-button class="remove">Remover</button>
+      </div>
+    </li>
+  </ul>
 </div>

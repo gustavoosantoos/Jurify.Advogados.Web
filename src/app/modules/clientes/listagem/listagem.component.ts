@@ -9,6 +9,8 @@ export class ListagemComponent implements OnInit {
 
   constructor() { }
 
+  value: string = '';
+
   ngOnInit() {
   }
 

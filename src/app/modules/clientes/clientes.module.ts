@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ListagemComponent } from './listagem/listagem.component';
 
@@ -8,7 +8,8 @@ import { ListagemComponent } from './listagem/listagem.component';
   declarations: [ListagemComponent],
   imports: [
     CommonModule,
-    ClientesRoutingModule
+    ClientesRoutingModule,
+    SharedModule
   ]
 })
 export class ClientesModule { }
