@@ -1,11 +1,33 @@
+h1 {
+    text-align: right;
+    color: #4c5a98;
+    position: relative;
+}
+
 .content {
     display: block;
     width: 40%;
     max-width: 650px;
-    margin: 160px auto;
+    margin: 100px auto;
     padding: 20px;
     border: 1px solid #ccc;
     box-shadow: 8px 8px 5px -4px rgba(199,199,199,0.6);
+    z-index: 99;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../../../../assets/images/bg.jpg');
+        background-size: cover;
+        background-position: 0 40%;
+        background-repeat: no-repeat;
+        z-index: -1;
+    }
 
     h2 {
         display: flex;
@@ -15,6 +37,25 @@
         img {
             width: 80px;
             margin-left: 6px;
+        }
+    }
+
+    form {
+        mat-form-field {
+            width: 60%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button {
+            display: block;
+            width: 30%;
+            background-color: #4c5a98;
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            margin: 10px auto 0;
+            cursor: pointer;
         }
     }
 }
