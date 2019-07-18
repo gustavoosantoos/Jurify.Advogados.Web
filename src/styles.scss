@@ -63,13 +63,15 @@ body {
             li {
                 margin-bottom: 30px;
 
-                font-size: 18pt;
-                color: #4c5a98;
+                a {
+                    font-size: 18pt;
+                    color: #4c5a98;
 
-                transition: .5s;
+                    transition: .5s;
 
-                &:hover {
-                    color: #cf767b;
+                    &:hover {
+                        color: #cf767b;
+                    }
                 }
             }
         }
