@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule } from '@angular/material';
 import { FormsModule } from '@angular/forms'
 
 
@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms'
       MatInputModule,
       MatButtonModule,
       MatIconModule,
+      MatSelectModule,
       FormsModule
     ],
     exports: [
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms'
       MatInputModule,
       MatButtonModule,
       MatIconModule,
+      MatSelectModule,
       FormsModule
     ],
     providers: [],
