@@ -11,9 +11,9 @@
   <a routerLink="/clientes/cadastro" class="btn-link" mat-button>Cadastrar novo cliente</a>
 
   <ul class="list-clientes">
-    <li>
+    <li *ngFor="let cliente of clientes">
       <div class="info">
-        <span>Nome e Sobrenome Cliente</span>
+        <span>{{cliente.nome}}</span>
         <br>
         <span class="nasc">Nascimento: 00/00/0000</span>
       </div>
