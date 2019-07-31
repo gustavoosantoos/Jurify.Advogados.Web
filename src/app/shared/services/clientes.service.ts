@@ -4,6 +4,7 @@ import { Cliente } from '../model/cliente';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from './authentication.service';
 import { Observable } from 'rxjs';
+import { Endereco } from '../model/endereco';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class ClientesService {
   }
 
   public getCliente(id): Observable<Cliente> {
-    const url = 'http://jurify-advogados.azurewebsites.net/api/clientes/' + id;
+    const url = 'http://jurify-advogados.azurewebsites.net/api/clientes/';
 
     var BEARER_TOKEN = "";
     if (this.auth.isAuthenticated()) {
@@ -44,6 +45,7 @@ export class ClientesService {
     };
 
 
-    return this.http.get<Cliente>(url, options);
+    return this.http.get<Cliente>(url + id, options);
   }
+
 } 
