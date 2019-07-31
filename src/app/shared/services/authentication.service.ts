@@ -2,13 +2,15 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthenticationResult } from '../model/authentication-result.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService implements OnInit {
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -55,5 +57,10 @@ export class AuthenticationService implements OnInit {
     }
 
     return localStorage.getItem(environment.storage.token_identifier);
+  }
+
+  public logout(): void {
+    localStorage.removeItem(environment.storage.token_identifier);
+    this.router.navigateByUrl('autenticacao');
   }
 }

@@ -2,6 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule } from '@angular/material';
 import { FormsModule } from '@angular/forms'
+import { AuthGuard } from './guards/auth-guard';
+import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { ErrorInterceptor } from './interceptors/error-interceptor';
 
 
 @NgModule({
@@ -14,7 +19,8 @@ import { FormsModule } from '@angular/forms'
       MatIconModule,
       MatSelectModule,
       MatProgressSpinnerModule,
-      FormsModule
+      FormsModule,
+      RouterModule
     ],
     exports: [
       CommonModule,
@@ -24,8 +30,13 @@ import { FormsModule } from '@angular/forms'
       MatIconModule,
       MatSelectModule,
       MatProgressSpinnerModule,
-      FormsModule
+      FormsModule,
+      RouterModule
     ],
-    providers: [],
+    providers: [
+      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+      AuthGuard
+    ],
 })
 export class SharedModule { }

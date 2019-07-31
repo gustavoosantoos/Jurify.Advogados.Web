@@ -6,34 +6,34 @@
         <fa-icon icon="chevron-left"></fa-icon>
       </span>
     </button>
-    <a href="/"><img src="../../../../assets/images/owl-red.svg" alt="" class="logo"></a>
+    <a [routerLink]="['/']"><img src="../../../../assets/images/owl-red.svg" alt="" class="logo"></a>
     <ul class="menu">
       <li>
-        <a href="/clientes" title="clientes">
+        <a [routerLink]="['/clientes']" title="clientes">
           <fa-icon icon="user"></fa-icon>
           <span class="tooltip">Clientes</span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a [routerLink]="['/']">
           <fa-icon icon="calendar"></fa-icon>
           <span class="tooltip">Agenda</span>
         </a>
       </li>
       <li>
-        <a href="/processos">
+        <a [routerLink]="['/processos']">
           <fa-icon icon="gavel"></fa-icon>
           <span class="tooltip">Processos</span>
         </a>
       </li>
       <li>
-        <a href="/chat">
+        <a [routerLink]="['/chat']">
           <fa-icon icon="comments"></fa-icon>
           <span class="tooltip">Chat</span>
         </a>
       </li>
       <li>
-        <a href="/configuracoes">
+        <a [routerLink]="['/configuracoes']">
           <fa-icon icon="cog"></fa-icon>
           <span class="tooltip">Configurações</span>
         </a>

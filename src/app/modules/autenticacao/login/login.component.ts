@@ -18,15 +18,15 @@ export class LoginComponent implements OnInit {
     this.redirectLoggedInUser();
   }
 
-  login(username, password): void {
-    if(this.authService.authenticate(username, password)) {
+  login(username: string, password: string): void {
+    if (this.authService.authenticate(username, password)) {
       document.querySelector('div.submit').classList.add('load');
       this.router.navigateByUrl('/');
     }
   }
 
   redirectLoggedInUser(): void {
-    if(this.authService.isAuthenticated()) {
+    if (this.authService.isAuthenticated()) {
       this.router.navigateByUrl('/');
     }
   }
