@@ -13,20 +13,9 @@
   <ul class="list-clientes">
     <li *ngFor="let cliente of clientes">
       <div class="info">
-        <span>{{cliente.nome}}</span>
+        <span>{{cliente.nome}} {{cliente.sobrenome}}</span>
         <br>
-        <span class="nasc">Nascimento: 00/00/0000</span>
-      </div>
-      <div class="actions">
-        <button mat-button>Ver</button>
-        <button mat-button class="remove">Remover</button>
-      </div>
-    </li>
-    <li>
-      <div class="info">
-        <span>Nome e Sobrenome Cliente</span>
-        <br>
-        <span class="nasc">Nascimento: 00/00/0000</span>
+        <span class="nasc">Nascimento: {{cliente.dataNascimento}}</span>
       </div>
       <div class="actions">
         <button mat-button>Ver</button>

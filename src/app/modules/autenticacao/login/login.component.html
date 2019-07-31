@@ -7,14 +7,17 @@
   <div class="content">
     <h2>Bem vindo ao <img src="../../../../assets/images/logo-br.svg" alt="">!</h2>
 
-    <form>
+    <form (ngSubmit)="login(username.value, password.value)">
       <mat-form-field>
-        <input type="email" matInput placeholder="E-mail">
+        <input type="text" #username name="username" matInput placeholder="Usuário">
       </mat-form-field>
       <mat-form-field>
-        <input type="password" matInput placeholder="Senha">
+        <input type="password" #password name="password" matInput placeholder="Senha">
       </mat-form-field>
-      <button mat-button>Entrar</button>
+      <div class="submit">
+        <button mat-button>Entrar</button>
+        <mat-progress-spinner mode="indeterminate" [diameter]="30"></mat-progress-spinner>
+      </div>
     </form>
   </div>
 </div>

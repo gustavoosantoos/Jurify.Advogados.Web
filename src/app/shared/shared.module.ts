@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule } from '@angular/material';
 import { FormsModule } from '@angular/forms'
 
 
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms'
       MatButtonModule,
       MatIconModule,
       MatSelectModule,
+      MatProgressSpinnerModule,
       FormsModule
     ],
     exports: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms'
       MatButtonModule,
       MatIconModule,
       MatSelectModule,
+      MatProgressSpinnerModule,
       FormsModule
     ],
     providers: [],

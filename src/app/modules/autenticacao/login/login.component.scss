@@ -47,15 +47,31 @@ h1 {
             margin: 0 auto;
         }
 
-        button {
-            display: block;
-            width: 30%;
-            background-color: #4c5a98;
-            border: none;
-            color: #fff;
-            font-size: 14px;
-            margin: 10px auto 0;
-            cursor: pointer;
+        div.submit {
+            button {
+                display: block;
+                width: 30%;
+                background-color: #4c5a98;
+                border: none;
+                color: #fff;
+                font-size: 14px;
+                margin: 10px auto 0;
+                cursor: pointer;
+            }
+            .mat-progress-spinner {
+                display: none;
+                margin: 10px auto 0;
+            }
+
+            &.load {
+                button {
+                    display: none;
+                }
+
+                .mat-progress-spinner {
+                    display: block;
+                }
+            }
         }
     }
 }
