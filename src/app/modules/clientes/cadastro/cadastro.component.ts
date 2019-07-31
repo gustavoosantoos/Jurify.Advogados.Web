@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Location } from '@angular/common';
+import { Location, formatDate } from '@angular/common';
 import { Cliente } from 'src/app/shared/model/cliente';
 import { ActivatedRoute } from '@angular/router';
 import { ClientesService } from 'src/app/shared/services/clientes.service';

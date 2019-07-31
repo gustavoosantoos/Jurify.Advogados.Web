@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Cliente } from '../model/cliente';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Endereco } from '../model/endereco';
 
 @Injectable({
   providedIn: 'root'
