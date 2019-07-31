@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Cliente } from '../model/cliente';
 import { environment } from 'src/environments/environment';
-import { AuthenticationService } from './authentication.service';
 import { Observable } from 'rxjs';
 import { Endereco } from '../model/endereco';
 
@@ -10,42 +9,19 @@ import { Endereco } from '../model/endereco';
   providedIn: 'root'
 })
 export class ClientesService {
+  private baseUrl = environment.endpoints.advogados + 'clientes';
 
   constructor(
-    private http: HttpClient,
-    private auth: AuthenticationService
+    private http: HttpClient
   ) { }
 
 
   public getClientes(): Observable<Cliente[]> {
-    const url = 'http://jurify-advogados.azurewebsites.net/api/clientes';
-    var BEARER_TOKEN = "";
-    if (this.auth.isAuthenticated()) {
-      BEARER_TOKEN = this.auth.getToken();
-    }
-
-    const options = {
-      headers: new HttpHeaders({ 'Authorization': 'Bearer ' + BEARER_TOKEN, 'Content-Type': 'application/json' })
-    };
-
-
-    return this.http.get<Cliente[]>(url, options);
+    return this.http.get<Cliente[]>(this.baseUrl);
   }
 
-  public getCliente(id): Observable<Cliente> {
-    const url = 'http://jurify-advogados.azurewebsites.net/api/clientes/';
-
-    var BEARER_TOKEN = "";
-    if (this.auth.isAuthenticated()) {
-      BEARER_TOKEN = this.auth.getToken();
-    }
-
-    const options = {
-      headers: new HttpHeaders({ 'Authorization': 'Bearer ' + BEARER_TOKEN, 'Content-Type': 'application/json' })
-    };
-
-
-    return this.http.get<Cliente>(url + id, options);
+  public getCliente(id: string): Observable<Cliente> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<Cliente>(url);
   }
-
-} 
+}

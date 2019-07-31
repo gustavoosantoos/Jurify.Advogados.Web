@@ -14,6 +14,10 @@ export const environment = {
   storage: {
     token_identifier: 'jurify.web.lawyers.key',
     user_info_identifier: 'jurify.web.lawyers.user'
+  },
+  endpoints: {
+    autenticador: 'http://jurify-autenticador.azurewebsites.net/api/',
+    advogados: 'http://jurify-advogados.azurewebsites.net/api/'
   }
 };
 
