@@ -15,15 +15,12 @@ export class ClientesService {
     private auth: AuthenticationService
   ) { }
 
+
   public getClientes(): Observable<Cliente[]> {
     const url = 'http://jurify-advogados.azurewebsites.net/api/clientes';
     var BEARER_TOKEN = "";
     if (this.auth.isAuthenticated()) {
       BEARER_TOKEN = this.auth.getToken();
-    } else {
-      if (this.auth.authenticate('gustavo', 'gustavo')) {
-        BEARER_TOKEN = this.auth.getToken();
-      }
     }
 
     const options = {
@@ -32,5 +29,21 @@ export class ClientesService {
 
 
     return this.http.get<Cliente[]>(url, options);
+  }
+
+  public getCliente(id): Observable<Cliente> {
+    const url = 'http://jurify-advogados.azurewebsites.net/api/clientes/' + id;
+
+    var BEARER_TOKEN = "";
+    if (this.auth.isAuthenticated()) {
+      BEARER_TOKEN = this.auth.getToken();
+    }
+
+    const options = {
+      headers: new HttpHeaders({ 'Authorization': 'Bearer ' + BEARER_TOKEN, 'Content-Type': 'application/json' })
+    };
+
+
+    return this.http.get<Cliente>(url, options);
   }
 } 

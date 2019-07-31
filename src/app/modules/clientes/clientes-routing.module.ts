@@ -6,6 +6,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 const routes: Routes = [
   { path: '', redirectTo: 'listagem', pathMatch: 'full' },
   { path: 'listagem', component: ListagemComponent },
+  { path: 'cadastro/:codigo', component: CadastroComponent },
   { path: 'cadastro', component: CadastroComponent }
 ];
 
