@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuLateralComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthenticationService
+  ) { }
 
   ngOnInit() {
   }
@@ -25,6 +28,15 @@ export class MenuLateralComponent implements OnInit {
       button[0].classList.remove('closed');
       button[0].classList.add('open');
       menu.style.marginLeft = '0';
+    }
+  }
+
+  isAuthenticated(): Boolean {
+    if(this.authService.isAuthenticated()) {
+      return true;
+    }
+    else {
+      return false;
     }
   }
 }

@@ -1,4 +1,4 @@
-<div id="sidemenu">
+<div id="sidemenu" *ngIf="isAuthenticated()">
 
   <nav>
     <button class="togglemenu open" (click)="toggleMenu()">

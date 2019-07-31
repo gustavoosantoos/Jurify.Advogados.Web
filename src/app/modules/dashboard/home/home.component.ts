@@ -17,10 +17,6 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     if (this.authService.isAuthenticated()) {
       this.token = this.authService.getToken();
-    } else {
-      if (await this.authService.authenticate('gustavo', 'gustavo')) {
-        this.token = this.authService.getToken();
-      }
     }
   }
 }
