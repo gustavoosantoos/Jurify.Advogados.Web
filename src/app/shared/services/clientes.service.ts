@@ -14,7 +14,13 @@ export class ClientesService {
     private http: HttpClient
   ) { }
 
+
   public getClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(this.baseUrl);
+  }
+
+  public getCliente(id: string): Observable<Cliente> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<Cliente>(url);
   }
 }

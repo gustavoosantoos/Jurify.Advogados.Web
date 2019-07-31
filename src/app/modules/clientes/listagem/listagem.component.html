@@ -18,7 +18,7 @@
         <span class="nasc">Nascimento: {{cliente.dataNascimento | date: "dd/MM/yyyy"}}</span>
       </div>
       <div class="actions">
-        <button mat-button>Ver</button>
+        <a mat-button routerLink="/clientes/cadastro/{{cliente.codigo}}">Ver</a>
         <button mat-button class="remove">Remover</button>
       </div>
     </li>

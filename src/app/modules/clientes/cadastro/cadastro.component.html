@@ -1,21 +1,21 @@
-<div class="container">
+<div class="container" *ngIf="cliente; else elseBlock">
   <h1>Cadastrar cliente</h1>
 
   <form>
     <div class="fieldgroup">
       <mat-form-field>
-        <input type="text" matInput placeholder="Nome">
+        <input type="text" name="nome" [(ngModel)]="cliente.primeiroNome" matInput placeholder="Nome">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" matInput placeholder="Sobrenome">
+        <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" matInput placeholder="Sobrenome">
       </mat-form-field>
       <mat-form-field class="sm-field">
-        <input type="date" matInput placeholder="Data de nascimento">
+        <input type="date" name="dataNascimento" [(ngModel)]="cliente.dataNascimento" matInput placeholder="Data de nascimento">
       </mat-form-field>
     </div>
     <div class="fieldgroup">
       <mat-form-field>
-        <input type="text" matInput placeholder="Rua">
+        <input type="text" name="rua" matInput placeholder="Rua">
       </mat-form-field>
       <mat-form-field class="sm-field">
         <input type="text" matInput placeholder="Número">
@@ -51,7 +51,67 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <button mat-button>Cadastrar cliente</button>
+    <button mat-button>Salvar cliente</button>
     <button mat-button class="btn-back" (click)="goBack()">Voltar</button>
   </form>
 </div>
+
+<ng-template #elseBlock>
+  <div class="container">
+    <h1>Cadastrar cliente</h1>
+  
+    <form>
+      <div class="fieldgroup">
+        <mat-form-field>
+          <input type="text" name="nome" matInput placeholder="Nome">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" name="sobrenome" matInput placeholder="Sobrenome">
+        </mat-form-field>
+        <mat-form-field class="sm-field">
+          <input type="date" name="dataNascimento" matInput placeholder="Data de nascimento">
+        </mat-form-field>
+      </div>
+      <div class="fieldgroup">
+        <mat-form-field>
+          <input type="text" name="rua" matInput placeholder="Rua">
+        </mat-form-field>
+        <mat-form-field class="sm-field">
+          <input type="text" name="numero" matInput placeholder="Número">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" name="complemento" matInput placeholder="Complemento">
+        </mat-form-field>
+      </div>
+      <div class="fieldgroup">
+        <mat-form-field>
+          <input type="text" name="cidade" matInput placeholder="Cidade">
+        </mat-form-field>
+        <mat-form-field class="sm-field">
+          <input type="text" name="estado" matInput placeholder="Estado">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" name="pais" matInput placeholder="País">
+        </mat-form-field>
+      </div>
+      <div class="fieldgroup">
+        <mat-form-field class="sm-field">
+          <input type="text" name="cep" matInput placeholder="CEP">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" name="observacoes" matInput placeholder="Observações">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Tipo</mat-label>
+          <mat-select id="tipo">
+            <mat-option [value]="0">Residencial</mat-option>
+            <mat-option [value]="1">Comercial</mat-option>
+            <mat-option [value]="2">Outros</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <button mat-button>Cadastrar cliente</button>
+      <button mat-button class="btn-back" (click)="goBack()">Voltar</button>
+    </form>
+  </div>
+</ng-template>
