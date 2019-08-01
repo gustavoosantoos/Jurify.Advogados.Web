@@ -18,33 +18,33 @@
         <input type="text" name="rua" [(ngModel)]="cliente.enderecos[0].rua" matInput placeholder="Rua">
       </mat-form-field>
       <mat-form-field class="sm-field">
-        <input type="text" matInput placeholder="Número">
+        <input type="text" name="numero" [(ngModel)]="cliente.enderecos[0].numero" matInput placeholder="Número">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" matInput placeholder="Complemento">
+        <input type="text" name="complemento" [(ngModel)]="cliente.enderecos[0].complemento" matInput placeholder="Complemento">
       </mat-form-field>
     </div>
     <div class="fieldgroup">
       <mat-form-field>
-        <input type="text" matInput placeholder="Cidade">
+        <input type="text" name="cidade" [(ngModel)]="cliente.enderecos[0].cidade" matInput placeholder="Cidade">
       </mat-form-field>
       <mat-form-field class="sm-field">
-        <input type="text" matInput placeholder="Estado">
+        <input type="text" name="estado" [(ngModel)]="cliente.enderecos[0].estado" matInput placeholder="Estado">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" matInput placeholder="País">
+        <input type="text" name="pais" [(ngModel)]="cliente.enderecos[0].pais" matInput placeholder="País">
       </mat-form-field>
     </div>
     <div class="fieldgroup">
       <mat-form-field class="sm-field">
-        <input type="text" matInput placeholder="CEP">
+        <input type="text" name="cep" [(ngModel)]="cliente.enderecos[0].cep" matInput placeholder="CEP">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" matInput placeholder="Observações">
+        <input type="text" name="observacoes" [(ngModel)]="cliente.enderecos[0].observacoes" matInput placeholder="Observações">
       </mat-form-field>
       <mat-form-field>
         <mat-label>Tipo</mat-label>
-        <mat-select>
+        <mat-select name="tipo" [(ngModel)]="cliente.enderecos[0].tipo">
           <mat-option [value]="0">Residencial</mat-option>
           <mat-option [value]="1">Comercial</mat-option>
           <mat-option [value]="2">Outros</mat-option>
