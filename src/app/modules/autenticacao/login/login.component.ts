@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
   }
 
   async login(username: string, password: string): Promise<void> {
+    document.querySelector('div.submit').classList.add('load');
     if (await this.authService.authenticate(username, password)) {
-      document.querySelector('div.submit').classList.add('load');
       this.router.navigateByUrl('/');
     }
   }
