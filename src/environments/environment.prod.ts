@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   authentication: {
-    provider: 'http://jurify-autenticador.azurewebsites.net/',
+    provider: 'https://jurify-autenticador.azurewebsites.net/',
     client_id: 'jurify.web.lawyers',
     client_secret: 'jurify.web.lawyers',
     scope: 'jurify.api.lawyers',
@@ -12,7 +12,7 @@ export const environment = {
     user_info_identifier: 'jurify.web.lawyers.user'
   },
   endpoints: {
-    autenticador: 'http://jurify-autenticador.azurewebsites.net/api/',
-    advogados: 'http://jurify-advogados.azurewebsites.net/api/'
+    autenticador: 'https://jurify-autenticador.azurewebsites.net/api/',
+    advogados: 'https://jurify-advogados.azurewebsites.net/api/'
   }
 };
