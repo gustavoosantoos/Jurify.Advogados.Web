@@ -7,12 +7,14 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
   styleUrls: ['./menu-lateral.component.scss']
 })
 export class MenuLateralComponent implements OnInit {
+  isAuthenticated: boolean;
 
   constructor(
     private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   toggleMenu(): void {
@@ -28,15 +30,6 @@ export class MenuLateralComponent implements OnInit {
       button[0].classList.remove('closed');
       button[0].classList.add('open');
       menu.style.marginLeft = '0';
-    }
-  }
-
-  isAuthenticated(): Boolean {
-    if(this.authService.isAuthenticated()) {
-      return true;
-    }
-    else {
-      return false;
     }
   }
 }

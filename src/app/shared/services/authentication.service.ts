@@ -3,6 +3,9 @@ import { Injectable, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthenticationResult } from '../model/authentication-result.model';
 import { Router } from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
+import Usuario from '../model/usuario';
+
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +50,16 @@ export class AuthenticationService implements OnInit {
       return false;
     }
 
+    const userData = jwt_decode(result.access_token);
+    const userInfo = new Usuario(
+      userData.office_id,
+      userData.user_id,
+      userData.office_name,
+      `${userData.user_first_name} ${userData.user_last_name}`
+    );
+
     localStorage.setItem(environment.storage.token_identifier, result.access_token);
+    localStorage.setItem(environment.storage.user_info_identifier, JSON.stringify(userInfo));
     return true;
   }
 
@@ -62,5 +74,13 @@ export class AuthenticationService implements OnInit {
   public logout(): void {
     localStorage.removeItem(environment.storage.token_identifier);
     this.router.navigateByUrl('autenticacao');
+  }
+
+  public getUserInfo(): Usuario {
+    if (!this.isAuthenticated()) {
+      throw new Error('Cannot user info from an unidentified user');
+    }
+
+    return JSON.parse(localStorage.getItem(environment.storage.user_info_identifier));
   }
 }

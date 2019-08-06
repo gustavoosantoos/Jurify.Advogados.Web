@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListagemComponent } from './listagem/listagem.component'
-import { CadastroComponent } from './cadastro/cadastro.component';
 import { AuthGuard } from 'src/app/shared/guards/auth-guard';
+import { ListagemComponent } from './components/listagem/listagem.component';
+import { CadastroComponent } from './components/cadastro/cadastro.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'listagem', pathMatch: 'full', canActivate: [AuthGuard] },

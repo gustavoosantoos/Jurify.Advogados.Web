@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientesService } from 'src/app/shared/services/clientes.service';
-import { Cliente } from 'src/app/shared/model/cliente';
+import { ClientesService } from 'src/app/modules/clientes/services/clientes.service';
+import { Cliente } from '../../model/cliente';
 
 @Component({
   selector: 'app-listagem',

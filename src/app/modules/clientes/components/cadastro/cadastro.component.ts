@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Location, formatDate } from '@angular/common';
-import { Cliente } from 'src/app/shared/model/cliente';
 import { ActivatedRoute } from '@angular/router';
-import { ClientesService } from 'src/app/shared/services/clientes.service';
+import { ClientesService } from 'src/app/modules/clientes/services/clientes.service';
+import { Cliente } from '../../model/cliente';
 
 @Component({
   selector: 'app-cadastro',
