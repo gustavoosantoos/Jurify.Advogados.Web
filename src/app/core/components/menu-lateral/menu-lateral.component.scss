@@ -27,14 +27,28 @@ hr {
 
 .menu-lateral-itens {
   padding-top: 0;
+
   a {
     mat-icon {
       color: #4c5a98;
       margin-right: 10px;
+
+    }
+
+    &:hover {
+      mat-icon {
+        color: rgb(207, 118, 123);
+      }
     }
   }
 
+
+
   .active {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+
+    mat-icon {
+      color: rgb(207, 118, 123);
+    }
   }
 }
