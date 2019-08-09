@@ -5,27 +5,32 @@ import { AuthenticationResult } from '../model/authentication-result.model';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 import Usuario from '../model/usuario';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService implements OnInit {
+  public authenticatedState = new Subject<Boolean>();
+
   constructor(
     private http: HttpClient,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-
+    this.authenticatedState.next(false);
   }
 
   public isAuthenticated(): boolean {
     const tokenFromStorage = localStorage.getItem(environment.storage.token_identifier);
     if (!tokenFromStorage || tokenFromStorage === '') {
+      this.authenticatedState.next(false);
       return false;
     }
 
+    this.authenticatedState.next(true);
     return true;
   }
 

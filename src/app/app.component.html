@@ -1,2 +1,11 @@
-<app-menu-lateral *ngIf='currentRoute !== "/autenticacao/login"'></app-menu-lateral>
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened mode="side" class="sidenav" *ngIf="authenticated">
+    <app-menu-lateral></app-menu-lateral>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-menu-superior (toggleMenu)="sidenav.toggle()" *ngIf="authenticated"></app-menu-superior>
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
