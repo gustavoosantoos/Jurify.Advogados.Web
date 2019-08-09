@@ -1,6 +1,7 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <button mat-icon-button (click)="toggleMenu.emit(null)">
+    <img src="/assets/images/owl-red.svg" alt="" class="logo" *ngIf="showLogo">
+    <button mat-icon-button (click)="toggleSidenav()">
       <mat-icon>menu</mat-icon>
     </button>
     <h1>Escritório de Teste 1</h1>

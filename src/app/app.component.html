@@ -3,7 +3,7 @@
     <app-menu-lateral></app-menu-lateral>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-menu-superior (toggleMenu)="sidenav.toggle()" *ngIf="authenticated"></app-menu-superior>
+    <app-menu-superior (toggleMenu)="toggleSidenav()" *ngIf="authenticated"></app-menu-superior>
     <div class="page-content">
       <router-outlet></router-outlet>
     </div>

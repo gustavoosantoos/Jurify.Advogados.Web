@@ -8,12 +8,19 @@ import { EventEmitter } from '@angular/core';
 })
 export class MenuSuperiorComponent implements OnInit {
 
+  showLogo = false;
+
   @Output()
   public toggleMenu = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
-    
+
+  }
+
+  toggleSidenav() {
+    this.toggleMenu.emit();
+    this.showLogo = !this.showLogo;
   }
 }
