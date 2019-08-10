@@ -65,6 +65,8 @@ export class AuthenticationService implements OnInit {
 
     localStorage.setItem(environment.storage.token_identifier, result.access_token);
     localStorage.setItem(environment.storage.user_info_identifier, JSON.stringify(userInfo));
+
+    this.authenticatedState.next(true);
     return true;
   }
 
@@ -78,6 +80,9 @@ export class AuthenticationService implements OnInit {
 
   public logout(): void {
     localStorage.removeItem(environment.storage.token_identifier);
+    localStorage.removeItem(environment.storage.user_info_identifier);
+    
+    this.authenticatedState.next(false);
     this.router.navigateByUrl('autenticacao');
   }
 

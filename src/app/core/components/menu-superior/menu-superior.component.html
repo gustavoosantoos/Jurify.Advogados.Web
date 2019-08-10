@@ -4,18 +4,18 @@
     <button mat-icon-button (click)="toggleSidenav()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1>Escritório de Teste 1</h1>
+    <h1>{{ userInfo.nomeEscritorio }}</h1>
     <span class="spacer"></span>
     <div>
       <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        Nome do Usuário <mat-icon>expand_more</mat-icon>
+        {{ userInfo.nomeUsuario  }} <mat-icon>expand_more</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>
           <mat-icon>person</mat-icon>
           <span>Meu Perfil</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="sair()">
           <mat-icon>power_settings_new</mat-icon>
           <span>Sair</span>
         </button>
