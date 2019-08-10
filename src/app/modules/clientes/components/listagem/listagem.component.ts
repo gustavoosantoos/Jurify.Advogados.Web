@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from 'src/app/modules/clientes/services/clientes.service';
 import { Cliente } from '../../model/cliente';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-listagem',
@@ -10,6 +11,8 @@ import { Cliente } from '../../model/cliente';
 export class ListagemComponent implements OnInit {
 
   clientes: Cliente[];
+  displayedColumns: string[] = ['nome', 'email', 'nascimento', 'acoes'];
+  dataSource: MatTableDataSource<Cliente>;
 
   constructor(
     private clienteService: ClientesService
@@ -23,7 +26,16 @@ export class ListagemComponent implements OnInit {
 
   getClientes(): void {
     this.clienteService.getClientes()
-      .subscribe(clientes => this.clientes = clientes);
+      .subscribe(clientes => { 
+        this.clientes = clientes;
+        this.dataSource = new MatTableDataSource(this.clientes);
+      });
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    
+    this.dataSource.filter = filterValue;
+  }
 }

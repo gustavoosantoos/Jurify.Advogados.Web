@@ -2,7 +2,7 @@
   <h1>Clientes</h1>
 
   <mat-form-field class="search">
-    <input matInput type="text" placeholder="Digite o nome do cliente para buscar" [(ngModel)]="value">
+    <input matInput type="text" placeholder="Digite o nome do cliente para buscar" [ngModel]="value" (keyup)="applyFilter($event.target.value)">
     <button mat-button *ngIf="value" aria-label="Clear" matSuffix mat-icon-button (click)="value=''">
       &times;
     </button>
@@ -10,17 +10,34 @@
 
   <a routerLink="/clientes/cadastro" class="btn-link" mat-button>Cadastrar novo cliente</a>
 
-  <ul class="list-clientes">
-    <li *ngFor="let cliente of clientes">
-      <div class="info">
-        <span>{{cliente.nome}} {{cliente.sobrenome}} | {{cliente.email}}</span>
-        <br>
-        <span class="nasc">Nascimento: {{cliente.dataNascimento | date: "dd/MM/yyyy"}}</span>
-      </div>
-      <div class="actions">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef>Nome Completo</mat-header-cell>
+      <mat-cell *matCellDef="let cliente">{{ cliente.nome }} {{ cliente.sobrenome }}</mat-cell>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
+      <mat-cell *matCellDef="let cliente"> {{cliente.email}} </mat-cell>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="nascimento">
+      <mat-header-cell *matHeaderCellDef>Data de Nascimento</mat-header-cell>
+      <mat-cell *matCellDef="let cliente">{{cliente.dataNascimento | date: "dd/MM/yyyy"}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let cliente" class="align-collumn-right">
         <a mat-button routerLink="/clientes/cadastro/{{cliente.codigo}}">Ver</a>
         <button mat-button class="remove">Remover</button>
-      </div>
-    </li>
-  </ul>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 </div>
