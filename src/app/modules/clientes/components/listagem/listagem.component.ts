@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class ListagemComponent implements OnInit {
 
+  isLoading = false;
   clientes: Cliente[];
   displayedColumns: string[] = ['nome', 'email', 'nascimento', 'acoes'];
   dataSource: MatTableDataSource<Cliente>;
@@ -25,10 +26,16 @@ export class ListagemComponent implements OnInit {
   }
 
   getClientes(): void {
+    this.isLoading = true;
     this.clienteService.getClientes()
       .subscribe(clientes => { 
         this.clientes = clientes;
         this.dataSource = new MatTableDataSource(this.clientes);
+        this.isLoading = false;
+      }, error => {
+        this.clientes = [];
+        this.dataSource = new MatTableDataSource(this.clientes);
+        this.isLoading = false;
       });
   }
 

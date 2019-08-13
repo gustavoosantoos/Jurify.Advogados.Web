@@ -1,6 +1,33 @@
 <div class="container">
   <h1>Clientes</h1>
 
+  <mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile>
+      <mat-card class="dashboard-clientes-card">
+        <ng-container *ngIf="isLoading; else clientesCadastradosContainer">
+          <mat-progress-spinner [mode]="'indeterminate'" [diameter]="50" class="progress-loader">
+          </mat-progress-spinner>
+        </ng-container>
+        <ng-template #clientesCadastradosContainer>
+          <span>{{ clientes.length }}</span>
+          <p>clientes cadastrados</p>
+        </ng-template>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="dashboard-clientes-card">
+        <ng-container *ngIf="isLoading; else clientesComProcessoAtivosContainer">
+          <mat-progress-spinner [mode]="'indeterminate'" [diameter]="50" class="progress-loader">
+          </mat-progress-spinner>
+        </ng-container>
+        <ng-template #clientesComProcessoAtivosContainer>
+          <span>{{ clientes.length }}</span>
+          <p>clientes com processos ativos</p>
+        </ng-template>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
   <mat-form-field class="search">
     <input matInput type="text" placeholder="Digite o nome do cliente para buscar" [ngModel]="value" (keyup)="applyFilter($event.target.value)">
     <button mat-button *ngIf="value" aria-label="Clear" matSuffix mat-icon-button (click)="value=''">
@@ -8,22 +35,27 @@
     </button>
   </mat-form-field>
 
-  <a routerLink="/clientes/cadastro" class="btn-link" mat-button>Cadastrar novo cliente</a>
+  <a routerLink="/clientes/cadastro" class="btn-link" mat-button>
+    <mat-icon>add</mat-icon>
+    Cadastrar novo cliente
+  </a>
+  
+  <div *ngIf="isLoading">
+    <mat-progress-spinner [mode]="'indeterminate'" class="progress-loader">
+    </mat-progress-spinner>
+  </div>
 
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- Position Column -->
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!isLoading">
     <ng-container matColumnDef="nome">
       <mat-header-cell *matHeaderCellDef>Nome Completo</mat-header-cell>
       <mat-cell *matCellDef="let cliente">{{ cliente.nome }} {{ cliente.sobrenome }}</mat-cell>
     </ng-container>
   
-    <!-- Name Column -->
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
       <mat-cell *matCellDef="let cliente"> {{cliente.email}} </mat-cell>
     </ng-container>
   
-    <!-- Weight Column -->
     <ng-container matColumnDef="nascimento">
       <mat-header-cell *matHeaderCellDef>Data de Nascimento</mat-header-cell>
       <mat-cell *matCellDef="let cliente">{{cliente.dataNascimento | date: "dd/MM/yyyy"}}</mat-cell>
