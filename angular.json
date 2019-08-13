@@ -25,7 +25,6 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/fonts",
               "src/web.config"
             ],
             "styles": [
@@ -92,7 +91,6 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/fonts",
               "src/web.config"
             ]
           }
