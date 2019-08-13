@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { Router } from '@angular/router';
 

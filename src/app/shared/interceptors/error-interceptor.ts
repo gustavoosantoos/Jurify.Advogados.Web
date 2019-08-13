@@ -18,8 +18,10 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError(err => {
         if (err.status === 401) {
           const authenticateHeader: string = err.headers.get('www-authenticate');
+          console.log(authenticateHeader);
           if (authenticateHeader && authenticateHeader.includes('The token is expired')) {
             this.authService.logout();
+            return;
           }
 
           this.router.navigateByUrl(

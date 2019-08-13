@@ -5,27 +5,32 @@ import { AuthenticationResult } from '../model/authentication-result.model';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 import Usuario from '../model/usuario';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService implements OnInit {
+  public authenticatedState = new Subject<Boolean>();
+
   constructor(
     private http: HttpClient,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-
+    this.authenticatedState.next(false);
   }
 
   public isAuthenticated(): boolean {
     const tokenFromStorage = localStorage.getItem(environment.storage.token_identifier);
     if (!tokenFromStorage || tokenFromStorage === '') {
+      this.authenticatedState.next(false);
       return false;
     }
 
+    this.authenticatedState.next(true);
     return true;
   }
 
@@ -60,6 +65,8 @@ export class AuthenticationService implements OnInit {
 
     localStorage.setItem(environment.storage.token_identifier, result.access_token);
     localStorage.setItem(environment.storage.user_info_identifier, JSON.stringify(userInfo));
+
+    this.authenticatedState.next(true);
     return true;
   }
 
@@ -73,6 +80,9 @@ export class AuthenticationService implements OnInit {
 
   public logout(): void {
     localStorage.removeItem(environment.storage.token_identifier);
+    localStorage.removeItem(environment.storage.user_info_identifier);
+    
+    this.authenticatedState.next(false);
     this.router.navigateByUrl('autenticacao');
   }
 

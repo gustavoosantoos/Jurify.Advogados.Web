@@ -8,41 +8,35 @@ a.btn-link {
     color: #fff;
 }
 
-ul.list-clientes {
-    width: 60%;
-    list-style: none;
+.align-collumn-right {
+    justify-content: flex-end;
+}
 
-    li {
-        padding: 12px;
-        display: flex;
-        justify-content: space-between;
-        border-radius: 3px;
-        transition: .5s;
+button, a.mat-button {
+    background-color: #4c5a98;
+    margin-right: 5px;
+    color: #fff;
+    font-family: 'Gilroy';
 
-        &:hover {
-            background-color: rgb(247, 247, 247);
-        }
+    &.remove {
+        background-color: transparent;
+        border: 1px solid #cf767b;
+        color: #cf767b;
+    }
+}
 
-        span {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 18px;
+.dashboard-clientes-card {
+    min-width: 50%;
+    text-align: center;
 
-            &.nasc {
-                font-size: 14px;
-            }
-        }
-
-        button, a.mat-button {
-            background-color: #4c5a98;
-            margin-right: 5px;
-            color: #fff;
-            font-family: 'Gilroy';
-
-            &.remove {
-                background-color: transparent;
-                border: 1px solid #cf767b;
-                color: #cf767b;
-            }
-        }
+    span {
+        font-size: 1.5rem;
+        font-weight: bolder;
+        display: block;
+        width: 100%;
+    }
+    
+    p {
+        margin-top: 0;
     }
 }

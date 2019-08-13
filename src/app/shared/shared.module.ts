@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule } from '@angular/material';
 import { FormsModule } from '@angular/forms'
 import { AuthGuard } from './guards/auth-guard';
 import { RouterModule } from '@angular/router';
@@ -24,12 +24,19 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
     ],
     exports: [
       CommonModule,
+      MatGridListModule,
+      MatCardModule,
+      MatSidenavModule,
+      MatToolbarModule,
+      MatDividerModule,
+      MatListModule,
       MatFormFieldModule,
       MatInputModule,
       MatButtonModule,
       MatIconModule,
       MatSelectModule,
       MatProgressSpinnerModule,
+      MatTableModule,
       FormsModule,
       RouterModule
     ],
