@@ -4,11 +4,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ListagemComponent } from './components/listagem/listagem.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { VisualizacaoComponent } from './components/visualizacao/visualizacao.component';
 
 @NgModule({
   declarations: [
     ListagemComponent,
-    CadastroComponent
+    CadastroComponent,
+    VisualizacaoComponent
   ],
   imports: [
     CommonModule,
