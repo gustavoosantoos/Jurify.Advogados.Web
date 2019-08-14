@@ -9,7 +9,7 @@ import ClienteCadastro from '../model/cadastro/cliente-cadastro.model';
 @Injectable({
   providedIn: 'root'
 })
-export default class ClientesService {
+export class ClientesService {
   private baseUrl = environment.endpoints.advogados + 'clientes';
 
   constructor(

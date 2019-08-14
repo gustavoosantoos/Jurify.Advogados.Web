@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { Location } from '@angular/common';
 import ClienteCadastro from '../../model/cadastro/cliente-cadastro.model';
-import EnderecoCadastro from '../../model/cadastro/endereco-cadastro.model';
-import ClientesService from '../../services/clientes.service';
+import { ClientesService } from '../../services/clientes.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Component({

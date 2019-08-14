@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { ClientesService } from 'src/app/modules/clientes/services/clientes.service';
 import ClientePreview from '../../model/listagem/cliente-preview.model';
-import ClientesService from 'src/app/modules/clientes/services/clientes.service';
 
 @Component({
   selector: 'app-listagem',
