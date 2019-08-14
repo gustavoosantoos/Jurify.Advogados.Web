@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientesService } from 'src/app/modules/clientes/services/clientes.service';
-import { Cliente } from '../../model/cliente';
 import { MatTableDataSource } from '@angular/material';
+import ClientePreview from '../../model/listagem/cliente-preview.model';
+import ClientesService from 'src/app/modules/clientes/services/clientes.service';
 
 @Component({
   selector: 'app-listagem',
@@ -11,15 +11,15 @@ import { MatTableDataSource } from '@angular/material';
 export class ListagemComponent implements OnInit {
 
   isLoading = false;
-  clientes: Cliente[];
+  clientes: ClientePreview[];
+  dataSource: MatTableDataSource<ClientePreview>;
   displayedColumns: string[] = ['nome', 'email', 'nascimento', 'acoes'];
-  dataSource: MatTableDataSource<Cliente>;
+  value: string = '';
 
   constructor(
     private clienteService: ClientesService
   ) { }
 
-  value: string = '';
 
   ngOnInit() {
     this.getClientes();

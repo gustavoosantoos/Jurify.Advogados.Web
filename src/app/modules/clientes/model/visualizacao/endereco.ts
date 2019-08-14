@@ -1,4 +1,4 @@
-export class Endereco {
+export default class Endereco {
     codigo: string;
     rua: string;
     numero: string;

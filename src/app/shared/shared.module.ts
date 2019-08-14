@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     declarations: [],
@@ -24,6 +24,7 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
     ],
     exports: [
       CommonModule,
+      FlexLayoutModule,
       MatGridListModule,
       MatCardModule,
       MatSidenavModule,

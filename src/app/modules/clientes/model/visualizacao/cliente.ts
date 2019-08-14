@@ -1,6 +1,6 @@
-import { Endereco } from './endereco';
+import Endereco from './endereco';
 
-export class Cliente {
+export default class Cliente {
     codigo: string;
     primeiroNome: string;
     sobrenome: string;
@@ -12,4 +12,8 @@ export class Cliente {
     dataCriacao: Date;
     dataUltimaAlteracao: Date;
     nomeUsuarioUltimaAlteracao: string;
+
+    constructor() {
+        this.enderecos = [];
+    }
 }
