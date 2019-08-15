@@ -6,13 +6,15 @@ import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.com
 import { SharedModule } from '../shared/shared.module';
 import { MenuSuperiorComponent } from './components/menu-superior/menu-superior.component';
 import { MatToolbarModule, MatSidenavModule, MatMenuModule } from '@angular/material';
+import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 
 library.add(fas);
 
 @NgModule({
     declarations: [
         MenuLateralComponent,
-        MenuSuperiorComponent
+        MenuSuperiorComponent,
+        LoadingScreenComponent
     ],
     imports: [
         SharedModule,
@@ -23,7 +25,8 @@ library.add(fas);
     ],
     exports: [
         MenuLateralComponent,
-        MenuSuperiorComponent
+        MenuSuperiorComponent,
+        LoadingScreenComponent
     ],
     providers: [],
 })

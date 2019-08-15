@@ -1,29 +1,17 @@
-<div class="container">
+<div class="container" *ngIf="!isLoading">
   <h1>Clientes</h1>
 
   <mat-grid-list cols="2" rowHeight="4:1">
     <mat-grid-tile>
       <mat-card class="dashboard-clientes-card">
-        <ng-container *ngIf="isLoading; else clientesCadastradosContainer">
-          <mat-progress-spinner [mode]="'indeterminate'" [diameter]="50" class="progress-loader">
-          </mat-progress-spinner>
-        </ng-container>
-        <ng-template #clientesCadastradosContainer>
-          <span>{{ clientes.length }}</span>
-          <p>clientes cadastrados</p>
-        </ng-template>
+        <span>{{ clientes.length }}</span>
+        <p>clientes cadastrados</p>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-card class="dashboard-clientes-card">
-        <ng-container *ngIf="isLoading; else clientesComProcessoAtivosContainer">
-          <mat-progress-spinner [mode]="'indeterminate'" [diameter]="50" class="progress-loader">
-          </mat-progress-spinner>
-        </ng-container>
-        <ng-template #clientesComProcessoAtivosContainer>
-          <span>{{ clientes.length }}</span>
-          <p>clientes com processos ativos</p>
-        </ng-template>
+        <span>{{ clientes.length }}</span>
+        <p>clientes com processos ativos</p>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
@@ -39,13 +27,8 @@
     <mat-icon>add</mat-icon>
     Cadastrar novo cliente
   </a>
-  
-  <div *ngIf="isLoading">
-    <mat-progress-spinner [mode]="'indeterminate'" class="progress-loader">
-    </mat-progress-spinner>
-  </div>
 
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!isLoading">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="nome">
       <mat-header-cell *matHeaderCellDef>Nome Completo</mat-header-cell>
       <mat-cell *matCellDef="let cliente">{{ cliente.nome }} {{ cliente.sobrenome }}</mat-cell>
