@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { Location } from '@angular/common';
-import ClienteCadastro from '../../model/cadastro/cliente-cadastro.model';
 import { ClientesService } from '../../services/clientes.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import ClienteCadastro from '../../model/cadastro/cliente-cadastro.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -20,15 +21,21 @@ export class CadastroComponent {
   constructor(
     private location: Location,
     private clientesService: ClientesService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private router: Router) {
   }
 
   salvarCliente(): void {
+    if (Object.values(this.cliente.endereco).every(v => v == null)) {
+      this.cliente.enderecos = [];
+    }
+
     const snackBarOptions = new MatSnackBarConfig();
-    snackBarOptions.duration = 100000;
+    snackBarOptions.duration = 10000;
 
     this.clientesService.cadastrarCliente(this.cliente).subscribe(r => {
-      console.log(r);
+      this.snackBar.open('Cliente salvo com sucesso', 'Fechar', snackBarOptions);
+      this.router.navigateByUrl('/clientes');
     }, error => {
       if (error.status == 400) {
         console.log(error);
