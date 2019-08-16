@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
 import { FormsModule } from '@angular/forms'
 import { AuthGuard } from './guards/auth-guard';
 import { RouterModule } from '@angular/router';
@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
     declarations: [],
@@ -18,9 +19,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       MatButtonModule,
       MatIconModule,
       MatSelectModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
       MatProgressSpinnerModule,
       FormsModule,
-      RouterModule
+      RouterModule,
+      NgxMaskModule.forRoot()
     ],
     exports: [
       CommonModule,
@@ -40,12 +44,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       MatProgressSpinnerModule,
       MatTableModule,
       MatTabsModule,
+      MatDatepickerModule,
       FormsModule,
-      RouterModule
+      RouterModule,
+      NgxMaskModule
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
       { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+      { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, 
       AuthGuard
     ],
 })

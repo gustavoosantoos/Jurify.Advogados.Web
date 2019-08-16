@@ -11,20 +11,18 @@
         <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" matInput placeholder="Sobrenome">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="dataNascimento" [(ngModel)]="cliente.dataNascimento" matInput
-          placeholder="Data de nascimento">
+        <input matInput name="dataNascimento" [(ngModel)]="cliente.dataNascimento" [matDatepicker]="picker" placeholder="Data de nascimento" (focus)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="rg" [(ngModel)]="cliente.rg" matInput
-          placeholder="RG">
+        <input type="text" name="rg" [(ngModel)]="cliente.rg" matInput placeholder="RG">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="cpf" [(ngModel)]="cliente.cpf" matInput
-          placeholder="CPF">
+        <input type="text" name="cpf" [(ngModel)]="cliente.cpf" matInput mask="000.000.000-00" [showMaskTyped]="true" placeholder="CPF">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="email" [(ngModel)]="cliente.email" matInput
-          placeholder="E-mail">
+        <input type="text" name="email" [(ngModel)]="cliente.email" matInput placeholder="E-mail">
       </mat-form-field>
     </div>
 
@@ -50,7 +48,7 @@
         <input type="text" name="pais" [(ngModel)]="cliente.endereco.pais" matInput placeholder="País">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="cep" [(ngModel)]="cliente.endereco.cep" matInput placeholder="CEP">
+        <input type="text" name="cep" [(ngModel)]="cliente.endereco.cep" matInput mask="00.000-000" placeholder="CEP">
       </mat-form-field>
       <mat-form-field>
         <input type="text" name="observacoes" [(ngModel)]="cliente.endereco.observacoes" matInput
