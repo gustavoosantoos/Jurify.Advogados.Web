@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { ClientesService } from 'src/app/modules/clientes/services/clientes.service';
-import ClientePreview from '../../model/listagem/cliente-preview.model';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
-import { ThrowStmt } from '@angular/compiler';
+import ClientePreview from '../../model/listagem/cliente-preview.model';
+import { filter } from 'minimatch';
 
 @Component({
   selector: 'app-listagem',
@@ -46,7 +46,8 @@ export class ListagemComponent implements OnInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    
+    filterValue = filterValue.replace('/', '-');
+
     this.dataSource.filter = filterValue;
   }
 }
