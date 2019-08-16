@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule } from '@angular/material';
 import { FormsModule } from '@angular/forms'
 import { AuthGuard } from './guards/auth-guard';
 import { RouterModule } from '@angular/router';
@@ -39,6 +39,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       MatSelectModule,
       MatProgressSpinnerModule,
       MatTableModule,
+      MatTabsModule,
       FormsModule,
       RouterModule
     ],

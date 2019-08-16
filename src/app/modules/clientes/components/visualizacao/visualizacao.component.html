@@ -1,18 +1,27 @@
 <div class="container" *ngIf="cliente">
-  <h1>Cliente: {{ cliente.primeiroNome }} {{ cliente.sobrenome }}</h1>
+  <h1>Cliente: <span class="nome-cliente">{{ cliente.primeiroNome }} {{ cliente.sobrenome }}</span></h1>
 
-  <div>
-    <mat-card>
-      1
+  <div fxLayout="row wrap" flex="100" fxLayoutGap.lg="20px">
+    <mat-card fxFlex.lg="calc(70% - 20px)" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Informações Básicas"></mat-tab>
+        <mat-tab label="Endereços"></mat-tab>
+        <mat-tab label="Contatos"></mat-tab>
+        <mat-tab label="Outros Documentos"></mat-tab>
+      </mat-tab-group>
     </mat-card>
-    <mat-card>
-      2
+    <mat-card fxFlex.lg="calc(30% - 20px)" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Anexos"></mat-tab>
+      </mat-tab-group>
     </mat-card>
   </div>
 
-  <div>
-    <mat-card>
-      3
+  <div fxLayout="row wrap" flex="100" class="mt-2">
+    <mat-card fxFlex="100">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Processos Jurídicos"></mat-tab>
+      </mat-tab-group>
     </mat-card>
   </div>
 </div>
