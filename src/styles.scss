@@ -29,3 +29,7 @@ h1, h2, h3, h4 {
 .progress-loader {
     margin: 0 auto;
 }
+
+.mat-progress-spinner svg > circle {
+    stroke: rgb(207, 118, 123);
+}

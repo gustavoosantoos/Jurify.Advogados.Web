@@ -30,7 +30,7 @@ export class VisualizacaoComponent implements OnInit {
 
       this.clientesService.getCliente(codigoCliente).subscribe(c => {
         this.cliente = c;
-        this.loadingService.isLoading.next(false);
+        this.loadingService.isLoading.next(true);
       }, error => {
         this.loadingService.isLoading.next(false);        
         this.snackBar.open('Erro ao carregar cliente', 'Fechar', snackBarConfig);
