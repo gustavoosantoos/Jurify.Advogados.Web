@@ -11,9 +11,9 @@
         <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" matInput placeholder="Sobrenome" required>
       </mat-form-field>
       <mat-form-field>
-        <input matInput name="dataNascimento" [(ngModel)]="cliente.dataNascimento" [matDatepicker]="picker" placeholder="Data de nascimento" (focus)="picker.open()">
+        <input matInput name="dataNascimento" [(ngModel)]="cliente.dataNascimento" [matDatepicker]="picker" [max]="getPickerMaxDate()" placeholder="Data de nascimento" (focus)="picker.open()">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker #picker touchUi></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
         <input type="text" name="rg" [(ngModel)]="cliente.rg" matInput placeholder="RG">

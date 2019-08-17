@@ -47,6 +47,10 @@ export class CadastroComponent {
     });
   }
 
+  getPickerMaxDate(): Date {
+    return new Date(Date.now());
+  }
+
   goBack(): void {
     this.location.back();
   }

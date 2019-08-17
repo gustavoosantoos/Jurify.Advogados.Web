@@ -38,4 +38,8 @@ export class VisualizacaoComponent implements OnInit {
       });
     });
   }
+
+  atualizarDadosBasicos() {
+    
+  }
 }
