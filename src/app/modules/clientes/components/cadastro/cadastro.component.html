@@ -5,10 +5,10 @@
     <h4>Dados pessoais</h4>
     <div fxLayout="row wrap" fxLayoutAlign="space-between center" flex="33" flex.md="50" flex.sm="100">
       <mat-form-field>
-        <input type="text" name="nome" [(ngModel)]="cliente.nome" matInput placeholder="Nome">
+        <input type="text" name="nome" [(ngModel)]="cliente.nome" matInput placeholder="Nome" required>
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" matInput placeholder="Sobrenome">
+        <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" matInput placeholder="Sobrenome" required>
       </mat-form-field>
       <mat-form-field>
         <input matInput name="dataNascimento" [(ngModel)]="cliente.dataNascimento" [matDatepicker]="picker" placeholder="Data de nascimento" (focus)="picker.open()">
@@ -19,7 +19,7 @@
         <input type="text" name="rg" [(ngModel)]="cliente.rg" matInput placeholder="RG">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="cpf" [(ngModel)]="cliente.cpf" matInput mask="000.000.000-00" [showMaskTyped]="true" placeholder="CPF">
+        <input type="text" name="cpf" [(ngModel)]="cliente.cpf" matInput mask="000.000.000-00" placeholder="CPF">
       </mat-form-field>
       <mat-form-field>
         <input type="text" name="email" [(ngModel)]="cliente.email" matInput placeholder="E-mail">

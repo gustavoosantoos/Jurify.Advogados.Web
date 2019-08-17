@@ -1,5 +1,14 @@
 <div class="container" *ngIf="cliente">
-  <h1>Cliente: <span class="nome-cliente">{{ cliente.primeiroNome }} {{ cliente.sobrenome }}</span></h1>
+  <h1>Cliente:
+    <span class="nome-cliente"> {{ cliente.primeiroNome }} {{ cliente.sobrenome }}</span>
+    <br/>
+    <span class="dados-alteracao">
+          <strong>Criado em:</strong> {{ cliente.dataCriacao | date: "dd/MM/yyyy" }} -
+          <strong>Ultima alteração em:</strong> {{ cliente.dataUltimaAlteracao | date: "dd/MM/yyyy" }} - 
+          <strong>Alterado pelo usuário:</strong> {{ cliente.nomeUsuarioUltimaAlteracao }}
+    </span>
+  </h1>
+  
 
   <div fxLayout="row wrap" flex="100" fxLayoutGap.lg="20px">
     <mat-card fxFlex.lg="calc(70% - 20px)" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
