@@ -2,7 +2,7 @@ import Endereco from './endereco';
 
 export default class Cliente {
     codigo: string;
-    primeiroNome: string;
+    nome: string;
     sobrenome: string;
     dataNascimento: Date;
     email: string;

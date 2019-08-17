@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import Cliente from '../model/visualizacao/cliente';
 import ClientePreview from '../model/listagem/cliente-preview.model';
 import ClienteCadastro from '../model/cadastro/cliente-cadastro.model';
+import ClienteAtualizacao from '../model/atualizacao/cliente-atualizacao.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,11 @@ export class ClientesService {
 
   public cadastrarCliente(cliente: ClienteCadastro): Observable<string> {
     return this.http.post<string>(this.baseUrl, cliente);
+  }
+
+  public atualizarDadosBasicosCliente(cliente: ClienteAtualizacao): Observable<string> {
+    const url = `${this.baseUrl}/${cliente.codigo}`;
+    return this.http.put<string>(url, cliente);
   }
 
   public removerCliente(id: string): Observable<string> {

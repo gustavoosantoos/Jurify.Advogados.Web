@@ -1,6 +1,6 @@
 <div class="container" *ngIf="cliente">
   <h1>Cliente:
-    <span class="nome-cliente"> {{ cliente.primeiroNome }} {{ cliente.sobrenome }}</span>
+    <span class="nome-cliente"> {{ cliente.nome }} {{ cliente.sobrenome }}</span>
     <br />
     <span class="dados-alteracao">
       <strong>Criado em:</strong> {{ cliente.dataCriacao | date: "dd/MM/yyyy" }} -
@@ -40,7 +40,7 @@
   <ng-template #templateDadosBasicos>
     <div class="tab-content" fxLayout="row wrap" fxLayoutAlign="space-between center" flex="33" flex.md="50" flex.sm="100">
       <mat-form-field>
-        <input type="text" name="nome" [(ngModel)]="cliente.primeiroNome" matInput placeholder="Nome" required>
+        <input type="text" name="nome" [(ngModel)]="cliente.nome" matInput placeholder="Nome" required>
       </mat-form-field>
       <mat-form-field>
         <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" matInput placeholder="Sobrenome" required>
