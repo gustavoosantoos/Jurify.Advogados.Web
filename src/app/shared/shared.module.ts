@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule } from '@angular/material';
 import { FormsModule } from '@angular/forms'
 import { AuthGuard } from './guards/auth-guard';
 import { RouterModule } from '@angular/router';
@@ -22,6 +22,7 @@ import { NgxMaskModule } from 'ngx-mask';
       MatDatepickerModule,
       MatNativeDateModule,
       MatProgressSpinnerModule,
+      MatDialogModule,
       FormsModule,
       RouterModule,
       NgxMaskModule.forRoot()
@@ -42,6 +43,7 @@ import { NgxMaskModule } from 'ngx-mask';
       MatIconModule,
       MatSelectModule,
       MatProgressSpinnerModule,
+      MatDialogModule,
       MatTableModule,
       MatTabsModule,
       MatDatepickerModule,

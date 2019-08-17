@@ -33,3 +33,16 @@ h1, h2, h3, h4 {
 .progress-loader {
     margin: 0 auto;
 }
+
+
+mat-dialog-container {
+  text-align: center;
+
+  .actions-container {
+      width: 100%;
+
+      button {
+          flex: 1;
+      }
+  }
+}
