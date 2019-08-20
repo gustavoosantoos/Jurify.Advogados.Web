@@ -8,7 +8,8 @@ export default class Endereco {
     pais: string;
     cep: string;
     observacoes: string;
-    tipo: 0;
+    tipo: number = 0;
+    tipoEndereco: string;
     dataCriacao: Date;
     dataUltimaAlteracao: Date;
     nomeUsuarioUltimaAlteracao: string;

@@ -2,9 +2,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientesService } from '../../services/clientes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Cliente from '../../model/visualizacao/cliente';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig, MatTableDataSource } from '@angular/material';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
 import ClienteAtualizacao from '../../model/atualizacao/cliente-atualizacao.model';
+import Endereco from '../../model/visualizacao/endereco';
 
 @Component({
   selector: 'app-visualizacao',
@@ -14,6 +15,9 @@ import ClienteAtualizacao from '../../model/atualizacao/cliente-atualizacao.mode
 export class VisualizacaoComponent implements OnInit {
   public cliente: Cliente;
   public codigoCliente: string;
+
+  public enderecosDataSource: MatTableDataSource<Endereco> = new MatTableDataSource<Endereco>([]);
+  public enderecosFields = ['rua', 'cidade', 'estado', 'tipo'];
 
   constructor(
     private clientesService: ClientesService,
@@ -34,6 +38,24 @@ export class VisualizacaoComponent implements OnInit {
     this.loadingService.isLoading.next(true);
     this.clientesService.getCliente(this.codigoCliente).subscribe(c => {
       this.cliente = c;
+      this.cliente.enderecos.forEach(e => {
+        switch (e.tipo) {
+          case 0: 
+            e.tipoEndereco = 'Residencial';
+            break;
+          case 1:
+            e.tipoEndereco = 'Comercial';
+            break;
+          case 2: 
+            e.tipoEndereco = 'Outro';
+            break;
+          default:
+            e.tipoEndereco = 'Desconhecido';
+            break;
+        }
+      });
+
+      this.enderecosDataSource = new MatTableDataSource<Endereco>(this.cliente.enderecos);
       this.loadingService.isLoading.next(false);
     }, error => {
       this.loadingService.isLoading.next(false);        
@@ -53,17 +75,20 @@ export class VisualizacaoComponent implements OnInit {
       this.cliente.dataNascimento
     );
 
+    this.loadingService.isLoading.next(true);
+
     this.clientesService.atualizarDadosBasicosCliente(clienteAtualizacao).subscribe(r => {
-      this.loadingService.isLoading.next(true);
+      this.loadingService.isLoading.next(false);
 
       if (r == clienteAtualizacao.codigo) {
-        this.loadingService.isLoading.next(false);        
         this.snackBar.open('Cliente atualizado com sucesso', 'Fechar', { duration: 10000 });
         this.getCliente();
       } else {
-        this.loadingService.isLoading.next(false);        
         this.snackBar.open('Erro ao atualizar cliente', 'Fechar', { duration: 10000 });
       }
+    }, error => {
+      this.loadingService.isLoading.next(false);
+      this.snackBar.open('Erro ao atualizar cliente', 'Fechar', { duration: 10000 });
     });
   }
 }
