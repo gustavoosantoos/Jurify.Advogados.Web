@@ -17,7 +17,7 @@ export class VisualizacaoComponent implements OnInit {
   public codigoCliente: string;
 
   public enderecosDataSource: MatTableDataSource<Endereco> = new MatTableDataSource<Endereco>([]);
-  public enderecosFields = ['rua', 'cidade', 'estado', 'tipo'];
+  public enderecosFields = ['rua', 'cidade', 'estado', 'tipo', 'acoes'];
 
   constructor(
     private clientesService: ClientesService,
