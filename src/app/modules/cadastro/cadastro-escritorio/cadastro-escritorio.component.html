@@ -1,0 +1,83 @@
+<div class="container">
+  <img src="../../../../assets/images/logo-br.svg" alt="Jurify" class="logo">
+  <div class="steps">
+    <div class="step active">
+      <h1>Vamos começar!</h1>
+      <p>Ficamos felizes em ter você aqui, siga os passos e preencha os campos para concluir seu cadastro :)
+      </p>
+      <button mat-button class="next" (click)="nextStep('dados')">Avançar</button>
+    </div>
+
+    <form id="officeForm" action="javascript:;" (submit)="createOffice(this)">
+      <div id="dados" class="step">
+        <h1>Dados do escritório</h1>
+
+        <mat-form-field>
+          <input type="text" #razaosocial name="razaosocial" matInput placeholder="Razão Social">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" #nomefant name="nomefant" matInput placeholder="Nome Fantasia">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" #cnpj name="cnpj" matInput placeholder="CNPJ">
+        </mat-form-field>
+        <button mat-button class="next" (click)="nextStep('address')">Avançar</button>
+      </div>
+
+      <div id="address" class="step">
+        <h1>Endereço</h1>
+
+        <mat-form-field>
+          <input type="text" #cep name="cep" matInput placeholder="CEP">
+        </mat-form-field>
+        <div class="fieldgroup">
+          <mat-form-field>
+            <input type="text" #logradouro name="logradouro" matInput placeholder="Logradouro">
+          </mat-form-field>
+          <mat-form-field class="sm-field">
+            <input type="text" #numero name="numero" matInput placeholder="Número">
+          </mat-form-field>
+        </div>
+        <mat-form-field>
+          <input type="text" #complemento name="complemento" matInput placeholder="Complemento">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" #bairro name="bairro" matInput placeholder="Bairro">
+        </mat-form-field>
+        <div class="fieldgroup">
+          <mat-form-field>
+            <input type="text" #cidade name="cidade" matInput placeholder="Cidade">
+          </mat-form-field>
+          <mat-form-field class="sm-field">
+            <input type="text" #estado name="estado" matInput placeholder="Estado">
+          </mat-form-field>
+        </div>
+
+        <button mat-button class="next" id="submitOfficeForm">Avançar</button>
+      </div>
+    </form>
+
+    <div id="credentials" class="step">
+      <h1>Primeiro usuário</h1>
+      <p>Agora que já nos informou os dados do seu escritório,
+        precisamos criar seu usuário para acessar o sistema!</p>
+
+      <form (submit)="createUser(this)">
+        <mat-form-field>
+          <input type="text" #firstname name="firstname" matInput placeholder="Nome">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" #lastname name="lastname" matInput placeholder="Sobrenome">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="email" #email name="email" matInput placeholder="E-mail">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" #password name="password" matInput placeholder="Senha">
+        </mat-form-field>
+
+        <button mat-button class="next">Finalizar cadastro</button>
+      </form>
+    </div>
+  </div>
+</div>
