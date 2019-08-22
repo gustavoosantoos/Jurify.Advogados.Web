@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule } from '@angular/material';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AuthGuard } from './guards/auth-guard';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -20,6 +20,7 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
       MatSelectModule,
       MatProgressSpinnerModule,
       FormsModule,
+      ReactiveFormsModule,
       RouterModule
     ],
     exports: [
@@ -38,6 +39,7 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
       MatProgressSpinnerModule,
       MatTableModule,
       FormsModule,
+      ReactiveFormsModule,
       RouterModule
     ],
     providers: [

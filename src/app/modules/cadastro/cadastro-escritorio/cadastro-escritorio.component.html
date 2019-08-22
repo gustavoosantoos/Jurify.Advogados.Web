@@ -64,19 +64,34 @@
 
       <form #signupForm="ngForm" (ngSubmit)="createUser(signupForm)">
         <mat-form-field>
-          <input type="text" ngModel #firstname name="firstname" matInput [formControl]="inputFormControl" placeholder="Nome">
-          <mat-error *ngIf="inputFormControl.hasError('required')">
+          <input type="text" ngModel #firstname name="firstname" matInput [formControl]="nomeFormControl" placeholder="Nome">
+          <mat-error *ngIf="nomeFormControl.hasError('required')">
             Nome é <strong>obrigatório</strong>
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input type="text" ngModel #lastname name="lastname" matInput placeholder="Sobrenome">
+          <input type="text" ngModel #lastname name="lastname" matInput [formControl]="sobrenomeFormControl" placeholder="Sobrenome">
+          <mat-error *ngIf="sobrenomeFormControl.hasError('required')">
+            Sobrenome é <strong>obrigatório</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input type="email" ngModel #email name="email" matInput placeholder="E-mail">
+          <input type="email" ngModel #email name="email" matInput [formControl]="emailFormControl" placeholder="E-mail">
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            E-mail é <strong>obrigatório</strong>
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('invalid')">
+            O e-mail não é <strong>válido</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input type="password" ngModel #password name="password" matInput placeholder="Senha">
+          <input type="password" ngModel #password name="password" matInput [formControl]="senhaFormControl" minlength="8" placeholder="Senha">
+          <mat-error *ngIf="senhaFormControl.hasError('required')">
+            Senha é <strong>obrigatória</strong>
+          </mat-error>
+          <mat-error *ngIf="senhaFormControl.hasError('minlength')">
+            A senha precisa ter no mínimo <strong>8 caracteres</strong>
+          </mat-error>
         </mat-form-field>
 
         <button mat-button class="next">Finalizar cadastro</button>
