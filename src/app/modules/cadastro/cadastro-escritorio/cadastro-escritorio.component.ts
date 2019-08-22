@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SignupService } from 'src/app/shared/services/signup.service';
+import { Router } from '@angular/router';
+import { NgForm, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-escritorio',
@@ -7,12 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroEscritorioComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private signupService: SignupService,
+    private router: Router
+  ) { }
+
+  public officeName: string;
 
   ngOnInit() {
-    document.getElementById('submitOfficeForm').addEventListener('click', function(){
-      document.getElementById('officeForm').submit();
-    });
+    
   }
 
   nextStep(target): void {
@@ -25,7 +31,24 @@ export class CadastroEscritorioComponent implements OnInit {
   }
 
   createOffice(form): void {
+    event.preventDefault();
     this.nextStep('credentials');
+    this.officeName = form.value.nomefant;
+    console.log(this.officeName);
+    console.log(form.value);
   }
+
+  createUser(user: NgForm): void {
+    user.value.officeName = this.officeName;
+    console.log(this.officeName);
+    console.log(user.value);
+    if(this.signupService.createUser(user.value)) {
+      this.router.navigateByUrl('/autenticacao');
+    }
+  }
+
+  inputFormControl = new FormControl('', [
+    Validators.required
+  ]);
 
 }
