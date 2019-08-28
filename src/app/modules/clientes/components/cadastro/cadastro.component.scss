@@ -1,15 +1,18 @@
 form {
     width: 100%;
 
-    .fieldgroup {
-        mat-form-field {
-            margin-right: 15px;
-            width: 30%;
+    h4 {
+        margin: 0;
+    }
 
-            &.sm-field {
-                width: 12%;
-            }
-        }
+    mat-card {
+        margin-top: 10px;
+    }
+
+    mat-form-field {
+        width: 100%;
+        padding: 0 15px;
+        flex: 1;
     }
 
     button {
@@ -21,5 +24,25 @@ form {
             background-color: #444554;
             margin-left: 10px;
         }
+    }
+
+    .actions-container {
+        text-align: right;
+
+        button {
+            margin-right: 10px;
+        }
+    }
+}
+
+.validation-errors-container {
+    > span {
+        display: block;
+        width: 100%;
+        margin: 0;
+    }
+
+    button {
+        width: 100%;
     }
 }

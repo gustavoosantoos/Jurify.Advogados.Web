@@ -1,29 +1,17 @@
-<div class="container">
+<div class="container" *ngIf="!isLoading">
   <h1>Clientes</h1>
 
   <mat-grid-list cols="2" rowHeight="4:1">
     <mat-grid-tile>
       <mat-card class="dashboard-clientes-card">
-        <ng-container *ngIf="isLoading; else clientesCadastradosContainer">
-          <mat-progress-spinner [mode]="'indeterminate'" [diameter]="50" class="progress-loader">
-          </mat-progress-spinner>
-        </ng-container>
-        <ng-template #clientesCadastradosContainer>
-          <span>{{ clientes.length }}</span>
-          <p>clientes cadastrados</p>
-        </ng-template>
+        <span>{{ clientes.length }}</span>
+        <p>clientes cadastrados</p>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-card class="dashboard-clientes-card">
-        <ng-container *ngIf="isLoading; else clientesComProcessoAtivosContainer">
-          <mat-progress-spinner [mode]="'indeterminate'" [diameter]="50" class="progress-loader">
-          </mat-progress-spinner>
-        </ng-container>
-        <ng-template #clientesComProcessoAtivosContainer>
-          <span>{{ clientes.length }}</span>
-          <p>clientes com processos ativos</p>
-        </ng-template>
+        <span>{{ clientes.length }}</span>
+        <p>clientes com processos ativos</p>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
@@ -39,13 +27,8 @@
     <mat-icon>add</mat-icon>
     Cadastrar novo cliente
   </a>
-  
-  <div *ngIf="isLoading">
-    <mat-progress-spinner [mode]="'indeterminate'" class="progress-loader">
-    </mat-progress-spinner>
-  </div>
 
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!isLoading">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="nome">
       <mat-header-cell *matHeaderCellDef>Nome Completo</mat-header-cell>
       <mat-cell *matCellDef="let cliente">{{ cliente.nome }} {{ cliente.sobrenome }}</mat-cell>
@@ -64,8 +47,14 @@
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let cliente" class="align-collumn-right">
-        <a mat-button routerLink="/clientes/cadastro/{{cliente.codigo}}">Ver</a>
-        <button mat-button class="remove">Remover</button>
+        <a routerLink="/clientes/cadastro/{{cliente.codigo}}" mat-stroked-button color="primary">
+          <mat-icon>toc</mat-icon>
+          Detalhes
+        </a>
+        <button mat-stroked-button color="accent" (click)="removerCliente(cliente)">
+          <mat-icon>delete</mat-icon>
+          Remover
+        </button>
       </mat-cell>
     </ng-container>
 
@@ -73,3 +62,14 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </div>
+
+<ng-template #templateRemocaoCliente>
+  <h1 mat-dialog-title>Atenção!</h1>
+  <div mat-dialog-content>
+    <p>Você deseja realmente remover o cliente {{ clienteRemocao.nome }}?</p>
+  </div>
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelarRemocao()">Cancelar</button>
+    <button mat-button color="accent" (click)="confirmarRemocao()" cdkFocusInitial>Remover</button>
+  </div>
+</ng-template>

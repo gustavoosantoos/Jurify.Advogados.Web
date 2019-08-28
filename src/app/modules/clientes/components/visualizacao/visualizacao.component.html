@@ -1,0 +1,112 @@
+<div class="container" *ngIf="cliente">
+  <h1>Cliente:
+    <span class="nome-cliente"> {{ cliente.nome }} {{ cliente.sobrenome }}</span>
+    <br />
+    <span class="dados-alteracao">
+      <strong>Criado em:</strong> {{ cliente.dataCriacao | date: "dd/MM/yyyy" }} -
+      <strong>Ultima alteração em:</strong> {{ cliente.dataUltimaAlteracao | date: "dd/MM/yyyy" }} -
+      <strong>Alterado pelo usuário:</strong> {{ cliente.nomeUsuarioUltimaAlteracao }}
+    </span>
+  </h1>
+
+
+  <div fxLayout="row wrap" flex="100" fxLayoutGap.lg="20px">
+    <mat-card fxFlex.lg="calc(70% - 20px)" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Informações Básicas">
+          <ng-container *ngTemplateOutlet="templateDadosBasicos"></ng-container>
+        </mat-tab>
+        <mat-tab label="Endereços">
+          <ng-container *ngTemplateOutlet="templateEnderecos"></ng-container>
+        </mat-tab>
+        <mat-tab label="Contatos"></mat-tab>
+        <mat-tab label="Outros Documentos"></mat-tab>
+      </mat-tab-group>
+    </mat-card>
+    <mat-card fxFlex.lg="calc(30% - 20px)" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Anexos"></mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+
+  <div fxLayout="row wrap" flex="100" class="mt-2">
+    <mat-card fxFlex="100">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Processos Jurídicos"></mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+
+  <!-- Dados pessoais -->
+  <ng-template #templateDadosBasicos>
+    <div class="tab-content" fxLayout="row wrap" fxLayoutAlign="space-between center" flex="33" flex.md="50" flex.sm="100">
+      <mat-form-field>
+        <input type="text" name="nome" [(ngModel)]="cliente.nome" matInput placeholder="Nome" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" matInput placeholder="Sobrenome" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="dataNascimento" [(ngModel)]="cliente.dataNascimento" [matDatepicker]="picker"
+          placeholder="Data de nascimento" (focus)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker touchUi></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="rg" [(ngModel)]="cliente.rg" matInput placeholder="RG">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="cpf" [(ngModel)]="cliente.cpf" matInput mask="000.000.000-00" placeholder="CPF">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="email" [(ngModel)]="cliente.email" matInput placeholder="E-mail">
+      </mat-form-field>
+    </div>
+    <div class="tab-content" fxLayout="row wrap" fxLayoutAlign="center" flex="100">
+      <div class="action-button">
+        <button mat-stroked-button color="primary" (click)="atualizarDadosBasicos()">Atualizar dados básicos</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Endereços -->
+  <ng-template #templateEnderecos>
+    <table mat-table [dataSource]="enderecosDataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="rua">
+        <mat-header-cell *matHeaderCellDef>Rua</mat-header-cell>
+        <mat-cell *matCellDef="let endereco">{{ endereco.rua }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cidade">
+        <mat-header-cell *matHeaderCellDef>Cidade</mat-header-cell>
+        <mat-cell *matCellDef="let endereco">{{ endereco.cidade }}</mat-cell>
+      </ng-container>
+        
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef>UF</mat-header-cell>
+        <mat-cell *matCellDef="let endereco">{{ endereco.estado }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tipo">
+        <mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
+        <mat-cell *matCellDef="let endereco">{{ endereco.tipoEndereco }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let endereco" class="align-collumn-right">
+          <button mat-stroked-button color="primary" (click)="mostrarDetalhesEndereco(endereco)">
+            <mat-icon>toc</mat-icon>
+          </button>
+          <button mat-stroked-button color="accent" (click)="removerEndereco(endereco)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="enderecosFields"></mat-header-row>
+      <mat-row *matRowDef="let endereco; columns: enderecosFields;"></mat-row>
+      </table>
+  </ng-template>
+</div>

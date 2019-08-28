@@ -1,4 +1,4 @@
-export class Endereco {
+export default class Endereco {
     codigo: string;
     rua: string;
     numero: string;
@@ -8,7 +8,8 @@ export class Endereco {
     pais: string;
     cep: string;
     observacoes: string;
-    tipo: 0;
+    tipo: number = 0;
+    tipoEndereco: string;
     dataCriacao: Date;
     dataUltimaAlteracao: Date;
     nomeUsuarioUltimaAlteracao: string;

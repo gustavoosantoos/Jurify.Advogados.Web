@@ -1,117 +1,82 @@
-<div class="container" *ngIf="cliente; else elseBlock">
+<div class="container">
   <h1>Cadastrar cliente</h1>
 
   <form>
-    <div class="fieldgroup">
+    <h4>Dados pessoais</h4>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" flex="33" flex.md="50" flex.sm="100">
       <mat-form-field>
-        <input type="text" name="nome" [(ngModel)]="cliente.primeiroNome" matInput placeholder="Nome">
+        <input type="text" name="nome" [(ngModel)]="cliente.nome" matInput placeholder="Nome" required>
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" matInput placeholder="Sobrenome">
+        <input type="text" name="sobrenome" [(ngModel)]="cliente.sobrenome" matInput placeholder="Sobrenome" required>
       </mat-form-field>
-      <mat-form-field class="sm-field">
-        <input type="text" name="dataNascimento" [(ngModel)]="cliente.dataNascimento" matInput placeholder="Data de nascimento">
+      <mat-form-field>
+        <input matInput name="dataNascimento" [(ngModel)]="cliente.dataNascimento" [matDatepicker]="picker" [max]="getPickerMaxDate()" placeholder="Data de nascimento" (focus)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker touchUi></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="rg" [(ngModel)]="cliente.rg" matInput placeholder="RG">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="cpf" [(ngModel)]="cliente.cpf" matInput mask="000.000.000-00" placeholder="CPF">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="email" [(ngModel)]="cliente.email" matInput placeholder="E-mail">
       </mat-form-field>
     </div>
-    <div class="fieldgroup">
+
+    <h4>Endereço</h4>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" flex="33" flex.md="50" flex.sm="100">
       <mat-form-field>
-        <input type="text" name="rua" [(ngModel)]="cliente.enderecos[0].rua" matInput placeholder="Rua">
-      </mat-form-field>
-      <mat-form-field class="sm-field">
-        <input type="text" name="numero" [(ngModel)]="cliente.enderecos[0].numero" matInput placeholder="Número">
-      </mat-form-field>
-      <mat-form-field>
-        <input type="text" name="complemento" [(ngModel)]="cliente.enderecos[0].complemento" matInput placeholder="Complemento">
-      </mat-form-field>
-    </div>
-    <div class="fieldgroup">
-      <mat-form-field>
-        <input type="text" name="cidade" [(ngModel)]="cliente.enderecos[0].cidade" matInput placeholder="Cidade">
-      </mat-form-field>
-      <mat-form-field class="sm-field">
-        <input type="text" name="estado" [(ngModel)]="cliente.enderecos[0].estado" matInput placeholder="Estado">
+        <input type="text" name="rua" [(ngModel)]="cliente.endereco.rua" matInput placeholder="Rua">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="pais" [(ngModel)]="cliente.enderecos[0].pais" matInput placeholder="País">
-      </mat-form-field>
-    </div>
-    <div class="fieldgroup">
-      <mat-form-field class="sm-field">
-        <input type="text" name="cep" [(ngModel)]="cliente.enderecos[0].cep" matInput placeholder="CEP">
+        <input type="text" name="numero" [(ngModel)]="cliente.endereco.numero" matInput placeholder="Número">
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="observacoes" [(ngModel)]="cliente.enderecos[0].observacoes" matInput placeholder="Observações">
+        <input type="text" name="complemento" [(ngModel)]="cliente.endereco.complemento" matInput
+          placeholder="Complemento">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="cidade" [(ngModel)]="cliente.endereco.cidade" matInput placeholder="Cidade">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="estado" [(ngModel)]="cliente.endereco.estado" matInput placeholder="Estado">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="pais" [(ngModel)]="cliente.endereco.pais" matInput placeholder="País">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="cep" [(ngModel)]="cliente.endereco.cep" matInput mask="00.000-000" placeholder="CEP">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" name="observacoes" [(ngModel)]="cliente.endereco.observacoes" matInput
+          placeholder="Observações">
       </mat-form-field>
       <mat-form-field>
         <mat-label>Tipo</mat-label>
-        <mat-select name="tipo" [(ngModel)]="cliente.enderecos[0].tipo">
+        <mat-select name="tipo" [(ngModel)]="cliente.endereco.tipo">
           <mat-option [value]="0">Residencial</mat-option>
           <mat-option [value]="1">Comercial</mat-option>
           <mat-option [value]="2">Outros</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-    <button mat-button>Salvar cliente</button>
-    <button mat-button class="btn-back" (click)="goBack()">Voltar</button>
-  </form>
-</div>
 
-<ng-template #elseBlock>
-  <div class="container">
-    <h1>Cadastrar cliente</h1>
-  
-    <form>
-      <div class="fieldgroup">
-        <mat-form-field>
-          <input type="text" name="nome" matInput placeholder="Nome">
-        </mat-form-field>
-        <mat-form-field>
-          <input type="text" name="sobrenome" matInput placeholder="Sobrenome">
-        </mat-form-field>
-        <mat-form-field class="sm-field">
-          <input type="date" name="dataNascimento" matInput placeholder="Data de nascimento">
-        </mat-form-field>
-      </div>
-      <div class="fieldgroup">
-        <mat-form-field>
-          <input type="text" name="rua" matInput placeholder="Rua">
-        </mat-form-field>
-        <mat-form-field class="sm-field">
-          <input type="text" name="numero" matInput placeholder="Número">
-        </mat-form-field>
-        <mat-form-field>
-          <input type="text" name="complemento" matInput placeholder="Complemento">
-        </mat-form-field>
-      </div>
-      <div class="fieldgroup">
-        <mat-form-field>
-          <input type="text" name="cidade" matInput placeholder="Cidade">
-        </mat-form-field>
-        <mat-form-field class="sm-field">
-          <input type="text" name="estado" matInput placeholder="Estado">
-        </mat-form-field>
-        <mat-form-field>
-          <input type="text" name="pais" matInput placeholder="País">
-        </mat-form-field>
-      </div>
-      <div class="fieldgroup">
-        <mat-form-field class="sm-field">
-          <input type="text" name="cep" matInput placeholder="CEP">
-        </mat-form-field>
-        <mat-form-field>
-          <input type="text" name="observacoes" matInput placeholder="Observações">
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Tipo</mat-label>
-          <mat-select id="tipo">
-            <mat-option [value]="0">Residencial</mat-option>
-            <mat-option [value]="1">Comercial</mat-option>
-            <mat-option [value]="2">Outros</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <button mat-button>Cadastrar cliente</button>
+    <div class="actions-container">
       <button mat-button class="btn-back" (click)="goBack()">Voltar</button>
-    </form>
-  </div>
-</ng-template>
+      <button mat-button (click)="salvarCliente()">Salvar cliente</button>
+    </div>
+  </form>
+
+  <ng-template #errorsTemplate>
+    <div class="validation-errors-container">
+      <h4>Erros de validação</h4>
+      <span *ngFor="let error of validationErrors">
+        {{ error }}
+      </span>
+      <button mat-button (click)="snackBar.dismiss()">Fechar</button>
+    </div>
+  </ng-template> 
+</div>

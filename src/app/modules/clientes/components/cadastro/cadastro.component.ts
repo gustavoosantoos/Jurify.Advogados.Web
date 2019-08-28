@@ -1,38 +1,57 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Location, formatDate } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { ClientesService } from 'src/app/modules/clientes/services/clientes.service';
-import { Cliente } from '../../model/cliente';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Location } from '@angular/common';
+import { ClientesService } from '../../services/clientes.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import ClienteCadastro from '../../model/cadastro/cliente-cadastro.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.scss']
 })
-export class CadastroComponent implements OnInit {
+export class CadastroComponent {
 
-  @Input() cliente: Cliente;
-  codigo: string;
+  @ViewChild('errorsTemplate', { static: false })
+  errorTemplate: TemplateRef<any>;
+  
+  cliente: ClienteCadastro = new ClienteCadastro();
+  validationErrors: string[] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private clienteService: ClientesService,
-    private location: Location
-  ) {
-    this.route.params.subscribe( params => this.codigo = params['codigo']);
-   }
-
-  ngOnInit() {
-    this.getCliente(this.codigo);
+    private location: Location,
+    private clientesService: ClientesService,
+    private snackBar: MatSnackBar,
+    private router: Router) {
   }
 
-  getCliente(codigo): void {
-    this.clienteService.getCliente(codigo)
-      .subscribe(cliente => this.cliente = cliente);
+  salvarCliente(): void {
+    if (Object.values(this.cliente.endereco).every(v => v == null)) {
+      this.cliente.enderecos = [];
+    }
+
+    const snackBarOptions = new MatSnackBarConfig();
+    snackBarOptions.duration = 10000;
+
+    this.clientesService.cadastrarCliente(this.cliente).subscribe(r => {
+      this.snackBar.open('Cliente salvo com sucesso', 'Fechar', snackBarOptions);
+      this.router.navigateByUrl('/clientes');
+    }, error => {
+      if (error.status == 400) {
+        console.log(error);
+        this.validationErrors = error.error.map(e => e.message);
+        this.snackBar.openFromTemplate(this.errorTemplate, snackBarOptions);
+      } else {
+        this.snackBar.open('Erro inesperado', 'Fechar', snackBarOptions);
+      }
+    });
+  }
+
+  getPickerMaxDate(): Date {
+    return new Date(Date.now());
   }
 
   goBack(): void {
     this.location.back();
   }
-
 }

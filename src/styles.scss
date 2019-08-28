@@ -1,15 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+// @import '@angular/material/prebuilt-themes/indigo-pink.css';
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import './assets/styles/jurify-app-theme.scss';
+@import './assets/styles/spacing-utils.scss';
+
+@include angular-material-theme($jurify-app-theme);
 
 @font-face {
     font-family: 'Gilroy';
     font-style: normal;
-    src: url(assets/fonts/Gilroy/Gilroy-Medium.otf);
+    src: url(/assets/fonts/Gilroy/Gilroy-Medium.otf);
 }
 
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 h1, h2, h3, h4 {
@@ -17,7 +22,8 @@ h1, h2, h3, h4 {
 }
 
 .page-content {
-    height: calc(100vh - 64px);
+    height: calc(100vh - 100px);
+    margin-bottom: 12px;
 }
 
 .container {
@@ -26,4 +32,17 @@ h1, h2, h3, h4 {
 
 .progress-loader {
     margin: 0 auto;
+}
+
+
+mat-dialog-container {
+  text-align: center;
+
+  .actions-container {
+      width: 100%;
+
+      button {
+          flex: 1;
+      }
+  }
 }

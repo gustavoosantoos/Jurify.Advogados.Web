@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule } from '@angular/material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule } from '@angular/material';
 import { AuthGuard } from './guards/auth-guard';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
     declarations: [],
@@ -18,13 +19,19 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
       MatButtonModule,
       MatIconModule,
       MatSelectModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
       MatProgressSpinnerModule,
+      MatDialogModule,
       FormsModule,
       ReactiveFormsModule,
-      RouterModule
+      RouterModule,
+      NgxMaskModule.forRoot()
     ],
     exports: [
       CommonModule,
+      FlexLayoutModule,
+      MatSnackBarModule,
       MatGridListModule,
       MatCardModule,
       MatSidenavModule,
@@ -37,14 +44,19 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
       MatIconModule,
       MatSelectModule,
       MatProgressSpinnerModule,
+      MatDialogModule,
       MatTableModule,
+      MatTabsModule,
+      MatDatepickerModule,
       FormsModule,
       ReactiveFormsModule,
-      RouterModule
+      RouterModule,
+      NgxMaskModule
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
       { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+      { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
       AuthGuard
     ],
 })

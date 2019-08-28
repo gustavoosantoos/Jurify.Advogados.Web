@@ -12,17 +12,8 @@ a.btn-link {
     justify-content: flex-end;
 }
 
-button, a.mat-button {
-    background-color: #4c5a98;
+button, a.mat-stroked-button {
     margin-right: 5px;
-    color: #fff;
-    font-family: 'Gilroy';
-
-    &.remove {
-        background-color: transparent;
-        border: 1px solid #cf767b;
-        color: #cf767b;
-    }
 }
 
 .dashboard-clientes-card {

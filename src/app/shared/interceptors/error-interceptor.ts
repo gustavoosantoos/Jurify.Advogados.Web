@@ -4,11 +4,13 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { LoadingScreenService } from '../services/loading-screen.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthenticationService,
+    private loadingService: LoadingScreenService,
     private router: Router
   ) { }
 
@@ -16,6 +18,8 @@ export class ErrorInterceptor implements HttpInterceptor {
    return next.handle(request)
     .pipe(
       catchError(err => {
+        this.loadingService.isLoading.next(false);
+
         if (err.status === 401) {
           const authenticateHeader: string = err.headers.get('www-authenticate');
           console.log(authenticateHeader);
