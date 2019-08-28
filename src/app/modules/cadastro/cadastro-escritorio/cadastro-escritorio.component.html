@@ -8,94 +8,94 @@
       <button mat-button class="next" (click)="nextStep('dados')">Avançar</button>
     </div>
 
-    <form id="officeForm" #officeForm="ngForm" (ngSubmit)="createOffice(officeForm)">
-      <div id="dados" class="step">
-        <h1>Dados do escritório</h1>
+    <form #signupForm="ngForm" (ngSubmit)="signUp(signupForm)">
+    <div id="dados" class="step">
+      <h1>Dados do escritório</h1>
 
+      <mat-form-field>
+        <input type="text" ngModel #razaoSocial name="razaoSocial" matInput placeholder="Razão Social">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" ngModel #nomeFantasia name="nomeFantasia" matInput placeholder="Nome Fantasia">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" ngModel #cnpj name="cnpj" mask="00.000.000/0000-00" matInput placeholder="CNPJ">
+      </mat-form-field>
+      <button mat-button class="next" (click)="nextStep('address')">Avançar</button>
+    </div>
+
+    <div id="address" class="step">
+      <h1>Endereço</h1>
+
+      <mat-form-field>
+        <input type="text" ngModel #cep name="cep" mask="00.000-000" matInput placeholder="CEP">
+      </mat-form-field>
+      <div class="fieldgroup">
         <mat-form-field>
-          <input type="text" ngModel #razaosocial name="razaosocial" matInput placeholder="Razão Social">
+          <input type="text" ngModel #rua name="rua" matInput placeholder="Logradouro">
         </mat-form-field>
+        <mat-form-field class="sm-field">
+          <input type="text" ngModel #numero name="numero" matInput placeholder="Número">
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <input type="text" ngModel #complemento name="complemento" matInput placeholder="Complemento">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" ngModel #bairro name="bairro" matInput placeholder="Bairro">
+      </mat-form-field>
+      <div class="fieldgroup">
         <mat-form-field>
-          <input type="text" ngModel #nomefant name="nomefant" matInput placeholder="Nome Fantasia">
+          <input type="text" ngModel #cidade name="cidade" matInput placeholder="Cidade">
         </mat-form-field>
-        <mat-form-field>
-          <input type="text" ngModel #cnpj name="cnpj" matInput placeholder="CNPJ">
+        <mat-form-field class="sm-field">
+          <input type="text" ngModel #estado name="estado" matInput placeholder="Estado">
         </mat-form-field>
-        <button mat-button class="next" (click)="nextStep('address')">Avançar</button>
       </div>
 
-      <div id="address" class="step">
-        <h1>Endereço</h1>
-
-        <mat-form-field>
-          <input type="text" ngModel #cep name="cep" matInput placeholder="CEP">
-        </mat-form-field>
-        <div class="fieldgroup">
-          <mat-form-field>
-            <input type="text" ngModel #logradouro name="logradouro" matInput placeholder="Logradouro">
-          </mat-form-field>
-          <mat-form-field class="sm-field">
-            <input type="text" ngModel #numero name="numero" matInput placeholder="Número">
-          </mat-form-field>
-        </div>
-        <mat-form-field>
-          <input type="text" ngModel #complemento name="complemento" matInput placeholder="Complemento">
-        </mat-form-field>
-        <mat-form-field>
-          <input type="text" ngModel #bairro name="bairro" matInput placeholder="Bairro">
-        </mat-form-field>
-        <div class="fieldgroup">
-          <mat-form-field>
-            <input type="text" ngModel #cidade name="cidade" matInput placeholder="Cidade">
-          </mat-form-field>
-          <mat-form-field class="sm-field">
-            <input type="text" ngModel #estado name="estado" matInput placeholder="Estado">
-          </mat-form-field>
-        </div>
-
-        <button mat-button class="next" id="submitOfficeForm">Avançar</button>
-      </div>
-    </form>
+      <button mat-button class="next" id="submitOfficeForm">Avançar</button>
+    </div>
 
     <div id="credentials" class="step">
       <h1>Primeiro usuário</h1>
       <p>Agora que já nos informou os dados do seu escritório,
         precisamos criar seu usuário para acessar o sistema!</p>
 
-      <form #signupForm="ngForm" (ngSubmit)="createUser(signupForm)">
-        <mat-form-field>
-          <input type="text" ngModel #firstname name="firstname" matInput [formControl]="nomeFormControl" placeholder="Nome">
-          <mat-error *ngIf="nomeFormControl.hasError('required')">
-            Nome é <strong>obrigatório</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input type="text" ngModel #lastname name="lastname" matInput [formControl]="sobrenomeFormControl" placeholder="Sobrenome">
-          <mat-error *ngIf="sobrenomeFormControl.hasError('required')">
-            Sobrenome é <strong>obrigatório</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input type="email" ngModel #email name="email" matInput [formControl]="emailFormControl" placeholder="E-mail">
-          <mat-error *ngIf="emailFormControl.hasError('required')">
-            E-mail é <strong>obrigatório</strong>
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('invalid')">
-            O e-mail não é <strong>válido</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input type="password" ngModel #password name="password" matInput [formControl]="senhaFormControl" minlength="8" placeholder="Senha">
-          <mat-error *ngIf="senhaFormControl.hasError('required')">
-            Senha é <strong>obrigatória</strong>
-          </mat-error>
-          <mat-error *ngIf="senhaFormControl.hasError('minlength')">
-            A senha precisa ter no mínimo <strong>8 caracteres</strong>
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field>
+        <input type="text" ngModel #nome name="nome" matInput [formControl]="nomeFormControl" placeholder="Nome">
+        <mat-error *ngIf="nomeFormControl.hasError('required')">
+          Nome é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" ngModel #sobrenome name="sobrenome" matInput [formControl]="sobrenomeFormControl"
+          placeholder="Sobrenome">
+        <mat-error *ngIf="sobrenomeFormControl.hasError('required')">
+          Sobrenome é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="email" ngModel #email name="email" matInput [formControl]="emailFormControl" placeholder="E-mail">
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          E-mail é <strong>obrigatório</strong>
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('invalid')">
+          O e-mail não é <strong>válido</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" ngModel #senha name="senha" matInput [formControl]="senhaFormControl" minlength="8"
+          placeholder="Senha">
+        <mat-error *ngIf="senhaFormControl.hasError('required')">
+          Senha é <strong>obrigatória</strong>
+        </mat-error>
+        <mat-error *ngIf="senhaFormControl.hasError('minlength')">
+          A senha precisa ter no mínimo <strong>8 caracteres</strong>
+        </mat-error>
+      </mat-form-field>
 
-        <button mat-button class="next">Finalizar cadastro</button>
-      </form>
+      <button mat-button class="next">Finalizar cadastro</button>
     </div>
+    </form>
   </div>
 </div>

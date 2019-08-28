@@ -1,7 +1,9 @@
+import { Escritorio } from './escritorio-signup';
+
 export class UserSignUp {
-    officeName: string;
-    firstName: string;
-    lastName: string;
+    nome: string;
+    sobrenome: string;
     email: string;
-    password: string;
+    senha: string;
+    escritorio: Escritorio;
 }

@@ -39,18 +39,7 @@ export class CadastroEscritorioComponent implements OnInit {
     }, 500);
   }
 
-  createOffice(form): void {
-    event.preventDefault();
-    this.nextStep('credentials');
-    this.officeName = form.value.nomefant;
-    console.log(this.officeName);
-    console.log(form.value);
-  }
-
-  createUser(user: NgForm): void {
-    user.value.officeName = this.officeName;
-    console.log(this.officeName);
-    console.log(user.value);
+  signUp(user: NgForm): void {
     if(this.signupService.createUser(user.value)) {
       this.router.navigateByUrl('/autenticacao');
     }
