@@ -1,8 +1,16 @@
 import { Endereco } from './endereco-signup';
+import { required } from '@rxweb/reactive-form-validators';
 
 export class Escritorio {
-    razaoSocial: string;
-    nomeFantasia: string;
-    cnpj: string;
-    endereco: Endereco
+    @required()
+    public razaoSocial: string;
+
+    @required()
+    public nomeFantasia: string;
+
+    @required()
+    public cnpj: string;
+
+    @required()
+    public endereco: Endereco
 }

@@ -9,6 +9,7 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 @NgModule({
     declarations: [],
@@ -26,7 +27,8 @@ import { NgxMaskModule } from 'ngx-mask';
       FormsModule,
       ReactiveFormsModule,
       RouterModule,
-      NgxMaskModule.forRoot()
+      NgxMaskModule.forRoot(),
+      RxReactiveFormsModule
     ],
     exports: [
       CommonModule,
@@ -51,7 +53,8 @@ import { NgxMaskModule } from 'ngx-mask';
       FormsModule,
       ReactiveFormsModule,
       RouterModule,
-      NgxMaskModule
+      NgxMaskModule,
+      RxReactiveFormsModule
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

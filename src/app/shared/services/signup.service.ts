@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserSignUp } from '../model/user-signup';
+import { SignUp } from '../model/signup';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -12,14 +12,14 @@ export class SignupService {
     private http: HttpClient
   ) { }
 
-  public createUser(user: UserSignUp): Promise<boolean> {
+  public createUser(user: SignUp): Promise<boolean> {
     const url = environment.authentication.provider + '/api/lawyers/Account/SignUp';
 
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    const result = this.http.post<UserSignUp>(url, user, options).toPromise();
+    const result = this.http.post<SignUp>(url, user, options).toPromise();
     return;
   }
 }

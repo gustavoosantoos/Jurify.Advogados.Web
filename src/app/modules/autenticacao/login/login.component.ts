@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
     this.redirectLoggedInUser();
   }
 
-  async login(username: string, password: string): Promise<void> {
+  async login(usuario: string, senha: string): Promise<void> {
     document.querySelector('div.submit').classList.add('load');
-    if (await this.authService.authenticate(username, password)) {
+    if (await this.authService.authenticate(usuario, senha)) {
       this.router.navigateByUrl('/');
     }
   }

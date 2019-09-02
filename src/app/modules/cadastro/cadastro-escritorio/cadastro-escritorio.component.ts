@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupService } from 'src/app/shared/services/signup.service';
 import { Router } from '@angular/router';
-import { NgForm, Validators, FormControl, FormGroupDirective } from '@angular/forms';
+import { NgForm, Validators, FormControl, FormGroupDirective, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { SignUp } from 'src/app/shared/model/signup';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -21,13 +23,18 @@ export class CadastroEscritorioComponent implements OnInit {
 
   constructor(
     private signupService: SignupService,
-    private router: Router
+    private router: Router,
+    private formBuilder: RxFormBuilder
   ) { }
 
-  public officeName: string;
+  signupObj: SignUp;
+  signUpFormGroup: FormGroup;
+  
 
   ngOnInit() {
-    
+    this.signupObj = new SignUp();
+    this.signUpFormGroup = this.formBuilder.formGroup(this.signupObj);
+    console.log(this.signUpFormGroup);
   }
 
   nextStep(target): void {
@@ -39,29 +46,11 @@ export class CadastroEscritorioComponent implements OnInit {
     }, 500);
   }
 
-  signUp(user: NgForm): void {
-    if(this.signupService.createUser(user.value)) {
+  signUp(): void {
+    if(this.signupService.createUser(this.signupObj)) {
       this.router.navigateByUrl('/autenticacao');
     }
   }
-
-  nomeFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  sobrenomeFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]);
-
-  senhaFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(6)
-  ]);
 
   matcher = new MyErrorStateMatcher();
 }
