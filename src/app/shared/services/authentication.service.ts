@@ -49,7 +49,8 @@ export class AuthenticationService implements OnInit {
       .set('client_id', environment.authentication.client_id)
       .set('client_secret', environment.authentication.client_secret);
 
-    const result = await this.http.post<AuthenticationResult>(url, requestBody, options).toPromise();
+    const result = await this.http.post<AuthenticationResult>(url, requestBody, options).toPromise()
+      .catch(err => null);
 
     if (!result || !result.access_token) {
       return false;
@@ -81,7 +82,7 @@ export class AuthenticationService implements OnInit {
   public logout(): void {
     localStorage.removeItem(environment.storage.token_identifier);
     localStorage.removeItem(environment.storage.user_info_identifier);
-    
+
     this.authenticatedState.next(false);
     this.router.navigateByUrl('autenticacao');
   }
