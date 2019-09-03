@@ -8,4 +8,9 @@ export class SignUp {
 
     @required()
     public escritorio: Escritorio;
+
+    constructor() {
+        this.usuario = new Usuario();
+        this.escritorio = new Escritorio();
+    }
 }

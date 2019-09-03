@@ -13,4 +13,8 @@ export class Escritorio {
 
     @required()
     public endereco: Endereco
+
+    constructor() {
+        this.endereco = new Endereco();
+    }
 }

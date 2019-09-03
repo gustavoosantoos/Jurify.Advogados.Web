@@ -5,6 +5,8 @@ import { NgForm, Validators, FormControl, FormGroupDirective, FormGroup } from '
 import { ErrorStateMatcher } from '@angular/material/core';
 import { SignUp } from 'src/app/shared/model/signup';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { Escritorio } from 'src/app/shared/model/escritorio-signup';
+import Endereco from '../../clientes/model/visualizacao/endereco';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -28,13 +30,16 @@ export class CadastroEscritorioComponent implements OnInit {
   ) { }
 
   signupObj: SignUp;
-  signUpFormGroup: FormGroup;
+  escritorioFormGroup: FormGroup;
+  enderecoFormGroup: FormGroup;
+  usuarioFormGroup: FormGroup;
   
 
   ngOnInit() {
     this.signupObj = new SignUp();
-    this.signUpFormGroup = this.formBuilder.formGroup(this.signupObj);
-    console.log(this.signUpFormGroup);
+    this.escritorioFormGroup = this.formBuilder.formGroup(this.signupObj.escritorio);
+    this.enderecoFormGroup = this.formBuilder.formGroup(this.signupObj.escritorio.endereco);
+    this.usuarioFormGroup = this.formBuilder.formGroup(this.signupObj.usuario);
   }
 
   nextStep(target): void {
