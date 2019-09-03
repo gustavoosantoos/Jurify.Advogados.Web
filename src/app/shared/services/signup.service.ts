@@ -13,7 +13,7 @@ export class SignupService {
   ) { }
 
   public createUser(user: SignUp): Promise<boolean> {
-    const url = environment.authentication.provider + '/api/lawyers/Account/SignUp';
+    const url = environment.authentication.provider + 'api/advogados/account/cadastrar';
 
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
