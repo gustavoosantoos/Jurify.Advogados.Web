@@ -25,7 +25,9 @@
     </mat-card>
     <mat-card fxFlex.lg="calc(30% - 20px)" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
       <mat-tab-group mat-stretch-tabs>
-        <mat-tab label="Anexos"></mat-tab>
+        <mat-tab label="Anexos">
+          <ng-container *ngTemplateOutlet="templateAnexos"></ng-container>
+        </mat-tab>
       </mat-tab-group>
     </mat-card>
   </div>
@@ -108,5 +110,22 @@
       <mat-header-row *matHeaderRowDef="enderecosFields"></mat-header-row>
       <mat-row *matRowDef="let endereco; columns: enderecosFields;"></mat-row>
       </table>
+  </ng-template>
+
+  <ng-template #templateAnexos>
+    <p *ngIf="cliente.anexos.length == 0" style="text-align: center">
+      Não há anexos a serem mostrados
+    </p>
+
+    <input type="file" (change)="salvarNovoAnexoCliente($event)">
+
+    <ul class="lista-anexos">
+      <li *ngFor="let anexo of cliente.anexos">
+        <span matTooltip="Baixar anexo" (click)="baixarAnexo(anexo)">{{ anexo.nomeArquivo }}</span>
+        <button mat-stroked-button color="accent" (click)="removerAnexo(anexo)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    </ul>
   </ng-template>
 </div>
