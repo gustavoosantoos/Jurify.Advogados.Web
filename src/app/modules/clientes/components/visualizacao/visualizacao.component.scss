@@ -29,3 +29,19 @@
 table {
   width: 100%;
 }
+
+.lista-anexos {
+  list-style-type: none;
+  padding-left: 0;
+
+  li {
+    span {
+      cursor: pointer;
+      display: inline-block;
+      max-width: 70%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}

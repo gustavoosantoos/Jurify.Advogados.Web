@@ -1,4 +1,5 @@
-import Endereco from './endereco';
+import Endereco from './endereco.model';
+import Anexo from './anexo.model';
 
 export default class Cliente {
     codigo: string;
@@ -9,11 +10,13 @@ export default class Cliente {
     rg: string;
     cpf: string;
     enderecos: Endereco[];
+    anexos: Anexo[];
     dataCriacao: Date;
     dataUltimaAlteracao: Date;
     nomeUsuarioUltimaAlteracao: string;
 
     constructor() {
         this.enderecos = [];
+        this.anexos = [];
     }
 }

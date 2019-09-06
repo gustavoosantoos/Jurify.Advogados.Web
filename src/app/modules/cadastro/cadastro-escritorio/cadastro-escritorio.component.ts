@@ -5,8 +5,6 @@ import { NgForm, Validators, FormControl, FormGroupDirective, FormGroup } from '
 import { ErrorStateMatcher } from '@angular/material/core';
 import { SignUp } from 'src/app/shared/model/signup';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { Escritorio } from 'src/app/shared/model/escritorio-signup';
-import Endereco from '../../clientes/model/visualizacao/endereco';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
