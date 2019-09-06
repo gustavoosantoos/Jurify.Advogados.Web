@@ -7,7 +7,7 @@ import Cliente from '../model/visualizacao/cliente.model';
 import ClientePreview from '../model/listagem/cliente-preview.model';
 import ClienteCadastro from '../model/cadastro/cliente-cadastro.model';
 import ClienteAtualizacao from '../model/atualizacao/cliente-atualizacao.model';
-import {saveAs as importedSaveAs} from 'file-saver';
+import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,8 @@ export class ClientesService {
   private baseUrl = environment.endpoints.advogados + 'clientes';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private loadingService: LoadingScreenService
   ) { }
 
 
@@ -49,11 +50,11 @@ export class ClientesService {
     return this.http.post<string>(url, anexo);
   }
 
-  public baixarAnexo(idCliente: string, idAnexo: string, nomeAnexo: string) {
+  public baixarAnexo(idCliente: string, idAnexo: string): Observable<any> {
     const url = `${this.baseUrl}/${idCliente}/anexos/${idAnexo}`;
-    this.http.get(url, {
+    return this.http.get(url, {
       responseType: 'blob'
-    }).subscribe(blob => importedSaveAs(blob, nomeAnexo));
+    });
   }
 
   public removerAnexo(idCliente: string, idAnexo: any): Observable<string> {

@@ -1,3 +1,4 @@
+import { saveAs } from 'file-saver';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientesService } from '../../services/clientes.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -113,8 +114,13 @@ export class VisualizacaoComponent implements OnInit {
 
   baixarAnexo(anexo: Anexo) {
     this.loadingService.isLoading.next(true);
-    this.clientesService.baixarAnexo(this.cliente.codigo, anexo.codigo, anexo.nomeArquivo);
-    this.loadingService.isLoading.next(false);
+    this.clientesService.baixarAnexo(this.cliente.codigo, anexo.codigo).subscribe(blob => {
+      saveAs(blob, anexo.nomeArquivo);
+    }, err => {
+      this.snackBar.open('Erro ao baixar anexo', 'Fechar');
+    }, () => {
+      this.loadingService.isLoading.next(false);
+    });
   }
 
   removerAnexo(anexo: Anexo) {
