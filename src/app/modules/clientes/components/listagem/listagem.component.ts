@@ -21,7 +21,7 @@ export class ListagemComponent implements OnInit {
 
   @ViewChild('templateRemocaoCliente', { static: true })
   templateRemocaoCliente: TemplateRef<any>;
-  
+
   constructor(
     private clienteService: ClientesService,
     private loadingService: LoadingScreenService,
@@ -78,9 +78,9 @@ export class ListagemComponent implements OnInit {
     }, error => {
       this.clienteRemocao = null;
       this.loadingService.isLoading.next(false);
-      this.snackBar.open('Erro ao remover cliente', 'Fechar', { 
+      this.snackBar.open('Erro ao remover cliente', 'Fechar', {
         duration: 10000
-      })
+      });
     });
   }
 }

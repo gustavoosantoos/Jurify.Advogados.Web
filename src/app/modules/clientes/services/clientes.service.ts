@@ -44,6 +44,10 @@ export class ClientesService {
     return this.http.delete<string>(url);
   }
 
+  public removerEndereco(idCliente: string, idEndereco: string): Observable<string> {
+    const url = `${this.baseUrl}/${idCliente}/enderecos/${idEndereco}`;
+    return this.http.delete<string>(url);
+  }
 
   public adicionarAnexo(idCliente: string, anexo: FormData): Observable<string> {
     const url = `${this.baseUrl}/${idCliente}/anexos`;

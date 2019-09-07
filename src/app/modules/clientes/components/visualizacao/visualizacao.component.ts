@@ -1,9 +1,9 @@
 import { saveAs } from 'file-saver';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, TemplateRef, ViewChild } from '@angular/core';
 import { ClientesService } from '../../services/clientes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Cliente from '../../model/visualizacao/cliente.model';
-import { MatSnackBar, MatSnackBarConfig, MatTableDataSource } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig, MatTableDataSource, MatDialog } from '@angular/material';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
 import ClienteAtualizacao from '../../model/atualizacao/cliente-atualizacao.model';
 import Endereco from '../../model/visualizacao/endereco.model';
@@ -17,16 +17,21 @@ import Anexo from '../../model/visualizacao/anexo.model';
 export class VisualizacaoComponent implements OnInit {
   public cliente: Cliente;
   public codigoCliente: string;
+  public enderecoRemocao: Endereco;
 
   public enderecosDataSource: MatTableDataSource<Endereco> = new MatTableDataSource<Endereco>([]);
   public enderecosFields = ['rua', 'cidade', 'estado', 'tipo', 'acoes'];
+
+  @ViewChild('templateRemocaoEndereco', { static: true })
+  templateRemocaoEndereco: TemplateRef<any>;
 
   constructor(
     private clientesService: ClientesService,
     private activatedRoute: ActivatedRoute,
     private loadingService: LoadingScreenService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -140,6 +145,25 @@ export class VisualizacaoComponent implements OnInit {
   }
 
   removerEndereco(endereco: Endereco) {
+    this.enderecoRemocao = endereco;
+    this.dialog.open(this.templateRemocaoEndereco);
+  }
 
+  cancelarRemocaoEndereco(): void {
+    this.enderecoRemocao = null;
+    this.dialog.closeAll();
+  }
+
+  confirmarRemocaoEndereco(): void {
+    this.loadingService.isLoading.next(true);
+
+    this.clientesService.removerEndereco(this.cliente.codigo, this.enderecoRemocao.codigo).subscribe(r => {
+      this.getCliente();
+    }, error => {
+      this.snackBar.open('Erro ao remover endereço', 'Fechar', { duration: 10000 });
+    }, () => {
+      this.enderecoRemocao = null;
+      this.loadingService.isLoading.next(false);
+    });
   }
 }

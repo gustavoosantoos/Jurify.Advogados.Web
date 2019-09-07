@@ -112,6 +112,7 @@
       </table>
   </ng-template>
 
+  <!-- Anexos -->
   <ng-template #templateAnexos>
     <p *ngIf="cliente.anexos.length == 0" style="text-align: center">
       Não há anexos a serem mostrados
@@ -129,3 +130,14 @@
     </ul>
   </ng-template>
 </div>
+
+<ng-template #templateRemocaoEndereco>
+  <h1 mat-dialog-title>Atenção!</h1>
+  <div mat-dialog-content>
+    <p>Você deseja realmente remover o endereço {{ enderecoRemocao.rua }}?</p>
+  </div>
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelarRemocaoEndereco()">Cancelar</button>
+    <button mat-button color="accent" (click)="confirmarRemocaoEndereco()" cdkFocusInitial>Remover</button>
+  </div>
+</ng-template>
