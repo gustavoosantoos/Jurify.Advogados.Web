@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ProcessosRoutingModule } from './processos-routing.module';
-import { ListagemComponent } from './listagem/listagem.component';
+import { ListagemComponent } from './components/listagem/listagem.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [ListagemComponent],
   imports: [
-    CommonModule,
+    SharedModule,
     ProcessosRoutingModule
   ]
 })

@@ -3,5 +3,5 @@ export default class ClientePreview {
   public nome: string;
   public sobrenome: string;
   public dataNascimento: Date;
-  public email: string
+  public email: string;
 }

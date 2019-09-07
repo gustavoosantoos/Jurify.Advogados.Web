@@ -16,8 +16,7 @@ export class ClientesService {
   private baseUrl = environment.endpoints.advogados + 'clientes';
 
   constructor(
-    private http: HttpClient,
-    private loadingService: LoadingScreenService
+    private http: HttpClient
   ) { }
 
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListagemComponent } from './listagem/listagem.component';
+import { ListagemComponent } from './components/listagem/listagem.component';
 import { AuthGuard } from 'src/app/shared/guards/auth-guard';
 
 const routes: Routes = [
