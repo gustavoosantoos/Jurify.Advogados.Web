@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ProcessosJuridicosService } from '../../services/processos-juridicos.service';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
 import { MatSnackBar, MatTableDataSource, MatDialog } from '@angular/material';
-import ProcessoPreview from '../model/listagem/processo-preview.model';
+import ProcessoPreview from '../../model/listagem/processo-preview.model';
 
 @Component({
   selector: 'app-listagem',
