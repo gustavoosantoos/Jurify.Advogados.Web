@@ -17,7 +17,7 @@ export class ListagemComponent implements OnInit {
   clienteRemocao: ClientePreview;
   dataSource: MatTableDataSource<ClientePreview> = new MatTableDataSource([]);
   displayedColumns: string[] = ['nome', 'email', 'nascimento', 'acoes'];
-  value: string = '';
+  value = '';
 
   @ViewChild('templateRemocaoCliente', { static: true })
   templateRemocaoCliente: TemplateRef<any>;
@@ -38,7 +38,7 @@ export class ListagemComponent implements OnInit {
   getClientes(): void {
     this.loadingService.isLoading.next(true);
     this.clienteService.getClientes()
-      .subscribe(clientes => { 
+      .subscribe(clientes => {
         this.clientes = clientes;
         this.dataSource = new MatTableDataSource(this.clientes);
         this.loadingService.isLoading.next(false);
