@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ProcessosJuridicosService } from '../../services/processos-juridicos.service';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
-import { MatSnackBar, MatTableDataSource } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatDialog } from '@angular/material';
 import ProcessoPreview from '../model/listagem/processo-preview.model';
 
 @Component({
@@ -19,10 +19,14 @@ export class ListagemComponent implements OnInit {
 
   processoRemocao: ProcessoPreview;
 
+  @ViewChild('templateRemocaoProcesso', { static: true })
+  templateRemocaoProcesso: TemplateRef<any>;
+
   constructor(
     private processosService: ProcessosJuridicosService,
     private loadingService: LoadingScreenService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private confirmDialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -51,14 +55,26 @@ export class ListagemComponent implements OnInit {
   }
 
   removerProcesso(processo: ProcessoPreview): void {
-
+    this.processoRemocao = processo;
+    this.confirmDialog.open(this.templateRemocaoProcesso);
   }
 
   cancelarRemocaoProcesso(): void {
-
+    this.processoRemocao = null;
+    this.confirmDialog.closeAll();
   }
 
   confirmarRemocaoProcesso(): void {
+    this.loadingService.isLoading.next(true);
 
+    this.processosService.removerProcesso(this.processoRemocao.codigo).subscribe(r => {
+      this.snackBar.open('Processo removido com sucesso', 'Fechar');
+      this.getProcessos();
+    }, err => {
+      this.snackBar.open('Falha ao remover processo', 'Fechar');
+    }, () => {
+      this.loadingService.isLoading.next(false);
+      this.processoRemocao = null;
+    });
   }
 }

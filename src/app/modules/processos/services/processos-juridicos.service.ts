@@ -17,4 +17,8 @@ export class ProcessosJuridicosService {
   public obterProcessos(): Observable<ProcessoPreview[]> {
     return this.httpClient.get<ProcessoPreview[]>(this.baseUrl);
   }
+
+  public removerProcesso(codigo: string): Observable<string> {
+    return this.httpClient.delete<string>(`${this.baseUrl}/${codigo}`);
+  }
 }
