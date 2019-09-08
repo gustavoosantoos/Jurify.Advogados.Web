@@ -14,12 +14,12 @@ export class AppComponent implements OnInit {
   authenticated: Boolean;
 
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
-  
+
   constructor(
     private router: Router,
-    private authService: AuthenticationService  
+    private authService: AuthenticationService
   ) { }
-  
+
   ngOnInit(): void {
     this.authenticated = false;
     this.authService.authenticatedState.subscribe(r => {
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  toggleSidenav(){
+  toggleSidenav() {
     this.sidenav.toggle();
   }
 }

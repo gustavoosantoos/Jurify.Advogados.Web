@@ -18,6 +18,6 @@ export class Endereco {
 
     @required()
     public estado: string;
-    
-    public complemento: string
-} 
+
+    public complemento: string;
+}
