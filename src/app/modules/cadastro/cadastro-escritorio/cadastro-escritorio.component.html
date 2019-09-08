@@ -5,7 +5,7 @@
       <h1>Vamos começar!</h1>
       <p>Ficamos felizes em ter você aqui, siga os passos e preencha os campos para concluir seu cadastro :)
       </p>
-      <button mat-button class="next" (click)="nextStep('dados')">Avançar</button>
+      <button mat-button class="next" (click)="changeStep('dados')">Avançar</button>
     </div>
 
     <form (ngSubmit)="signUp()">
@@ -21,10 +21,12 @@
           <mat-form-field [formGroup]="escritorioFormGroup">
             <input type="text" name="cnpj" mask="00.000.000/0000-00" matInput placeholder="CNPJ" formControlName="cnpj">
           </mat-form-field>
-        <button mat-button class="next" (click)="nextStep('address')">Avançar</button>
+        <button mat-button class="next" (click)="changeStep('address')">Avançar</button>
       </div>
 
       <div id="address" class="step">
+        <button mat-button class="back" (click)="changeStep('dados')">Voltar</button>
+
         <h1>Endereço</h1>
 
         <mat-form-field [formGroup]="enderecoFormGroup">
@@ -53,10 +55,12 @@
           </mat-form-field>
         </div>
 
-        <button mat-button class="next" (click)="nextStep('credentials')">Avançar</button>
+        <button mat-button class="next" (click)="changeStep('credentials')">Avançar</button>
       </div>
 
       <div id="credentials" class="step">
+        <button mat-button class="back" (click)="changeStep('address')">Voltar</button>
+
         <h1>Primeiro usuário</h1>
         <p>Agora que já nos informou os dados do seu escritório,
           precisamos criar seu usuário para acessar o sistema!</p>
