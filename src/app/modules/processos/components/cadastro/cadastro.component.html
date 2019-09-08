@@ -1,3 +1,71 @@
-<p>
-  cadastro works!
-</p>
+<div class="container" *ngIf="!isLoading">
+  <h1>Cadastrar Processo Jurídico</h1>
+
+  <form *ngIf="novoProcessoFormGroup" [formGroup]="novoProcessoFormGroup" (submit)="salvarProcesso()">
+    <h4>Dados do processo</h4>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center" flex.lg="33" flex.md="50" flex.sm="100">
+      <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <mat-select formGroupName="codigoCliente" name="codigoCliente">
+          <mat-option *ngFor="let cliente of clientes" [value]="cliente.codigo">
+            {{ cliente.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formGroupName="titulo" matInput placeholder="Título" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input formGroupName="descricao" matInput placeholder="Descrição" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input formGroupName="juizResponsavel" matInput placeholder="Juíz Responsável">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formGroupName="numeroProcesso" matInput placeholder="Número do Processo">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>UF</mat-label>
+        <mat-select formGroupName="codigoUF">
+          <mat-option *ngFor="let uf of estadosBrasileiros" [value]="uf.codigo">
+            {{ uf.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select formGroupName="status">
+          <mat-option [value]="0">Aberto</mat-option>
+          <mat-option [value]="1">Aguardando Distribuição</mat-option>
+          <mat-option [value]="2">Aguardando Citação</mat-option>
+          <mat-option [value]="3">Aguardando Cumprimento de Carta Precatória</mat-option>
+          <mat-option [value]="4">Aguardando Julgamento de Embargo de Terceiros</mat-option>
+          <mat-option [value]="5">Aguardando Sentença</mat-option>
+          <mat-option [value]="6">Aguardando Trânsito em Julgado</mat-option>
+          <mat-option [value]="7">Aguardando Intimação da Sentença</mat-option>
+          <mat-option [value]="8">Aguardando Julgamento de Apelação</mat-option>
+          <mat-option [value]="9">Aguardando Julgamento de Recurso Especial</mat-option>
+          <mat-option [value]="10">Cumprimento da Sentença</mat-option>
+          <mat-option [value]="11">Aguardando Baixa do Distribuidor</mat-option>
+          <mat-option [value]="12">Finalizado</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Tipo de Papel</mat-label>
+        <mat-select formGroupName="tipoDePapel">       
+          <mat-option [value]="0">Acusação</mat-option>
+          <mat-option [value]="1">Defesa</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="actions-container">
+      <button mat-button class="btn-back" (click)="voltar()">Voltar</button>
+      <button mat-button type="submit">Salvar Processo</button>
+    </div>
+  </form>
+</div>

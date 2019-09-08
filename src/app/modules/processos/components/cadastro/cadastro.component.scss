@@ -1,0 +1,36 @@
+form {
+    width: 100%;
+
+    h4 {
+        margin: 0;
+    }
+
+    mat-card {
+        margin-top: 10px;
+    }
+
+    mat-form-field {
+        width: 100%;
+        padding: 0 15px;
+        flex: 1;
+    }
+
+    button {
+        background-color: #4c5a98;
+        color: #fff;
+        margin-top: 15px;
+
+        &.btn-back {
+            background-color: #444554;
+            margin-left: 10px;
+        }
+    }
+
+    .actions-container {
+        text-align: right;
+
+        button {
+            margin-right: 10px;
+        }
+    }
+}

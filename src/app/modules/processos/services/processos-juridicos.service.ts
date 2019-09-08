@@ -6,6 +6,7 @@ import ProcessoPreview from '../model/listagem/processo-preview.model';
 import Cliente from '../model/cadastro/cliente.model';
 import { ClientesService } from '../../clientes/services/clientes.service';
 import { map } from 'rxjs/operators';
+import { NovoProcesso } from '../model/cadastro/novo-processo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,17 @@ export class ProcessosJuridicosService {
   public obterClientesDisponiveis(): Observable<Cliente[]> {
     return this.clientesService.getClientes().pipe(
       map(clientesOriginal => {
-        return clientesOriginal.map(c => new Cliente(c.codigo, `${c.nome} ${c.sobrenome}`));
+        return clientesOriginal
+          .map(c => new Cliente(c.codigo, `${c.nome} ${c.sobrenome}`))
+          .sort((a, b) => {
+            return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
+          });
       })
     );
+  }
+
+  public salvarProcesso(novoProcesso: NovoProcesso): Observable<string> {
+    return this.httpClient.post<string>(this.baseUrl, novoProcesso);
   }
 
   public removerProcesso(codigo: string): Observable<string> {

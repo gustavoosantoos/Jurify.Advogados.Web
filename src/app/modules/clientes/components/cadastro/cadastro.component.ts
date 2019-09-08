@@ -19,9 +19,9 @@ export class CadastroComponent {
   validationErrors: string[] = [];
 
   constructor(
+    protected snackBar: MatSnackBar,
     private location: Location,
     private clientesService: ClientesService,
-    private snackBar: MatSnackBar,
     private router: Router) {
   }
 
