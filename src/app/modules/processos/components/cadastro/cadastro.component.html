@@ -1,12 +1,12 @@
 <div class="container" *ngIf="!isLoading">
   <h1>Cadastrar Processo Jurídico</h1>
 
-  <form *ngIf="novoProcessoFormGroup" [formGroup]="novoProcessoFormGroup" (submit)="salvarProcesso()">
+  <form *ngIf="novoProcessoFormGroup" [formGroup]="novoProcessoFormGroup" (ngSubmit)="salvarProcesso()">
     <h4>Dados do processo</h4>
     <div fxLayout="row wrap" fxLayoutAlign="space-between center" flex.lg="33" flex.md="50" flex.sm="100">
       <mat-form-field>
         <mat-label>Cliente</mat-label>
-        <mat-select formGroupName="codigoCliente" name="codigoCliente">
+        <mat-select formControlName="codigoCliente" name="codigoCliente">
           <mat-option *ngFor="let cliente of clientes" [value]="cliente.codigo">
             {{ cliente.nome }}
           </mat-option>
@@ -14,21 +14,21 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input formGroupName="titulo" matInput placeholder="Título" required>
+        <input formControlName="titulo" matInput placeholder="Título" required>
       </mat-form-field>
       <mat-form-field>
-        <input formGroupName="descricao" matInput placeholder="Descrição" required>
+        <input formControlName="descricao" matInput placeholder="Descrição" required>
       </mat-form-field>
       <mat-form-field>
-        <input formGroupName="juizResponsavel" matInput placeholder="Juíz Responsável">
+        <input formControlName="juizResponsavel" matInput placeholder="Juíz Responsável">
       </mat-form-field>
 
       <mat-form-field>
-        <input formGroupName="numeroProcesso" matInput placeholder="Número do Processo">
+        <input formControlName="numeroProcesso" matInput placeholder="Número do Processo">
       </mat-form-field>
       <mat-form-field>
         <mat-label>UF</mat-label>
-        <mat-select formGroupName="codigoUF">
+        <mat-select formControlName="codigoUF">
           <mat-option *ngFor="let uf of estadosBrasileiros" [value]="uf.codigo">
             {{ uf.nome }}
           </mat-option>
@@ -37,7 +37,7 @@
 
       <mat-form-field>
         <mat-label>Status</mat-label>
-        <mat-select formGroupName="status">
+        <mat-select formControlName="status">
           <mat-option [value]="0">Aberto</mat-option>
           <mat-option [value]="1">Aguardando Distribuição</mat-option>
           <mat-option [value]="2">Aguardando Citação</mat-option>
@@ -56,7 +56,7 @@
 
       <mat-form-field>
         <mat-label>Tipo de Papel</mat-label>
-        <mat-select formGroupName="tipoDePapel">       
+        <mat-select formControlName="tipoDePapel">       
           <mat-option [value]="0">Acusação</mat-option>
           <mat-option [value]="1">Defesa</mat-option>
         </mat-select>
