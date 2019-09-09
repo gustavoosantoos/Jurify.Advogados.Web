@@ -5,6 +5,7 @@ import { NgForm, Validators, FormControl, FormGroupDirective, FormGroup } from '
 import { ErrorStateMatcher } from '@angular/material/core';
 import { SignUp } from 'src/app/shared/model/signup';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { MatSnackBar } from '@angular/material';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -24,7 +25,8 @@ export class CadastroEscritorioComponent implements OnInit {
   constructor(
     private signupService: SignupService,
     private router: Router,
-    private formBuilder: RxFormBuilder
+    private formBuilder: RxFormBuilder,
+    private snackBar: MatSnackBar
   ) { }
 
   signupObj: SignUp;
@@ -40,7 +42,7 @@ export class CadastroEscritorioComponent implements OnInit {
     this.usuarioFormGroup = this.formBuilder.formGroup(this.signupObj.usuario);
   }
 
-  nextStep(target): void {
+  changeStep(target): void {
     event.preventDefault();
     document.querySelector('.step.active').classList.remove('active');
 
@@ -52,6 +54,10 @@ export class CadastroEscritorioComponent implements OnInit {
   signUp(): void {
     if(this.signupService.createUser(this.signupObj)) {
       this.router.navigateByUrl('/autenticacao');
+    } else {
+      this.snackBar.open('Falha no cadastro, verifique os campos e tente novamente.', 'Fechar', {
+        duration: 5000
+      });
     }
   }
 

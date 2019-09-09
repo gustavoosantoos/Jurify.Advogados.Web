@@ -37,6 +37,7 @@ export class CadastroComponent implements OnInit {
   ngOnInit() {
     this.loadingService.isLoading.subscribe(r => this.isLoading = r);
     this.carregarDados();
+    this.inicializaFormulario();
   }
 
   carregarDados(): void {

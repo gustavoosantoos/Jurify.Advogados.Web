@@ -12,14 +12,19 @@ export class SignupService {
     private http: HttpClient
   ) { }
 
-  public createUser(user: SignUp): Promise<boolean> {
+  public async createUser(user: SignUp): Promise<boolean> {
     const url = environment.authentication.provider + 'api/advogados/account/cadastrar';
 
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    const result = this.http.post<SignUp>(url, user, options).toPromise();
-    return;
+    const result = await this.http.post<SignUp>(url, user, options).toPromise().catch(err => null);
+
+    if(!result) {
+      return false;
+    }
+
+    return true;
   }
 }
