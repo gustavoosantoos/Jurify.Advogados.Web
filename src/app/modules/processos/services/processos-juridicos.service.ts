@@ -7,6 +7,7 @@ import Cliente from '../model/cadastro/cliente.model';
 import { ClientesService } from '../../clientes/services/clientes.service';
 import { map } from 'rxjs/operators';
 import { NovoProcesso } from '../model/cadastro/novo-processo.model';
+import { Evento } from '../model/visualizacao/evento.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class ProcessosJuridicosService {
 
   public obterProcessos(): Observable<ProcessoPreview[]> {
     return this.httpClient.get<ProcessoPreview[]>(this.baseUrl);
+  }
+
+  public obterProcesso(codigo: string): Observable<NovoProcesso> {
+    return this.httpClient.get<NovoProcesso>(this.baseUrl + '/' + codigo);
   }
 
   public obterClientesDisponiveis(): Observable<Cliente[]> {
@@ -41,5 +46,9 @@ export class ProcessosJuridicosService {
 
   public removerProcesso(codigo: string): Observable<string> {
     return this.httpClient.delete<string>(`${this.baseUrl}/${codigo}`);
+  }
+
+  public adicionarEvento(evento: Evento): Observable<string> {
+    return this.httpClient.post<string>(this.baseUrl + '/' + evento.codigoProcessoJuridico + '/eventos', evento);
   }
 }

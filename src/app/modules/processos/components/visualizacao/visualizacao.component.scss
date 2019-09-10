@@ -1,0 +1,136 @@
+.nome-processo {
+    font-weight: 100;
+  }
+  
+.dados-alteracao {
+    font-size: 0.4em;
+    font-weight: 100;
+}
+
+.description {
+    font-weight: normal;
+    font-size: .8em;
+}
+
+.timeline {
+    display: block;
+    margin: 20px auto;
+    width: 4px;
+    background-color: #cf767b;
+    position: relative;
+    padding: 15px 0;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -11px;
+        left: -5px;
+        width: 8px;
+        height: 8px;
+        border: 3px solid #444554;
+        border-radius: 100%;
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -8px;
+        left: -6px;
+
+        width: 0; 
+        height: 0; 
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        
+        border-top: 8px solid #444554;
+    }
+
+    .event {
+        margin: 30px auto;
+        cursor: pointer;
+
+        &:before {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: #444554;
+            margin-left: -4px;
+            cursor: pointer;
+        }
+
+        &:nth-child(even) {
+            .detail {
+                right: -250px;
+                transform-origin: left;
+            }
+        }
+
+        &:nth-child(odd) {
+            .detail {
+                left: -250px;
+                transform-origin: right;
+            }
+        }
+
+        .detail {
+            position: absolute;
+            display: block;
+            width: 200px;
+            transition: .5s;
+            transform: scaleX(1);
+            padding: 15px;
+            margin-top: -15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 8px 8px 5px -4px rgba(199,199,199,0.6);
+        }
+
+        &:hover {
+            .detail {
+                transform: scaleX(1);
+            }
+        }
+    }
+}
+
+button {
+    background-color: #4c5a98;
+    color: #fff;
+}
+
+.eventEditor {
+    width: 100%;
+    display: block;
+    margin-top: 15px;
+    transition: .5s;
+    transform: scaleY(0);
+    transform-origin: top;
+    height: 0;
+
+    form {
+        mat-form-field {
+            width: 100%;
+        }
+
+        textarea {
+            width: 100%;
+        }
+    }
+
+    &.active {
+        transform: scaleY(1);
+        height: 100%;
+    }
+}
+
+.noEvents {
+    span {
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+    }
+}

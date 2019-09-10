@@ -1,0 +1,46 @@
+<div class="container" *ngIf="processo">
+  <h1>Processo -
+    <span class="nome-processo"> Número: {{ processo.numero }} | Título: {{ processo.titulo }}</span>
+    <br />
+    <span class="description"><strong>Descrição:</strong> {{ processo.descricao }}</span>
+    <br />
+    <span class="dados-alteracao">
+      <strong>Criado em:</strong> {{ processo.dataCriacao | date: "dd/MM/yyyy" }} -
+      <strong>Ultima alteração em:</strong> {{ processo.dataUltimaAlteracao | date: "dd/MM/yyyy" }} -
+      <strong>Alterado pelo usuário:</strong> {{ processo.nomeUsuarioUltimaAlteracao }}
+    </span>
+  </h1>
+
+  <div fxLayout="row wrap" flex="100" class="mt-2">
+    <mat-card fxFlex="100">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Linha do Tempo">
+          <div class="tab-content">
+            <div class="timeline" *ngIf="processo.eventos[0]; else elseBlock">
+              <div class="event" >
+                <div class="detail" *ngFor="let evento of processo.eventos">
+                  <p>{{ evento.descricao }}</p>
+                </div>
+              </div>
+            </div>
+            <ng-template #elseBlock>
+              <div class="noEvents">
+                <span>Você ainda não possui eventos cadastrados nesse processo.</span>
+              </div>
+            </ng-template>
+            <button mat-button (click)="openEventEditor()">Adicionar Evento</button>
+
+            <div class="eventEditor">
+              <form (ngSubmit)="saveEvent()" [formGroup]="eventoFormGroup">
+                <mat-form-field>
+                  <textarea matInput placeholder="Descrição" formControlName="descricao" required></textarea>
+                </mat-form-field>
+                <button mat-button type="submit">Salvar Evento</button>
+              </form>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>
