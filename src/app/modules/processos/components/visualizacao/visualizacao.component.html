@@ -1,0 +1,38 @@
+<div class="container" *ngIf="processo">
+  <h1>Processo -
+    <span class="nome-processo"> Número: {{ processo.numero }} | Título: {{ processo.titulo }}</span>
+    <br />
+    <span class="description"><strong>Descrição:</strong> {{ processo.descricao }}</span>
+    <br />
+    <span class="dados-alteracao">
+      <strong>Criado em:</strong> {{ processo.dataCriacao | date: "dd/MM/yyyy" }} -
+      <strong>Ultima alteração em:</strong> {{ processo.dataUltimaAlteracao | date: "dd/MM/yyyy" }} -
+      <strong>Alterado pelo usuário:</strong> {{ processo.nomeUsuarioUltimaAlteracao }}
+    </span>
+  </h1>
+
+  <div fxLayout="row wrap" flex="100" class="mt-2">
+    <mat-card fxFlex="100">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Linha do Tempo">
+          <div class="tab-content">
+            <div class="timeline">
+              <div class="event">
+                <div class="detail">
+                  Descrição do Evento 1
+                </div>
+              </div>
+
+              <div class="event">
+                <div class="detail">
+                  Descrição do Evento 2
+                </div>
+              </div>
+            </div>
+            <button mat-button>Adicionar Evento</button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

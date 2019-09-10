@@ -23,6 +23,10 @@ export class ProcessosJuridicosService {
     return this.httpClient.get<ProcessoPreview[]>(this.baseUrl);
   }
 
+  public obterProcesso(codigo: string): Observable<NovoProcesso> {
+    return this.httpClient.get<NovoProcesso>(this.baseUrl + '/' + codigo);
+  }
+
   public obterClientesDisponiveis(): Observable<Cliente[]> {
     return this.clientesService.getClientes().pipe(
       map(clientesOriginal => {
