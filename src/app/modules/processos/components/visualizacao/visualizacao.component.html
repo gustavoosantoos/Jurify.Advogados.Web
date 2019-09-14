@@ -12,14 +12,39 @@
   </h1>
 
   <div fxLayout="row wrap" flex="100" class="mt-2">
-    <mat-card fxFlex="100">
+    <mat-card fxFlex="100" class="mb-3">
       <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Adicionar novo evento">
+          <div class="tab-content">
+            <div class="eventEditor">
+              <form (ngSubmit)="saveEvent()" [formGroup]="eventoFormGroup">
+                <div class="mt-2" fxLayout="row wrap" fxLayoutAlign="space-between center" flex.xl="50" flex.lg="50" flex.md="50" flex.sm="100">
+                  <mat-form-field style="flex: 1" class="ml-1 mr-1">
+                    <input matInput formControlName="dataEvento" [matDatepicker]="picker" placeholder="Data do evento" (focus)="picker.open()">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker touchUi></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field style="flex: 1" class="ml-1 mr-1">
+                    <input matInput type="time" formControlName="horaEvento" placeholder="Hora do evento">
+                  </mat-form-field>
+                  <mat-slide-toggle color="accent" formControlName="adicionarNaAgenda">
+                    Adicionar evento na agenda
+                  </mat-slide-toggle>
+                </div>
+                <angular-editor formControlName="descricao" placeholder="Informe os dados do novo evento aqui"></angular-editor>
+                <button class="mt-2" mat-stroked-button color="primary" type="submit">Salvar Evento</button>
+              </form>
+            </div>  
+          </div>
+        </mat-tab>
         <mat-tab label="Linha do Tempo">
           <div class="tab-content">
             <div class="timeline" *ngIf="processo.eventos[0]; else elseBlock">
-              <div class="event" >
-                <div class="detail" *ngFor="let evento of processo.eventos">
-                  <p>{{ evento.descricao }}</p>
+              <div class="event" *ngFor="let evento of processo.eventos">
+                <div class="detail">
+                  <p [innerHtml]="evento.descricao"></p>
+                  <hr/>
+                  <small><strong>{{ evento.dataHoraEvento | date: 'dd/MM/yyyy HH:mm:ss' }}</strong></small>
                 </div>
               </div>
             </div>
@@ -28,19 +53,9 @@
                 <span>Você ainda não possui eventos cadastrados nesse processo.</span>
               </div>
             </ng-template>
-            <button mat-button (click)="openEventEditor()">Adicionar Evento</button>
-
-            <div class="eventEditor">
-              <form (ngSubmit)="saveEvent()" [formGroup]="eventoFormGroup">
-                <mat-form-field>
-                  <textarea matInput placeholder="Descrição" formControlName="descricao" required></textarea>
-                </mat-form-field>
-                <button mat-button type="submit">Salvar Evento</button>
-              </form>
-            </div>
           </div>
         </mat-tab>
-      </mat-tab-group>
+      </mat-tab-group>  
     </mat-card>
   </div>
 </div>

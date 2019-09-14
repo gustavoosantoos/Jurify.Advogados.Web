@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule, MatTooltipModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule, MatTooltipModule, MatSlideToggleModule } from '@angular/material';
 import { AuthGuard } from './guards/auth-guard';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -10,6 +10,7 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
     declarations: [],
@@ -55,7 +56,9 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
       ReactiveFormsModule,
       RouterModule,
       NgxMaskModule,
-      RxReactiveFormsModule
+      RxReactiveFormsModule,
+      AngularEditorModule,
+      MatSlideToggleModule
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

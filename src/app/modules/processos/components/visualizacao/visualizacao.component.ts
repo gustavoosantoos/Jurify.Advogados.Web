@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ProcessosJuridicosService } from '../../services/processos-juridicos.service';
-import { NovoProcesso } from '../../model/cadastro/novo-processo.model';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { Evento } from '../../model/visualizacao/evento.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { NovoEvento } from '../../model/visualizacao/novo-evento.model';
+import { Processo } from '../../model/visualizacao/processo.model';
 
 @Component({
   selector: 'app-visualizacao',
@@ -25,8 +25,8 @@ export class VisualizacaoComponent implements OnInit {
   ) { }
 
   codigoProcesso: string;
-  processo: NovoProcesso;
-  evento: Evento;
+  processo: Processo;
+  evento: NovoEvento;
   eventoFormGroup: FormGroup;
 
   ngOnInit() {
@@ -34,7 +34,8 @@ export class VisualizacaoComponent implements OnInit {
       this.codigoProcesso = r.get('codigo');
       this.getProcesso();
     });
-    this.evento = new Evento();
+
+    this.evento = new NovoEvento();
     this.eventoFormGroup = this.formBuilder.formGroup(this.evento);
   }
 
@@ -43,7 +44,7 @@ export class VisualizacaoComponent implements OnInit {
     this.processoService.obterProcesso(this.codigoProcesso).subscribe(p => {
       this.processo = p;
       console.log(this.processo);
-      
+
       this.loadingService.isLoading.next(false);
     }, error => {
       this.loadingService.isLoading.next(false);
@@ -52,21 +53,17 @@ export class VisualizacaoComponent implements OnInit {
     });
   }
 
-  openEventEditor() {
-    document.querySelector('.eventEditor').classList.add('active');
-  }
-
   saveEvent() {
+    this.evento.atualizarDataHoraEvento();
     this.evento.codigoProcessoJuridico = this.codigoProcesso;
     this.loadingService.isLoading.next(true);
     this.processoService.adicionarEvento(this.evento).subscribe(e => {
       this.snackBar.open('Evento salvo com sucesso', 'Fechar');
+      this.getProcesso();
     }, err => {
       this.snackBar.open('Falha ao salvar evento', 'Fechar');
     }, () => {
       this.loadingService.isLoading.next(false);
-    });;
-
+    });
   }
-
 }

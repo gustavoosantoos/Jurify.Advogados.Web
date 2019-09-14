@@ -97,19 +97,11 @@
     }
 }
 
-button {
-    background-color: #4c5a98;
-    color: #fff;
-}
 
 .eventEditor {
     width: 100%;
     display: block;
-    margin-top: 15px;
-    transition: .5s;
-    transform: scaleY(0);
     transform-origin: top;
-    height: 0;
 
     form {
         mat-form-field {
@@ -119,11 +111,10 @@ button {
         textarea {
             width: 100%;
         }
-    }
 
-    &.active {
-        transform: scaleY(1);
-        height: 100%;
+        button {
+            width: 100%;
+        }
     }
 }
 

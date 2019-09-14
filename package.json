@@ -25,6 +25,7 @@
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
     "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@kolkov/angular-editor": "^1.0.0-beta.4",
     "@rxweb/reactive-form-validators": "^1.9.2",
     "@types/file-saver": "^2.0.1",
     "add": "^2.0.6",
