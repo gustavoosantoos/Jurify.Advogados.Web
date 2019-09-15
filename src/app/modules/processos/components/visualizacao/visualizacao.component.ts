@@ -43,8 +43,6 @@ export class VisualizacaoComponent implements OnInit {
     this.loadingService.isLoading.next(true);
     this.processoService.obterProcesso(this.codigoProcesso).subscribe(p => {
       this.processo = p;
-      console.log(this.processo);
-
       this.loadingService.isLoading.next(false);
     }, error => {
       this.loadingService.isLoading.next(false);

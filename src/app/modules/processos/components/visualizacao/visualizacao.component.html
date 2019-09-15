@@ -30,6 +30,9 @@
                   <mat-slide-toggle color="accent" formControlName="adicionarNaAgenda">
                     Adicionar evento na agenda
                   </mat-slide-toggle>
+                  <mat-form-field class="ml-1 mr-1">
+                    <input matInput formControlName="titulo" placeholder="Título do evento">
+                  </mat-form-field>
                 </div>
                 <angular-editor formControlName="descricao" placeholder="Informe os dados do novo evento aqui"></angular-editor>
                 <button class="mt-2" mat-stroked-button color="primary" type="submit">Salvar Evento</button>
@@ -39,15 +42,17 @@
         </mat-tab>
         <mat-tab label="Linha do Tempo">
           <div class="tab-content">
-            <div class="timeline" *ngIf="processo.eventos[0]; else elseBlock">
-              <div class="event" *ngFor="let evento of processo.eventos">
-                <div class="detail">
-                  <p [innerHtml]="evento.descricao"></p>
-                  <hr/>
-                  <small><strong>{{ evento.dataHoraEvento | date: 'dd/MM/yyyy HH:mm:ss' }}</strong></small>
-                </div>
-              </div>
-            </div>
+            <mgl-timeline *ngIf="processo.eventos[0]; else elseBlock" [mobileWidthThreshold]="0">
+              <mgl-timeline-entry *ngFor="let evento of processo.eventos">
+                <mgl-timeline-entry-header>
+                  {{ evento.titulo }}
+                  <br />
+                  <small><strong>{{ evento.dataHoraEvento | date: 'dd/MM/yyyy HH:mm' }}</strong></small>
+                </mgl-timeline-entry-header>
+                <mgl-timeline-entry-content [innerHtml]="evento.descricao"></mgl-timeline-entry-content>
+                <mgl-timeline-entry-dot [size]="25" class="accent"></mgl-timeline-entry-dot>
+              </mgl-timeline-entry>
+            </mgl-timeline>
             <ng-template #elseBlock>
               <div class="noEvents">
                 <span>Você ainda não possui eventos cadastrados nesse processo.</span>

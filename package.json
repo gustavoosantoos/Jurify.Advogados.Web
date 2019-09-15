@@ -30,6 +30,7 @@
     "@types/file-saver": "^2.0.1",
     "add": "^2.0.6",
     "angular-calendar": "^0.27.13",
+    "angular-mgl-timeline": "^0.3.2",
     "angular-oauth2-oidc": "^5.0.2",
     "core-js": "^2.5.4",
     "date-fns": "^1.30.1",
