@@ -52,4 +52,25 @@ export class ProcessosJuridicosService {
   public adicionarEvento(evento: NovoEvento): Observable<string> {
     return this.httpClient.post<string>(this.baseUrl + '/' + evento.codigoProcessoJuridico + '/eventos', evento);
   }
+
+  public removerEvento(codigoProcesso: string, codigoEvento: string): Observable<string> {
+    return this.httpClient.delete<string>(this.baseUrl + '/' + codigoProcesso + '/eventos/' + codigoEvento);
+  }
+
+  public adicionarAnexo(codigoProcesso: string, codigoEvento: string, anexo: FormData): Observable<string> {
+    const url = `${this.baseUrl}/${codigoProcesso}/eventos/${codigoEvento}/anexos`;
+    return this.httpClient.post<string>(url, anexo);
+  }
+
+  public baixarAnexo(codigoProcesso: string, codigoEvento: string, codigoAnexo: string): Observable<any> {
+    const url = `${this.baseUrl}/${codigoProcesso}/eventos/${codigoEvento}/anexos/${codigoAnexo}`;
+    return this.httpClient.get(url, {
+      responseType: 'blob'
+    });
+  }
+
+  public removerAnexo(codigoProcesso: string, codigoEvento: string, codigoAnexo: any): Observable<string> {
+    const url = `${this.baseUrl}/${codigoProcesso}/eventos/${codigoEvento}/anexos/${codigoAnexo}`;
+    return this.httpClient.delete<string>(url);
+  }
 }

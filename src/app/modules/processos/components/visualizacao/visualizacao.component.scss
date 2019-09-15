@@ -12,6 +12,20 @@
     font-size: .8em;
 }
 
+.anexo-evento {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px #9c9b9b dashed;
+    border-radius: 10px;
+    padding: 2px;
+    margin-top: 10px;
+
+    span:first-of-type {
+        align-self: center;
+    }
+}
+
 .timeline {
     display: block;
     margin: 20px auto;
@@ -123,5 +137,24 @@
         display: block;
         margin: 20px auto;
         text-align: center;
+    }
+}
+
+mgl-timeline-entry {
+    &:nth-child(even) {
+        mgl-timeline-entry-side {
+            top: 15px;
+            width: 95%;
+            margin-left: 5%;
+            text-align: left;
+        }
+    }
+
+    &:nth-child(odd) {
+        mgl-timeline-entry-side {
+            top: 15px;
+            width: 95%;
+            text-align: right;
+        }
     }
 }

@@ -49,8 +49,30 @@
                   <br />
                   <small><strong>{{ evento.dataHoraEvento | date: 'dd/MM/yyyy HH:mm' }}</strong></small>
                 </mgl-timeline-entry-header>
-                <mgl-timeline-entry-content [innerHtml]="evento.descricao"></mgl-timeline-entry-content>
+                <mgl-timeline-entry-content>
+                  <div [innerHtml]="evento.descricao"></div>
+                  <hr *ngIf="evento.descricao" />
+                  <div *ngFor="let anexo of evento.anexos" class="anexo-evento">
+                    <span>{{ anexo.nomeArquivo }}</span>
+                    <span>
+                      <button (click)="baixarAnexo(evento, anexo)" mat-button matTooltip="Baixar o anexo">
+                        <mat-icon>cloud_download</mat-icon>
+                      </button>
+                      <button (click)="removerAnexo(evento, anexo)" mat-button matTooltip="Remover o anexo">
+                        <mat-icon>delete_forever</mat-icon>
+                      </button>
+                    </span>
+                  </div>
+                </mgl-timeline-entry-content>
                 <mgl-timeline-entry-dot [size]="25" class="primary"></mgl-timeline-entry-dot>
+                <mgl-timeline-entry-side>
+                  <button mat-button (click)="removerEvento(evento)" matTooltip="Remover o evento">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                  <button mat-button (click)="abrirInputDeAnexos(evento)" matTooltip="Adicionar anexo neste evento">
+                    <mat-icon>cloud_upload</mat-icon>
+                  </button>
+                </mgl-timeline-entry-side>
               </mgl-timeline-entry>
             </mgl-timeline>
             <ng-template #elseBlock>
@@ -64,3 +86,16 @@
     </mat-card>
   </div>
 </div>
+
+<ng-template #templateRemocaoEvento>
+  <h1 mat-dialog-title>Atenção!</h1>
+  <div mat-dialog-content>
+    <p>Você deseja realmente remover o processo {{ eventoRemocao.titulo }}?</p>
+  </div>
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelarRemocaoEvento()">Cancelar</button>
+    <button mat-button color="accent" (click)="confirmarRemocaoEvento()" cdkFocusInitial>Remover</button>
+  </div>
+</ng-template>
+
+<input type="file" #inputAnexoEvento style="display: none" (change)="salvarAnexoEvento($event)">
