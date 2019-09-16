@@ -4,6 +4,10 @@
 @import './assets/styles/jurify-app-theme.scss';
 @import './assets/styles/spacing-utils.scss';
 @import '~angular-mgl-timeline/theme';
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/list/main.css';
+@import '~@fullcalendar/timegrid/main.css';
 
 @include angular-material-theme($jurify-app-theme);
 @include mgl-timeline-theme($jurify-app-theme);
