@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
 
 @Component({
   selector: 'app-agenda',
@@ -11,7 +12,7 @@ import listPlugin from '@fullcalendar/list';
 })
 export class AgendaComponent implements OnInit {
 
-  calendarPlugins = [dayGridPlugin, timeGridPlugin, listPlugin];
+  calendarPlugins = [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin];
 
   formatoTitulo = {
     year: 'numeric',
@@ -37,5 +38,9 @@ export class AgendaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  novoEvento(event): void {
+    console.log(event);
   }
 }
