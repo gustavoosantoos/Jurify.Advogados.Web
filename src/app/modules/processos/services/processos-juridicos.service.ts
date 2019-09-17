@@ -1,4 +1,3 @@
-import { environment } from './../../../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -9,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { NovoProcesso } from '../model/cadastro/novo-processo.model';
 import { NovoEvento } from '../model/visualizacao/novo-evento.model';
 import { Processo } from '../model/visualizacao/processo.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
