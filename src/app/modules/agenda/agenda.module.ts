@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgendaComponent } from './components/agenda/agenda.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
     AgendaRoutingModule,
     FullCalendarModule
   ],
