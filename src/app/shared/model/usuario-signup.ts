@@ -11,5 +11,7 @@ export class Usuario {
     public email: string;
 
     @required()
-    public senha: string;
+    public senha: string
+
+    public codigoEscritorio: string;
 }
