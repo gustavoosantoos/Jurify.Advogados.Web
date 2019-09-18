@@ -27,17 +27,17 @@ export class AgendaComponent implements OnInit {
   };
 
   header = {
-    left: 'dayGridMonth,timeGridWeek,list',
+    left: 'dayGridMonth,timeGridWeek,listMonth',
     center: 'title',
     right: 'today,prev,next'
   };
 
   buttons = {
-    today:    'Hoje',
-    month:    'Mês',
-    week:     'Semana',
-    day:      'Dia',
-    list:     'Compromissos'
+    today:     'Hoje',
+    month:     'Mês',
+    week:      'Semana',
+    day:       'Dia',
+    listMonth: 'Compromissos'
   };
 
   localeInfo = 'pt-BR';
