@@ -73,4 +73,9 @@ export class ProcessosJuridicosService {
     const url = `${this.baseUrl}/${codigoProcesso}/eventos/${codigoEvento}/anexos/${codigoAnexo}`;
     return this.httpClient.delete<string>(url);
   }
+
+  public notificarCliente(codigoProcesso: string, codigoEvento: string): Observable<any> {
+    const url = `${this.baseUrl}/${codigoProcesso}/eventos/${codigoEvento}/notificar-cliente`;
+    return this.httpClient.post<any>(url, null);
+  }
 }
