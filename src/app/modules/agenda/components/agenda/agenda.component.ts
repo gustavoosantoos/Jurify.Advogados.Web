@@ -63,13 +63,6 @@ export class AgendaComponent implements OnInit {
     this.novoCompromissoForm = this.formBuilder.formGroup(this.novoCompromisso);
   }
 
-  validRange = (now: Date) => {
-    return {
-      start: Date.now(),
-      end: new Date(Date.now()).setFullYear(now.getFullYear() + 10)
-    };
-  }
-
   carregarEventos(): void {
     this.loadingService.isLoading.next(true);
     this.agendaService.obterCompromissos().subscribe(r => {
@@ -88,6 +81,13 @@ export class AgendaComponent implements OnInit {
   }
 
   novoEvento(event): void {
+    const today = new Date(Date.now()).setHours(0, 0, 0, 0);
+
+    if (event.date < today) {
+      this.snackBar.open('Não é possível criar compromissos em datas passadas', 'Fechar');
+      return;
+    }
+
     this.novoCompromisso.inicio = event.date;
     this.dialog.open(this.templateNovoCompromisso);
   }
