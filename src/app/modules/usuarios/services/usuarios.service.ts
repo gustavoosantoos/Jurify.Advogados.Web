@@ -5,20 +5,23 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import Usuario from '../model/usuario.model';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
+  //private baseUrl = environment.authentication.provider + 'api/advogados/account';
   private baseUrl = environment.authentication.provider + 'api/advogados/account';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthenticationService
   ) { }
 
 
   public getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.baseUrl +"/listar-usuarios-escritorio");
+    return this.http.get<Usuario[]>(this.baseUrl + "/listar-usuarios-escritorio?codigoEscritorio=" + this.authService.getUserInfo().codigoEscritorio);
   }
 
   public getUsuario(id: string): Observable<Usuario> {
@@ -27,7 +30,7 @@ export class UsuariosService {
   }
 
   public removerUsuario(id: string): Observable<string> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}/remover?codigoUsuario=${id}`;
     return this.http.delete<string>(url);
   }
 

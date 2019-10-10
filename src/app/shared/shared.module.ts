@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule, MatTooltipModule, MatSlideToggleModule } from '@angular/material';
+import { MatRadioModule } from '@angular/material/radio';
+import { RadioControlValueAccessor } from '@angular/forms/'
 import { AuthGuard } from './guards/auth-guard';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -29,7 +31,9 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
       ReactiveFormsModule,
       RouterModule,
       NgxMaskModule.forRoot(),
-      RxReactiveFormsModule
+      RxReactiveFormsModule,
+      MatRadioModule
+      
     ],
     exports: [
       CommonModule,
@@ -58,12 +62,15 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
       NgxMaskModule,
       RxReactiveFormsModule,
       AngularEditorModule,
-      MatSlideToggleModule
+      MatSlideToggleModule,
+      MatRadioModule,
+      RadioControlValueAccessor
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
       { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
       { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+      { provide: MatRadioModule, useValue: { color: 'accent' } },
       AuthGuard
     ],
 })

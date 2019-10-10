@@ -1,11 +1,30 @@
-export default class UsuarioPreview {
-  public CodigoEscritorio: string;
-  public CodigoUsuario: string;
-  public Email: string;
-  public PrimeiroNome: string;
-  public UltimoNome: string;
-  public NumeroOab: string;
-  public EstadoBrasileiro: string;
+import { required } from '@rxweb/reactive-form-validators';
+
+export default class CadastroUsuario {
+
+  @required()
+  public nome: string;
+
+  @required()
+  public sobrenome: string;
+
+  @required()
   public email: string;
-  public EhAdministrador: string;
+
+  @required()
+  public senha: string;
+
+  @required()
+  public numeroOab: string;
+
+  @required()
+  public estado: string;
+
+  @required()
+  public ehAdministrador: string;
+
+  public codigoEscritorio: string;
+
+  public codigoUsuario: string;
+
 }

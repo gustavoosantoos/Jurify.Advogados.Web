@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupService } from 'src/app/shared/services/signup.service';
 import { Router } from '@angular/router';
-import { NgForm, Validators, FormControl, FormGroupDirective, FormGroup } from '@angular/forms';
+import { NgForm, Validators, FormControl, FormGroupDirective, FormGroup, RadioControlValueAccessor } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { SignUp } from 'src/app/shared/model/signup';
+import Cadastro from 'src/app/modules/usuarios/model/cadastro.model';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { MatSnackBar } from '@angular/material';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
@@ -32,13 +33,14 @@ export class CadastroUsuarioComponent implements OnInit {
     private authService: AuthenticationService
   ) { }
 
-  signupObj: SignUp;
+  //signupObj: SignUp;
+  signupObj: Cadastro;
   user: Usuario;
   usuarioFormGroup: FormGroup;
   
 
   ngOnInit() {
-    this.signupObj = new SignUp();
+    this.signupObj = new Cadastro();
     this.user = this.authService.getUserInfo();
     this.signupObj.escritorio.nomeFantasia = this.user.nomeEscritorio;
     this.usuarioFormGroup = this.formBuilder.formGroup(this.signupObj.usuario);

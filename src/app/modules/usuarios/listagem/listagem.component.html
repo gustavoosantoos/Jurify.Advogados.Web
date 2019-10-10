@@ -23,24 +23,40 @@
   </a>
 
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="nome">
-      <mat-header-cell *matHeaderCellDef>Nome Completo</mat-header-cell>
-      <mat-cell *matCellDef="let usuario">{{ usuario.PrimeiroNome }} {{ usuario.UltimoNome }}</mat-cell>
+    <ng-container matColumnDef="numeroOab">
+      <mat-header-cell *matHeaderCellDef>Numero OAB</mat-header-cell>
+      <mat-cell *matCellDef="let usuario">{{usuario.numeroOab}}</mat-cell>
     </ng-container>
-  
+
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+      <mat-cell *matCellDef="let usuario"> {{usuario.estado.uf}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="primeiroNome">
+      <mat-header-cell *matHeaderCellDef>Nome Completo</mat-header-cell>
+      <mat-cell *matCellDef="let usuario">{{usuario.primeiroNome}} {{usuario.ultimoNome}}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
-      <mat-cell *matCellDef="let usuario"> {{usuario.Email}} </mat-cell>
+      <mat-cell *matCellDef="let usuario"> {{usuario.email}} </mat-cell>
     </ng-container>
-  
+
+    <ng-container matColumnDef="ehAdministrador">
+      <mat-header-cell *matHeaderCellDef>Administrador</mat-header-cell>
+      <mat-cell *matCellDef="let usuario"> {{usuario.ehAdministrador}} </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let usuario" class="align-collumn-right">
-        <a routerLink="/usuarios/cadastro/{{usuario.CodigoUsuario}}" mat-stroked-button color="primary">
+        <a routerLink="/usuarios/cadastro-usuario" mat-stroked-button color="primary">
+          <!--Aqui alterar para o router link de edicao ou abrir detalhes-->
           <mat-icon>toc</mat-icon>
           Detalhes
         </a>
-        <button mat-stroked-button color="accent" (click)="removerusuario(usuario)">
+        <button mat-stroked-button color="accent" (click)="removerUsuario(usuario.codigoUsuario)">
           <mat-icon>delete</mat-icon>
           Remover
         </button>

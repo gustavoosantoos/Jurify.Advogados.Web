@@ -11,7 +11,17 @@ export class Usuario {
     public email: string;
 
     @required()
-    public senha: string
+    public senha: string;
+
+    @required()
+    public numeroOab: string;
+
+    @required()
+    public ehAdministrador: string;
+
+    public codigoUsuario: string;
 
     public codigoEscritorio: string;
+
+
 }

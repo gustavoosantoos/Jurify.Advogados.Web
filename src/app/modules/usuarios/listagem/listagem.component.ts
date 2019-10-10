@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { UsuariosService } from 'src/app/modules/Usuarios/services/Usuarios.service';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
-import UsuarioPreview from 'src/app/modules/usuarios/model/usuario.model';
+import Cadastro from 'src/app/modules/usuarios/model/usuario.model';
 import { filter } from 'minimatch';
 
 @Component({
@@ -13,10 +13,10 @@ import { filter } from 'minimatch';
 export class ListagemComponent implements OnInit {
 
   isLoading = false;
-  usuarios: UsuarioPreview[];
-  UsuarioRemocao: UsuarioPreview;
-  dataSource: MatTableDataSource<UsuarioPreview> = new MatTableDataSource([]);
-  displayedColumns: string[] = ['nome', 'email', 'nascimento', 'acoes'];
+  usuarios: Cadastro[];
+  UsuarioRemocao: Cadastro;
+  dataSource: MatTableDataSource<Cadastro> = new MatTableDataSource([]);
+  displayedColumns: string[] = ['numeroOab', 'estado', 'primeiroNome', 'email', 'ehAdministrador', 'acoes'];
   value = '';
 
   @ViewChild('templateRemocaoUsuario', { static: true })
@@ -47,6 +47,32 @@ export class ListagemComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.usuarios);
         this.loadingService.isLoading.next(false);
       });
+  }
+  removerUsuario(Usuario: Cadastro) {
+    this.UsuarioRemocao = Usuario;
+    this.dialog.open(this.templateRemocaoUsuario);
+  }
+
+  cancelarRemocao() {
+    this.UsuarioRemocao = null;
+    this.dialog.closeAll();
+  }
+
+  confirmarRemocao() {
+    this.loadingService.isLoading.next(true);
+    this.dialog.closeAll();
+
+    this.UsuarioService.removerUsuario(this.UsuarioRemocao.codigoUsuario).subscribe(r => {
+      this.UsuarioRemocao = null;
+      this.loadingService.isLoading.next(false);
+      this.getUsuarios();
+    }, error => {
+      this.UsuarioRemocao = null;
+      this.loadingService.isLoading.next(false);
+      this.snackBar.open('Erro ao remover Usuario', 'Fechar', {
+        duration: 10000
+      });
+    });
   }
 
   applyFilter(filterValue: string) {
