@@ -1,0 +1,34 @@
+<full-calendar
+    defaultView="dayGridMonth"
+    [plugins]="calendarPlugins"
+    [header]="header"
+    [titleFormat]="formatoTitulo"
+    [buttonText]="buttons"
+    [locale]="localeInfo"
+    [height]="'auto'"
+    [aspectRatio]="2.5"
+    [nowIndicator]="true"
+    [events]="compromissosCalendar"
+    (dateClick)="novoEvento($event)">
+</full-calendar>
+
+<ng-template #templateNovoCompromisso>
+    <h1 mat-dialog-title>Novo Compromisso</h1>
+    <div mat-dialog-content>
+        <form *ngIf="novoCompromissoForm" [formGroup]="novoCompromissoForm">
+            <mat-form-field>
+                <input formControlName="titulo" matInput placeholder="Título" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="horaInicio" type="time" matInput placeholder="Início" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input formControlName="horaFinal" type="time" matInput placeholder="Fim" required>
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions class="actions-container">
+      <button mat-button (click)="cancelarNovoCompromisso()">Cancelar</button>
+      <button mat-button color="primary" (click)="salvarNovoCompromisso()" cdkFocusInitial>Salvar</button>
+    </div>
+</ng-template>

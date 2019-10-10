@@ -58,8 +58,8 @@ export class VisualizacaoComponent implements OnInit {
       this.loadingService.isLoading.next(false);
     }, error => {
       this.loadingService.isLoading.next(false);
-      this.snackBar.open('Erro ao carregar cliente', 'Fechar', { duration: 10000 });
-      this.router.navigateByUrl('/clientes');
+      this.snackBar.open('Erro ao carregar processo', 'Fechar', { duration: 10000 });
+      this.router.navigateByUrl('/processos');
     });
   }
 
@@ -106,7 +106,7 @@ export class VisualizacaoComponent implements OnInit {
     this.inputAnexoEvento.nativeElement.click();
   }
 
-  salvarAnexoEvento(fileInput: any) {
+  salvarAnexoEvento(fileInput: any): void {
     if (fileInput.target.files && fileInput.target.files[0]) {
       this.loadingService.isLoading.next(true);
       const file = fileInput.target.files[0];
@@ -124,7 +124,7 @@ export class VisualizacaoComponent implements OnInit {
     }
   }
 
-  baixarAnexo(evento: Evento, anexo: Anexo) {
+  baixarAnexo(evento: Evento, anexo: Anexo): void {
     this.loadingService.isLoading.next(true);
     this.processoService.baixarAnexo(this.processo.codigo, evento.codigo, anexo.codigo).subscribe(blob => {
       saveAs(blob, anexo.nomeArquivo);
@@ -135,13 +135,25 @@ export class VisualizacaoComponent implements OnInit {
     });
   }
 
-  removerAnexo(evento: Evento, anexo: Anexo) {
+  removerAnexo(evento: Evento, anexo: Anexo): void {
     this.loadingService.isLoading.next(true);
     this.processoService.removerAnexo(this.processo.codigo, evento.codigo, anexo.codigo).subscribe(r => {
       this.snackBar.open('Anexo removido com sucesso.', 'Fechar');
       this.getProcesso();
     }, err => {
       this.snackBar.open('Erro ao remover anexo', 'Fechar');
+    }, () => {
+      this.loadingService.isLoading.next(false);
+    });
+  }
+
+  enviarEmailParaCliente(evento: Evento): void {
+    this.loadingService.isLoading.next(true);
+
+    this.processoService.notificarCliente(this.processo.codigo, evento.codigo).subscribe(r => {
+      this.snackBar.open('Notificação enviada com sucesso', 'Fechar');
+    }, err => {
+      this.snackBar.open('Erro ao notificar cliente', 'Fechar');
     }, () => {
       this.loadingService.isLoading.next(false);
     });
