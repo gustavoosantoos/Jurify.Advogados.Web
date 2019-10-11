@@ -10,4 +10,8 @@ export class Cadastro {
   @required()
   public escritorio: CadastroEscritorio;
 
+  constructor() {
+    this.usuario = new CadastroUsuario();
+    this.escritorio = new CadastroEscritorio();
+  }
 }
