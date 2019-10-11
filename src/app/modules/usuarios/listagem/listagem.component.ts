@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
-import { UsuariosService } from 'src/app/modules/Usuarios/services/Usuarios.service';
+import { UsuariosService } from 'src/app/modules/usuarios/services/usuarios.service';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
 import Cadastro from 'src/app/modules/usuarios/model/usuario.model';
 import { filter } from 'minimatch';
