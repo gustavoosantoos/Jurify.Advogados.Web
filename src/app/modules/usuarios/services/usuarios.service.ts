@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import Usuario from '../model/usuario.model';
+import { CadastroUsuario } from '../model/usuario.model';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
@@ -20,13 +20,13 @@ export class UsuariosService {
   ) { }
 
 
-  public getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.baseUrl + "/listar-usuarios-escritorio?codigoEscritorio=" + this.authService.getUserInfo().codigoEscritorio);
+  public getUsuarios(): Observable<CadastroUsuario[]> {
+    return this.http.get<CadastroUsuario[]>(this.baseUrl + "/listar-usuarios-escritorio?codigoEscritorio=" + this.authService.getUserInfo().codigoEscritorio);
   }
 
-  public getUsuario(id: string): Observable<Usuario> {
+  public getUsuario(id: string): Observable<CadastroUsuario> {
     const url = `${this.baseUrl}/${id}`;
-    return this.http.get<Usuario>(url);
+    return this.http.get<CadastroUsuario>(url);
   }
 
   public removerUsuario(id: string): Observable<string> {

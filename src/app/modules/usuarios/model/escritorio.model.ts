@@ -1,6 +1,6 @@
 import { required } from '@rxweb/reactive-form-validators';
 
-export default class CadastroEscritorio {
+export class CadastroEscritorio {
   @required()
   public razaoSocial: string;
 

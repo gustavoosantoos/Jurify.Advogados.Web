@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgForm, Validators, FormControl, FormGroupDirective, FormGroup, RadioControlValueAccessor } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { SignUp } from 'src/app/shared/model/signup';
-import Cadastro from 'src/app/modules/usuarios/model/cadastro.model';
+import { Cadastro } from 'src/app/modules/usuarios/model/cadastro.model';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { MatSnackBar } from '@angular/material';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';

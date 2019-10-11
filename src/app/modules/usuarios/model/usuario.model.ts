@@ -1,6 +1,6 @@
 import { required } from '@rxweb/reactive-form-validators';
 
-export default class CadastroUsuario {
+export class CadastroUsuario {
 
   @required()
   public nome: string;

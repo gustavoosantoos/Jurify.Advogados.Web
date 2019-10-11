@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { UsuariosService } from 'src/app/modules/usuarios/services/usuarios.service';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
-import Cadastro from 'src/app/modules/usuarios/model/usuario.model';
+import { CadastroUsuario } from 'src/app/modules/usuarios/model/usuario.model';
 import { filter } from 'minimatch';
 
 @Component({
@@ -13,9 +13,9 @@ import { filter } from 'minimatch';
 export class ListagemComponent implements OnInit {
 
   isLoading = false;
-  usuarios: Cadastro[];
-  UsuarioRemocao: Cadastro;
-  dataSource: MatTableDataSource<Cadastro> = new MatTableDataSource([]);
+  usuarios: CadastroUsuario[];
+  UsuarioRemocao: CadastroUsuario;
+  dataSource: MatTableDataSource<CadastroUsuario> = new MatTableDataSource([]);
   displayedColumns: string[] = ['numeroOab', 'estado', 'primeiroNome', 'email', 'ehAdministrador', 'acoes'];
   value = '';
 
@@ -48,7 +48,7 @@ export class ListagemComponent implements OnInit {
         this.loadingService.isLoading.next(false);
       });
   }
-  removerUsuario(Usuario: Cadastro) {
+  removerUsuario(Usuario: CadastroUsuario) {
     this.UsuarioRemocao = Usuario;
     this.dialog.open(this.templateRemocaoUsuario);
   }
