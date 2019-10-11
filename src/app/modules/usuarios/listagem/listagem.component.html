@@ -1,0 +1,80 @@
+<div class="container" *ngIf="!isLoading">
+  <h1>usuarios</h1>
+
+  <mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile>
+      <mat-card class="dashboard-usuarios-card">
+        <span>{{ usuarios.length }}</span>
+        <p>usuarios cadastrados</p>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-form-field class="search">
+    <input matInput type="text" placeholder="Digite o nome do usuario para buscar" [ngModel]="value" (keyup)="applyFilter($event.target.value)">
+    <button mat-button *ngIf="value" aria-label="Clear" matSuffix mat-icon-button (click)="value=''">
+      &times;
+    </button>
+  </mat-form-field>
+
+  <a routerLink="/usuarios/cadastro-usuario" class="btn-link" mat-button>
+    <mat-icon>add</mat-icon>
+    Cadastrar novo usuario
+  </a>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="numeroOab">
+      <mat-header-cell *matHeaderCellDef>Numero OAB</mat-header-cell>
+      <mat-cell *matCellDef="let usuario">{{usuario.numeroOab}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+      <mat-cell *matCellDef="let usuario"> {{usuario.estado.uf}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="primeiroNome">
+      <mat-header-cell *matHeaderCellDef>Nome Completo</mat-header-cell>
+      <mat-cell *matCellDef="let usuario">{{usuario.primeiroNome}} {{usuario.ultimoNome}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
+      <mat-cell *matCellDef="let usuario"> {{usuario.email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ehAdministrador">
+      <mat-header-cell *matHeaderCellDef>Administrador</mat-header-cell>
+      <mat-cell *matCellDef="let usuario"> {{usuario.ehAdministrador}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let usuario" class="align-collumn-right">
+        <a routerLink="/usuarios/cadastro-usuario" mat-stroked-button color="primary">
+          <!--Aqui alterar para o router link de edicao ou abrir detalhes-->
+          <mat-icon>toc</mat-icon>
+          Detalhes
+        </a>
+        <button mat-stroked-button color="accent" (click)="removerUsuario(usuario.codigoUsuario)">
+          <mat-icon>delete</mat-icon>
+          Remover
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
+<ng-template #templateRemocaousuario>
+  <h1 mat-dialog-title>Atenção!</h1>
+  <div mat-dialog-content>
+    <p>Você deseja realmente remover o usuario {{ usuarioRemocao.PrimeiroNome }}?</p>
+  </div>
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelarRemocao()">Cancelar</button>
+    <button mat-button color="accent" (click)="confirmarRemocao()" cdkFocusInitial>Remover</button>
+  </div>
+</ng-template>
