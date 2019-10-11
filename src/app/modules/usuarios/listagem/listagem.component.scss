@@ -1,0 +1,33 @@
+.search {
+    width: 30%;
+}
+
+a.btn-link {
+    float: right;
+    background-color: #4c5a98;
+    color: #fff;
+}
+
+.align-collumn-right {
+    justify-content: flex-end;
+}
+
+button, a.mat-stroked-button {
+    margin-right: 5px;
+}
+
+.dashboard-clientes-card {
+    min-width: 50%;
+    text-align: center;
+
+    span {
+        font-size: 1.5rem;
+        font-weight: bolder;
+        display: block;
+        width: 100%;
+    }
+    
+    p {
+        margin-top: 0;
+    }
+}
