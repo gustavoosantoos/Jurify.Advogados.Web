@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
-import { UsuariosService } from 'src/app/modules/usuarios/services/usuarios.service';
+import { UsuariosService } from 'src/app/modules/configuracoes/geral/usuarios/services/usuarios.service';
 import { LoadingScreenService } from 'src/app/shared/services/loading-screen.service';
-import { CadastroUsuario } from 'src/app/modules/usuarios/model/usuario.model';
+import { CadastroUsuario } from 'src/app/modules/configuracoes/geral/usuarios/model/usuario.model';
 import { filter } from 'minimatch';
 
 @Component({

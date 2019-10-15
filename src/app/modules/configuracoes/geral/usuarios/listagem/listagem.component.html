@@ -1,11 +1,11 @@
 <div class="container" *ngIf="!isLoading">
-  <h1>usuarios</h1>
+  <h1>Usuários</h1>
 
   <mat-grid-list cols="2" rowHeight="4:1">
     <mat-grid-tile>
       <mat-card class="dashboard-usuarios-card">
         <span>{{ usuarios.length }}</span>
-        <p>usuarios cadastrados</p>
+        <p>Usuários cadastrados</p>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
@@ -19,12 +19,12 @@
 
   <a routerLink="/usuarios/cadastro-usuario" class="btn-link" mat-button>
     <mat-icon>add</mat-icon>
-    Cadastrar novo usuario
+    Cadastrar novo usuário
   </a>
 
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="numeroOab">
-      <mat-header-cell *matHeaderCellDef>Numero OAB</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Número OAB</mat-header-cell>
       <mat-cell *matCellDef="let usuario">{{usuario.numeroOab}}</mat-cell>
     </ng-container>
 
