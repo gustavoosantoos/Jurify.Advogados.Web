@@ -1,5 +1,4 @@
 <div class="container">
-  <img src="../../../../assets/images/logo-br.svg" alt="Jurify" class="logo">
   <div class="steps">
     <form (ngSubmit)="signUp()">
       <div id="credentials" class="step active">
@@ -55,8 +54,9 @@
         <mat-form-field [formGroup]="usuarioFormGroup">
           <input type="password" name="senha" matInput formControlName="senha" minlength="8" placeholder="Senha">
         </mat-form-field>
-        <div [formGroup]="usuarioFormGroup">
+        <div class="admin" [formGroup]="usuarioFormGroup">
           <label>Administrador</label>
+
           <input type="radio" formControlName="ehAdministrador" value="true" checked> Sim
           <input type="radio" formControlName="ehAdministrador" value="false"> Não
         </div>
