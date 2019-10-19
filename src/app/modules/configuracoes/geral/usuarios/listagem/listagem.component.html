@@ -30,7 +30,7 @@
 
     <ng-container matColumnDef="estado">
       <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
-      <mat-cell *matCellDef="let usuario"> {{usuario.estado.uf}} </mat-cell>
+      <mat-cell *matCellDef="let usuario">{{ usuario?.estado?.uf || 'N/A' }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="primeiroNome">
