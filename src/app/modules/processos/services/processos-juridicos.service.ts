@@ -9,6 +9,7 @@ import { NovoProcesso } from '../model/cadastro/novo-processo.model';
 import { NovoEvento } from '../model/visualizacao/novo-evento.model';
 import { Processo } from '../model/visualizacao/processo.model';
 import { environment } from 'src/environments/environment';
+import { ProcessoAtualizacao } from '../model/atualizacao/processo-atualizacao.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,10 @@ export class ProcessosJuridicosService {
 
   public removerProcesso(codigo: string): Observable<string> {
     return this.httpClient.delete<string>(`${this.baseUrl}/${codigo}`);
+  }
+
+  public editarProcesso(processo: ProcessoAtualizacao): Observable<string> {
+    return this.httpClient.put<string>(this.baseUrl + '/' + processo.codigo, processo);
   }
 
   public adicionarEvento(evento: NovoEvento): Observable<string> {

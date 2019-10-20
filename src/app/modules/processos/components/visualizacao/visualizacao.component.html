@@ -14,13 +14,76 @@
   <div fxLayout="row wrap" flex="100" class="mt-2">
     <mat-card fxFlex="100" class="mb-3">
       <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Editar processo">
+          <div class="tab-content">
+            <form (ngSubmit)="editarProcesso()">
+              <h4>Dados do processo</h4>
+              <div fxLayout="row wrap" fxLayoutAlign="space-between center" flex="33" flex.lg="33" flex.md="50" flex.sm="100">
+                <mat-form-field>
+                  <input matInput placeholder="Título" [(ngModel)]="processo.titulo" name="titulo" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <textarea matInput placeholder="Descrição" [(ngModel)]="processo.descricao" name="descricao" required></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Juíz Responsável" [(ngModel)]="processo.juizResponsavel" name="juiz">
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput placeholder="Número do Processo" [(ngModel)]="processo.numero" name="numero">
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>UF</mat-label>
+                  <mat-select [(ngModel)]="processo.codigoUF" name="uf">
+                    <mat-option *ngFor="let uf of estadosBrasileiros" [value]="uf.codigo">
+                      {{ uf.nome }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Status</mat-label>
+                  <mat-select [(ngModel)]="processo.status" name="status">
+                    <mat-option [value]="0">Aberto</mat-option>
+                    <mat-option [value]="1">Aguardando Distribuição</mat-option>
+                    <mat-option [value]="2">Aguardando Citação</mat-option>
+                    <mat-option [value]="3">Aguardando Cumprimento de Carta Precatória</mat-option>
+                    <mat-option [value]="4">Aguardando Julgamento de Embargo de Terceiros</mat-option>
+                    <mat-option [value]="5">Aguardando Sentença</mat-option>
+                    <mat-option [value]="6">Aguardando Trânsito em Julgado</mat-option>
+                    <mat-option [value]="7">Aguardando Intimação da Sentença</mat-option>
+                    <mat-option [value]="8">Aguardando Julgamento de Apelação</mat-option>
+                    <mat-option [value]="9">Aguardando Julgamento de Recurso Especial</mat-option>
+                    <mat-option [value]="10">Cumprimento da Sentença</mat-option>
+                    <mat-option [value]="11">Aguardando Baixa do Distribuidor</mat-option>
+                    <mat-option [value]="12">Finalizado</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Tipo de Papel</mat-label>
+                  <mat-select [(ngModel)]="processo.tipoDePapel" name="tipo">
+                    <mat-option [value]="0">Acusação</mat-option>
+                    <mat-option [value]="1">Defesa</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="actions-container">
+                <button mat-stroked-button color="primary" type="submit">Salvar Processo</button>
+              </div>
+            </form>
+          </div>
+        </mat-tab>
         <mat-tab label="Adicionar novo evento">
           <div class="tab-content">
             <div class="eventEditor">
               <form (ngSubmit)="saveEvent()" [formGroup]="eventoFormGroup">
-                <div class="mt-2" fxLayout="row wrap" fxLayoutAlign="space-between center" flex.xl="50" flex.lg="50" flex.md="50" flex.sm="100">
+                <div class="mt-2" fxLayout="row wrap" fxLayoutAlign="space-between center" flex.xl="50" flex.lg="50"
+                  flex.md="50" flex.sm="100">
                   <mat-form-field style="flex: 1" class="ml-1 mr-1">
-                    <input matInput formControlName="dataEvento" [matDatepicker]="picker" placeholder="Data do evento" (focus)="picker.open()">
+                    <input matInput formControlName="dataEvento" [matDatepicker]="picker" placeholder="Data do evento"
+                      (focus)="picker.open()">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker touchUi></mat-datepicker>
                   </mat-form-field>
@@ -34,10 +97,11 @@
                     <input matInput formControlName="titulo" placeholder="Título do evento">
                   </mat-form-field>
                 </div>
-                <angular-editor formControlName="descricao" placeholder="Informe os dados do novo evento aqui"></angular-editor>
+                <angular-editor formControlName="descricao" placeholder="Informe os dados do novo evento aqui">
+                </angular-editor>
                 <button class="mt-2" mat-stroked-button color="primary" type="submit">Salvar Evento</button>
               </form>
-            </div>  
+            </div>
           </div>
         </mat-tab>
         <mat-tab label="Linha do Tempo">
@@ -72,7 +136,8 @@
                   <button mat-button (click)="abrirInputDeAnexos(evento)" matTooltip="Adicionar anexo neste evento">
                     <mat-icon>cloud_upload</mat-icon>
                   </button>
-                  <button mat-button (click)="enviarEmailParaCliente(evento)" matTooltip="Enviar e-mail para o cliente com este evento">
+                  <button mat-button (click)="enviarEmailParaCliente(evento)"
+                    matTooltip="Enviar e-mail para o cliente com este evento">
                     <mat-icon>email</mat-icon>
                   </button>
                 </mgl-timeline-entry-side>
@@ -85,7 +150,7 @@
             </ng-template>
           </div>
         </mat-tab>
-      </mat-tab-group>  
+      </mat-tab-group>
     </mat-card>
   </div>
 </div>

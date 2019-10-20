@@ -10,6 +10,9 @@ import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { NovoEvento } from '../../model/visualizacao/novo-evento.model';
 import { Processo } from '../../model/visualizacao/processo.model';
 import { Anexo } from '../../model/visualizacao/anexo.model';
+import EstadoBrasileiro from 'src/app/shared/model/estado-brasileiro.model';
+import { CadastrosService } from 'src/app/shared/services/cadastros.service';
+import { ProcessoAtualizacao } from '../../model/atualizacao/processo-atualizacao.model';
 
 @Component({
   selector: 'app-visualizacao',
@@ -20,6 +23,7 @@ export class VisualizacaoComponent implements OnInit {
 
   constructor(
     private processoService: ProcessosJuridicosService,
+    private cadastrosService: CadastrosService,
     private activatedRoute: ActivatedRoute,
     private loadingService: LoadingScreenService,
     private router: Router,
@@ -32,6 +36,7 @@ export class VisualizacaoComponent implements OnInit {
   processo: Processo;
   evento: NovoEvento;
   eventoFormGroup: FormGroup;
+  estadosBrasileiros: EstadoBrasileiro[] = [];
 
   @ViewChild('templateRemocaoEvento', { static: true })
   templateRemocaoEvento: TemplateRef<any>;
@@ -49,6 +54,9 @@ export class VisualizacaoComponent implements OnInit {
 
     this.evento = new NovoEvento();
     this.eventoFormGroup = this.formBuilder.formGroup(this.evento);
+    this.cadastrosService.obterEstadosBrasileiros().subscribe(estados => {
+      this.estadosBrasileiros = estados;
+    });
   }
 
   getProcesso(): void {
@@ -60,6 +68,37 @@ export class VisualizacaoComponent implements OnInit {
       this.loadingService.isLoading.next(false);
       this.snackBar.open('Erro ao carregar processo', 'Fechar', { duration: 10000 });
       this.router.navigateByUrl('/processos');
+    });
+  }
+
+  editarProcesso(): void {
+    const processoAtualzacao = new ProcessoAtualizacao(
+      this.processo.codigo,
+      this.processo.cliente.codigo,
+      this.processo.codigoAdvogadoResponsavel,
+      this.processo.numero,
+      this.processo.codigoUF,
+      this.processo.titulo,
+      this.processo.descricao,
+      this.processo.juizResponsavel,
+      this.processo.status,
+      this.processo.tipoDePapel,
+    );
+
+    this.loadingService.isLoading.next(true);
+
+    this.processoService.editarProcesso(processoAtualzacao).subscribe(r => {
+      this.loadingService.isLoading.next(false);
+
+      if(r === processoAtualzacao.codigo) {
+        this.snackBar.open('Processo atualizado com sucesso', 'Fechar', { duration: 10000 });
+        this.getProcesso();
+      } else {
+        this.snackBar.open('Erro ao atualizar processo', 'Fechar', { duration: 10000 });
+      }
+    }, error => {
+      this.loadingService.isLoading.next(false);
+      this.snackBar.open('Erro ao atualizar processo', 'Fechar', { duration: 10000 });
     });
   }
 

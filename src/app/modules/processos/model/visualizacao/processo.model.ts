@@ -1,4 +1,5 @@
 import { Evento } from './evento.model';
+import Cliente from '../cadastro/cliente.model';
 
 export class Processo {
     public codigo: string;
@@ -10,6 +11,7 @@ export class Processo {
     public numero: string;
     public status: number;
     public tipoDePapel: number;
+    public codigoUF: number;
 
     public codigoAdvogadoResponsavel: string;
     public nomeAdvogadoResponsavel: string;
@@ -17,4 +19,6 @@ export class Processo {
     public eventos: Evento[];
 
     public nomeUsuarioUltimaAlteracao: string;
+
+    public cliente: Cliente;
 }
