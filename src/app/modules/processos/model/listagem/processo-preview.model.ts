@@ -7,5 +7,6 @@ export default class ProcessoPreview {
     public nomeCliente: string;
     public nomeAdvogadoResponsavel: string;
     public dataCriacao: Date;
-    public status: string;
+    public status: number;
+    public statusT: string;
 }

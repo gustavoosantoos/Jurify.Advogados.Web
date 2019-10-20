@@ -14,7 +14,7 @@ export class ListagemComponent implements OnInit {
 
   processos: ProcessoPreview[] = [];
   dataSource: MatTableDataSource<ProcessoPreview> = new MatTableDataSource([]);
-  displayedColumns: string[] = ['titulo', 'numero', 'uf', 'criacao', 'responsavel', 'acoes'];
+  displayedColumns: string[] = ['titulo', 'numero', 'uf', 'criacao', 'responsavel', 'status', 'acoes'];
   value = '';
 
   processoRemocao: ProcessoPreview;
@@ -38,6 +38,52 @@ export class ListagemComponent implements OnInit {
     this.loadingService.isLoading.next(true);
     this.processosService.obterProcessos().subscribe(processos => {
       this.processos = processos;
+      processos.forEach(processo => {
+        switch(processo.status) {
+          case 0:
+            processo.statusT = 'Aberto';
+            break;
+          case 1:
+            processo.statusT = 'Aguardando Distribuição';
+            break;
+          case 2:
+            processo.statusT = 'Aguardando Citação';
+            break;
+          case 3:
+            processo.statusT = 'Aguardando Cumprimento de Carta Precatória';
+            break;
+          case 4:
+            processo.statusT = 'Aguardando Julgamento de Embargo de Terceiros';
+            break;
+          case 5:
+            processo.statusT = 'Aguardando Sentença';
+            break;
+          case 6:
+            processo.statusT = 'Aguardando Trânsito em Julgado';
+            break;
+          case 7:
+            processo.statusT = 'Aguardando Intimação da Sentença';
+            break;
+          case 8:
+            processo.statusT = 'Aguardando Julgamento de Apelação';
+            break;
+          case 9:
+            processo.statusT = 'Aguardando Julgamento de Recurso Especial';
+            break;
+          case 10:
+            processo.statusT = 'Cumprimento da Sentença';
+            break;
+          case 11:
+            processo.statusT = 'Aguardando Baixa do Distribuidor';
+            break;
+          case 12:
+            processo.statusT = 'Finalizado';
+            break;
+          default:
+            processo.statusT = 'Desconhecido';
+            break;
+        }
+      });
       this.dataSource = new MatTableDataSource(this.processos);
     }, err => {
       this.snackBar.open('Erro ao obter processos', 'Fechar');

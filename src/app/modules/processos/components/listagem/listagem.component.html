@@ -54,6 +54,11 @@
       <mat-cell *matCellDef="let processo">{{ processo.dataCriacao | date: "dd/MM/yyyy"}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef="let processo">{{ processo.statusT }}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let processo" class="align-collumn-right">
