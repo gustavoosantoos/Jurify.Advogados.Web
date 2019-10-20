@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { NovoProcesso } from '../../model/cadastro/novo-processo.model';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
@@ -31,7 +32,8 @@ export class CadastroComponent implements OnInit {
     private loadingService: LoadingScreenService,
     private snackBar: MatSnackBar,
     private formBuilder: RxFormBuilder,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -62,7 +64,8 @@ export class CadastroComponent implements OnInit {
   }
 
   voltar(): void {
-
+    event.preventDefault();
+    this.location.back();
   }
 
   salvarProcesso(): void {
