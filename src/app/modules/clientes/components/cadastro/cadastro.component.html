@@ -16,7 +16,7 @@
         <mat-datepicker #picker touchUi></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
-        <input type="text" name="rg" [(ngModel)]="cliente.rg" matInput placeholder="RG">
+        <input type="text" name="rg" [(ngModel)]="cliente.rg" matInput mask="00.000.000-00" placeholder="RG">
       </mat-form-field>
       <mat-form-field>
         <input type="text" name="cpf" [(ngModel)]="cliente.cpf" matInput mask="000.000.000-00" placeholder="CPF">
