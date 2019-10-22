@@ -5,7 +5,9 @@ import { AuthenticationResult } from '../model/authentication-result.model';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 import Usuario from '../model/usuario';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { Especialidade } from '../model/especialidade.model';
+import { EspecialidadeResult } from '../model/especialidade-result.model';
 
 
 @Injectable({
@@ -93,5 +95,37 @@ export class AuthenticationService implements OnInit {
     }
 
     return JSON.parse(localStorage.getItem(environment.storage.user_info_identifier));
+  }
+
+  public getEspecialidadesEscritorio(): Observable<EspecialidadeResult> {
+    let userInfo = this.getUserInfo();
+    const url = environment.endpoints.autenticador + '/advogados/specialties/listar-especialidades-escritorio?codigoEscritorio=' + userInfo.codigoEscritorio;
+    return this.http.get<EspecialidadeResult>(url);
+  }
+
+  public getEspecialidades(): Observable<Especialidade[]> {
+    const url = environment.endpoints.autenticador + 'advogados/specialties/listar-especialidades/';
+
+    return this.http.get<Especialidade[]>(url);
+  }
+
+  public salvarEspecialidade(codigoEspecialidade: string): boolean {
+    const url = environment.endpoints.autenticador + 'advogados/specialties/cadastrar-especialidade-escritorio';
+    let userInfo = this.getUserInfo();
+    const obj = new HttpParams()
+      .set("codigoEspecialidade", codigoEspecialidade)
+      .set("codigoEscritorio", userInfo.codigoEscritorio)
+
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    const result = this.http.post(url, obj).toPromise();
+
+    if (!result) {
+      return false;
+    }
+
+    return true;
   }
 }

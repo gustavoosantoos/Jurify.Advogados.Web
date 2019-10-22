@@ -1,3 +1,30 @@
-<p>
-  editar-escritorio works!
-</p>
+<div class="container">
+  <h1>Editar meu escritório</h1>
+
+  <div fxLayout="row wrap" flex="100" class="mt-2">
+    <mat-card fxFlex="100">
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Dados do escritório"></mat-tab>
+        <mat-tab label="Especialidades do escritório">
+          <mat-form-field>
+            <mat-label>Selecione uma especialidade</mat-label>
+
+            <mat-select [(value)]="selected">
+              <mat-option *ngFor="let especialidade of especialidades" [value]="especialidade.codigo">
+                {{especialidade.nome}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-stroked-button color="primary" (click)="salvarEspecialidade(selected)">Adicionar especialidade</button>
+
+          <h2>Minhas especialidades:</h2>
+          <ul class="list-esp">
+            <li *ngFor="let especialidade of minhasEspecialidades">
+              {{especialidade.nome}}
+            </li>
+          </ul>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

@@ -13,6 +13,7 @@ export class ListagemComponent implements OnInit {
   isLoading = false;
 
   processos: ProcessoPreview[] = [];
+  processosAtivos = 0;
   dataSource: MatTableDataSource<ProcessoPreview> = new MatTableDataSource([]);
   displayedColumns: string[] = ['titulo', 'numero', 'uf', 'criacao', 'responsavel', 'status', 'acoes'];
   value = '';
@@ -82,6 +83,10 @@ export class ListagemComponent implements OnInit {
           default:
             processo.statusT = 'Desconhecido';
             break;
+        }
+
+        if(processo.status !== 0) {
+          this.processosAtivos++;
         }
       });
       this.dataSource = new MatTableDataSource(this.processos);

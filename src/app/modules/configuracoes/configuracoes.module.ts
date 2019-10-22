@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ConfiguracoesRoutingModule } from './configuracoes-routing.module';
 import { GeralComponent } from './geral/geral.component';
 import { EditarEscritorioComponent } from './geral/editar-escritorio/editar-escritorio.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [GeralComponent, EditarEscritorioComponent],
   imports: [
     CommonModule,
-    ConfiguracoesRoutingModule
+    ConfiguracoesRoutingModule,
+    SharedModule
   ]
 })
 export class ConfiguracoesModule { }
