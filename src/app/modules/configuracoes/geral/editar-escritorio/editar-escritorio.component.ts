@@ -47,4 +47,10 @@ export class EditarEscritorioComponent implements OnInit {
       this.minhasEspecialidades = e.result;
     });
   }
+
+  removerEspecialidade(codigo) {
+    if(this.authService.removerEspecialidade(codigo)) {
+      document.querySelector('#'+codigo).remove();
+    };
+  }
 }

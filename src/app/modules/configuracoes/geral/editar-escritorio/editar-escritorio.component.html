@@ -15,14 +15,20 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <button mat-stroked-button color="primary" (click)="salvarEspecialidade(selected)">Adicionar especialidade</button>
+          <button mat-stroked-button color="primary" (click)="salvarEspecialidade(selected)">Adicionar
+            especialidade</button>
 
           <h2>Minhas especialidades:</h2>
-          <ul class="list-esp">
-            <li *ngFor="let especialidade of minhasEspecialidades">
+          <mat-list>
+            <mat-list-item *ngFor="let especialidade of minhasEspecialidades" id={{especialidade.codigo}}>
               {{especialidade.nome}}
-            </li>
-          </ul>
+
+              <button mat-stroked-button color="accent" (click)="removerEspecialidade(especialidade.codigo)">
+                <mat-icon>delete</mat-icon>
+                Remover
+              </button>
+            </mat-list-item>
+          </mat-list>
         </mat-tab>
       </mat-tab-group>
     </mat-card>

@@ -112,20 +112,32 @@ export class AuthenticationService implements OnInit {
   public salvarEspecialidade(codigoEspecialidade: string): boolean {
     const url = environment.endpoints.autenticador + 'advogados/specialties/cadastrar-especialidade-escritorio';
     let userInfo = this.getUserInfo();
-    const obj = new HttpParams()
-      .set("codigoEspecialidade", codigoEspecialidade)
-      .set("codigoEscritorio", userInfo.codigoEscritorio)
+    const obj = {
+      "codigoEspecialidade": codigoEspecialidade,
+      "codigoEscritorio": userInfo.codigoEscritorio
+    }
 
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    const result = this.http.post(url, obj).toPromise();
-
+    const result = this.http.post(url, obj, options).toPromise();
+    
     if (!result) {
       return false;
     }
 
+    return true;
+  }
+
+  public removerEspecialidade(codigoEspecialidade: string): boolean {
+    const url = environment.endpoints.autenticador + 'advogados/specialties/remover-especialidade-escritorio?codigoEspecialidadeEscritorio=' + codigoEspecialidade;
+
+    const result = this.http.delete(url).toPromise();
+
+    if(!result) {
+      return false;
+    }
     return true;
   }
 }
