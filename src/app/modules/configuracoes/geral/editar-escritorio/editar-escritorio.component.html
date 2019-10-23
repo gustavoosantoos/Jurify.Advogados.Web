@@ -4,7 +4,42 @@
   <div fxLayout="row wrap" flex="100" class="mt-2">
     <mat-card fxFlex="100">
       <mat-tab-group mat-stretch-tabs>
-        <mat-tab label="Dados do escritório"></mat-tab>
+        <mat-tab label="Dados do escritório" *ngIf="escritorio">
+          <h3>Informações:</h3>
+          <mat-form-field>
+            <input matInput placeholder="Razão Social" [(ngModel)]="escritorio.informacoes.razaoSocial">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Nome Fantasia" [(ngModel)]="escritorio.informacoes.nomeFantasia">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="CNPJ" mask="00.000.000/0000-00" [(ngModel)]="escritorio.informacoes.cnpj">
+          </mat-form-field>
+          <h3>Endereço:</h3>
+          <mat-form-field>
+            <input matInput placeholder="Rua" [(ngModel)]="escritorio.endereco.rua">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Número" [(ngModel)]="escritorio.endereco.numero">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Complemento" [(ngModel)]="escritorio.endereco.complemento">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Bairro" [(ngModel)]="escritorio.endereco.bairro">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Cidade" [(ngModel)]="escritorio.endereco.cidade">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Estado" [(ngModel)]="escritorio.endereco.estado">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="CEP" mask="00.000-000" [(ngModel)]="escritorio.endereco.cep">
+          </mat-form-field>
+          <br>
+          <button mat-stroked-button color="primary" (click)="atualizarDados()">Atualizar dados do escritório</button>
+        </mat-tab>
         <mat-tab label="Especialidades do escritório">
           <mat-form-field>
             <mat-label>Selecione uma especialidade</mat-label>
@@ -18,7 +53,7 @@
           <button mat-stroked-button color="primary" (click)="salvarEspecialidade(selected)">Adicionar
             especialidade</button>
 
-          <h2>Minhas especialidades:</h2>
+          <h3>Minhas especialidades:</h3>
           <mat-list>
             <mat-list-item *ngFor="let especialidade of minhasEspecialidades" id={{especialidade.codigo}}>
               {{especialidade.nome}}

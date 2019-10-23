@@ -8,6 +8,8 @@ import Usuario from '../model/usuario';
 import { Subject, Observable } from 'rxjs';
 import { Especialidade } from '../model/especialidade.model';
 import { EspecialidadeResult } from '../model/especialidade-result.model';
+import { Escritorio } from '../model/escritorio.model';
+import { EscritorioAtualizacao } from '../model/escritorio-atualizacao.model';
 
 
 @Injectable({
@@ -139,5 +141,22 @@ export class AuthenticationService implements OnInit {
       return false;
     }
     return true;
+  }
+
+  public getInfoEscritorio(): Observable<Escritorio> {
+    let userInfo = this.getUserInfo();
+    const url = environment.endpoints.autenticador + 'advogados/offices/dados-escritorio?codigoEscritorio=' + userInfo.codigoEscritorio;
+
+    return this.http.get<Escritorio>(url);
+  }
+
+  public atualizarDados(escritorio: EscritorioAtualizacao): Observable<Escritorio> {
+    const url = environment.endpoints.autenticador + 'advogados/offices/modificar-escritorio';
+
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.put<Escritorio>(url, escritorio, options);
   }
 }

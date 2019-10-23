@@ -3,6 +3,8 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 import { Especialidade } from 'src/app/shared/model/especialidade.model';
 import { MatSnackBar } from '@angular/material';
 import { EspecialidadeResult } from 'src/app/shared/model/especialidade-result.model';
+import { Escritorio } from 'src/app/shared/model/escritorio.model';
+import { EscritorioAtualizacao } from 'src/app/shared/model/escritorio-atualizacao.model';
 
 @Component({
   selector: 'app-editar-escritorio',
@@ -16,12 +18,21 @@ export class EditarEscritorioComponent implements OnInit {
     private snackBar: MatSnackBar
   ) { }
 
+  selected;
+  escritorio: Escritorio;
   especialidades: Especialidade[];
   minhasEspecialidades: Especialidade[];
 
   ngOnInit() {
+    this.getInfoEscritorio();
     this.getEspecialidades();
     this.getEspecialidadesEsc();
+  }
+
+  getInfoEscritorio() {
+    this.authService.getInfoEscritorio().subscribe(e => {
+      this.escritorio = e;
+    })
   }
 
   getEspecialidades() {
@@ -49,8 +60,38 @@ export class EditarEscritorioComponent implements OnInit {
   }
 
   removerEspecialidade(codigo) {
-    if(this.authService.removerEspecialidade(codigo)) {
-      document.querySelector('#'+codigo).remove();
+    if (this.authService.removerEspecialidade(codigo)) {
+      document.querySelector('#' + codigo).remove();
     };
+  }
+
+  atualizarDados() {
+    const endereco = {
+      "cep": this.escritorio.endereco.cep,
+      "rua": this.escritorio.endereco.rua,
+      "numero": this.escritorio.endereco.numero,
+      "bairro": this.escritorio.endereco.bairro,
+      "cidade": this.escritorio.endereco.cidade,
+      "estado": this.escritorio.endereco.estado,
+      "complemento": this.escritorio.endereco.complemento
+    };
+
+    const escritorioAtualizacao = new EscritorioAtualizacao(
+      this.escritorio.informacoes.razaoSocial,
+      this.escritorio.informacoes.nomeFantasia,
+      this.escritorio.informacoes.cnpj,
+      endereco
+    );
+
+    this.authService.atualizarDados(escritorioAtualizacao).subscribe(e => {
+      this.snackBar.open('Dados atualizados com sucesso', 'Fechar', {
+        duration: 5000
+      });
+
+    }, error => {
+      this.snackBar.open('Erro ao atualizar os dados', 'Fechar', {
+        duration: 5000
+      });
+    });
   }
 }
