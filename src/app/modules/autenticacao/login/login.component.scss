@@ -87,3 +87,20 @@ h1 {
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .content {
+        width: 80%;
+
+        &:before {
+            background-size: 100%;
+            background-position: bottom;
+        }
+
+        form {
+            mat-form-field {
+                width: 100%;
+            }
+        }
+    }
+}
