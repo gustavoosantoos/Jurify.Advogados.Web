@@ -10,3 +10,14 @@ mat-list {
         margin-left: auto;
     }
 }
+
+@media screen and (max-width: 768px) {
+    mat-form-field {
+        width: 100%;
+        margin: 0;
+    }
+
+    mat-list {
+        width: 100%;
+    }
+}
