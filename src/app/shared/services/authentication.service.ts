@@ -10,6 +10,8 @@ import { Especialidade } from '../model/especialidade.model';
 import { EspecialidadeResult } from '../model/especialidade-result.model';
 import { Escritorio } from '../model/escritorio.model';
 import { EscritorioAtualizacao } from '../model/escritorio-atualizacao.model';
+import { UsuarioModel } from '../model/usuario.model';
+import { UsuarioAtualizacao } from '../model/usuario-atualizacao.model';
 
 
 @Injectable({
@@ -159,5 +161,18 @@ export class AuthenticationService implements OnInit {
     };
 
     return this.http.put<Escritorio>(url, escritorio, options);
+  }
+
+  public getUsuario(codigoUsuario: string): Observable<UsuarioModel> {
+    let codigoEscritorio = this.getUserInfo().codigoEscritorio;
+    const url = environment.endpoints.autenticador + 'advogados/account/dados-usuario/' + codigoEscritorio + '/' + codigoUsuario;
+
+    return this.http.get<UsuarioModel>(url);
+  }
+
+  public atualizarUsuario(usuario: UsuarioAtualizacao): Observable<string> {
+    const url = environment.endpoints.autenticador + 'advogados/account/modificar-usuario';
+
+    return this.http.put<string>(url, usuario);
   }
 }

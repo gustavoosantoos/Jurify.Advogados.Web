@@ -1,0 +1,35 @@
+<div class="container" *ngIf="usuario">
+  <h1>Editar usuário - {{usuario.informacoesPessoais.primeiroNome}}</h1>
+
+  <div fxLayout="row wrap" flex="100" fxLayoutGap.lg="20px">
+    <mat-card fxFlex.lg="calc(70% - 20px)" fxLayout="row wrap" fxLayoutAlign="space-between" fxFlex.md="100"
+      fxFlex.sm="100" fxFlex.xs="100">
+      <mat-form-field fxFlex.lg="32">
+        <input matInput [(ngModel)]="usuario.informacoesPessoais.primeiroNome" placeholder="Nome">
+      </mat-form-field>
+      <mat-form-field fxFlex.lg="32">
+        <input matInput [(ngModel)]="usuario.informacoesPessoais.ultimoNome" placeholder="Sobrenome">
+      </mat-form-field>
+      <mat-form-field fxFlex.lg="32">
+        <input matInput [(ngModel)]="usuario.username" placeholder="E-mail | Username">
+      </mat-form-field>
+      <mat-form-field fxFlex.lg="32">
+        <mat-label>Administrador:</mat-label>
+        <mat-select [(ngModel)]="usuario.permissoes[0].valor">
+          <mat-option [value]="true">Sim</mat-option>
+          <mat-option [value]="false">Não</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-stroked-button color="primary" (click)="atualizarDadosUsuario();" fxFlex.lg="100">Atualizar
+        Dados</button>
+    </mat-card>
+    <mat-card fxFlex.lg="calc(30% - 20px)" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+      <h3>Foto OAB</h3>
+      <img *ngIf="usuario.credenciais.caminhoFoto !== ''; else elseBlock" src="{usuario.credenciais.caminhoFoto}"
+        class="foto" alt="">
+      <ng-template #elseBlock>
+        <img src="../../../../../../assets/images/avatar.png" alt="" class="foto">
+      </ng-template>
+    </mat-card>
+  </div>
+</div>

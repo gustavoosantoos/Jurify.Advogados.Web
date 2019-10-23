@@ -5,6 +5,7 @@ import { ConfiguracoesRoutingModule } from './configuracoes-routing.module';
 import { GeralComponent } from './geral/geral.component';
 import { EditarEscritorioComponent } from './geral/editar-escritorio/editar-escritorio.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { UsuariosModule } from './geral/usuarios/usuarios.module';
 
 @NgModule({
   declarations: [GeralComponent, EditarEscritorioComponent],

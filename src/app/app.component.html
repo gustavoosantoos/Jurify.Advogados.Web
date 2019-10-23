@@ -1,6 +1,6 @@
 <app-loading-screen></app-loading-screen>
 <mat-sidenav-container>
-  <mat-sidenav #sidenav opened mode="side" class="sidenav" *ngIf="authenticated">
+  <mat-sidenav #sidenav [(opened)]="opened" [mode]="mode" class="sidenav" *ngIf="authenticated">
     <app-menu-lateral></app-menu-lateral>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   title = 'jurify-web';
   currentRoute: string;
   authenticated: Boolean;
+  opened: boolean;
+  mode: string;
 
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
 
@@ -21,6 +23,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.setSidenav();
     this.authenticated = false;
     this.authService.authenticatedState.subscribe(r => {
       this.authenticated = r;
@@ -29,5 +32,15 @@ export class AppComponent implements OnInit {
 
   toggleSidenav() {
     this.sidenav.toggle();
+  }
+
+  setSidenav() {
+    if(window.innerWidth <= 768) {
+      this.opened = false;
+      this.mode = 'fixed';
+    } else {
+      this.opened = true;
+      this.mode = 'side';
+    }
   }
 }

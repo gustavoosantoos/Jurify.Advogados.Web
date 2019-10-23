@@ -51,7 +51,7 @@
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let usuario" class="align-collumn-right">
-        <a routerLink="/usuarios/cadastro-usuario" mat-stroked-button color="primary">
+        <a routerLink="/usuarios/cadastro-usuario/{{usuario.codigoUsuario}}" mat-stroked-button color="primary">
           <!--Aqui alterar para o router link de edicao ou abrir detalhes-->
           <mat-icon>toc</mat-icon>
         </a>
