@@ -3,6 +3,7 @@ export default class Usuario {
     public codigoEscritorio: string,
     public codigoUsuario: string,
     public nomeEscritorio: string,
-    public nomeUsuario: string
+    public nomeUsuario: string,
+    public ehAdministrador: boolean
   ) {}
 }

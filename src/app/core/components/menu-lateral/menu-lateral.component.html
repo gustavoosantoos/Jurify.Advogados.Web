@@ -16,7 +16,11 @@
     <mat-icon>gavel</mat-icon>
     Processos
   </a>
-  <a mat-list-item [routerLink]="'/configuracoes'" routerLinkActive="active">
+  <a mat-list-item [routerLink]="'/configuracoes'" routerLinkActive="active" *ngIf="isAdmin">
+    <mat-icon>settings</mat-icon>
+    Configurações
+  </a>
+  <a mat-list-item (click)="mostrarAlertaAdministrador()" *ngIf="!isAdmin">
     <mat-icon>settings</mat-icon>
     Configurações
   </a>

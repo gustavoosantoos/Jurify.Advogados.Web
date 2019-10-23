@@ -12,6 +12,8 @@ import { EscritorioAtualizacao } from 'src/app/shared/model/escritorio-atualizac
   styleUrls: ['./editar-escritorio.component.scss']
 })
 export class EditarEscritorioComponent implements OnInit {
+  selected;
+
 
   constructor(
     private authService: AuthenticationService,

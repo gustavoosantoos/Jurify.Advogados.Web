@@ -65,7 +65,8 @@ export class AuthenticationService implements OnInit {
       userData.office_id,
       userData.user_id,
       userData.office_name,
-      `${userData.user_first_name} ${userData.user_last_name}`
+      `${userData.user_first_name} ${userData.user_last_name}`,
+      userData.EhAdministrador === 'true'
     );
 
     localStorage.setItem(environment.storage.token_identifier, result.access_token);
