@@ -10,7 +10,7 @@ import Usuario from 'src/app/shared/model/usuario';
 })
 export class MenuSuperiorComponent implements OnInit {
 
-  showLogo = false;
+  showLogo = true;
   userInfo: Usuario;
 
   @Output()
@@ -26,7 +26,6 @@ export class MenuSuperiorComponent implements OnInit {
 
   toggleSidenav() {
     this.toggleMenu.emit();
-    this.showLogo = !this.showLogo;
   }
 
   sair() {
