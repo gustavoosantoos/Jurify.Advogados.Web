@@ -49,11 +49,11 @@
       <mat-cell *matCellDef="let cliente" class="align-collumn-right">
         <a routerLink="/clientes/cadastro/{{cliente.codigo}}" mat-stroked-button color="primary">
           <mat-icon>toc</mat-icon>
-          Detalhes
+          <span class="button-label">Detalhes</span>
         </a>
         <button mat-stroked-button color="accent" (click)="removerCliente(cliente)">
           <mat-icon>delete</mat-icon>
-          Remover
+          <span class="button-label">Remover</span>
         </button>
       </mat-cell>
     </ng-container>

@@ -36,3 +36,11 @@ button, a.mat-stroked-button {
         margin-top: 0;
     }
 }
+
+@media screen and (max-width: 768px) {
+    mat-table {
+        .cdk-column-uf, .cdk-column-criacao, .cdk-column-numero, .cdk-column-responsavel {
+            display: none;
+        }
+    }
+}

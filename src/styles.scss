@@ -34,6 +34,7 @@ h1, h2, h3, h4 {
 
 .container {
     padding: 0 30px;
+    margin: 0 auto;
 }
 
 .progress-loader {
@@ -51,4 +52,30 @@ mat-dialog-container {
           flex: 1;
       }
   }
+}
+
+@media screen and (max-width: 768px) {
+
+    .page-content {
+        .container {
+            padding: 0 15px;
+    
+            .button-label {
+                display: none;
+            }
+        
+            mat-grid-list {
+                margin-bottom: 20px;
+            }
+        
+            .search {
+                width: 100%;
+            }
+        
+            a.btn-link {
+                float: none;
+                margin-bottom: 15px;
+            }
+        }
+    }
 }

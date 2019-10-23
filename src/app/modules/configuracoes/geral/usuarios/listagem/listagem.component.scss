@@ -31,3 +31,11 @@ button, a.mat-stroked-button {
         margin-top: 0;
     }
 }
+
+@media screen and (max-width: 768px) {
+    mat-table {
+        .cdk-column-email, .cdk-column-estado, .cdk-column-numeroOab {
+            display: none;
+        }
+    }
+}
