@@ -9,8 +9,7 @@ import Usuario from 'src/app/shared/model/usuario';
   styleUrls: ['./menu-superior.component.scss']
 })
 export class MenuSuperiorComponent implements OnInit {
-
-  showLogo = true;
+  showLogo: boolean;
   userInfo: Usuario;
 
   @Output()
@@ -21,11 +20,26 @@ export class MenuSuperiorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.setShowLogo();
     this.userInfo = this.authService.getUserInfo();
+  }
+
+  setShowLogo() {
+    if(window.innerWidth <= 768) {
+      this.showLogo = true;
+    } else {
+      this.showLogo = false;
+    }
   }
 
   toggleSidenav() {
     this.toggleMenu.emit();
+
+    if(window.innerWidth <= 768) {
+      this.showLogo = true;
+    } else {
+      this.showLogo = !this.showLogo;
+    }
   }
 
   sair() {
