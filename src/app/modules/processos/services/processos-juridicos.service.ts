@@ -1,7 +1,7 @@
+import { Listagem } from './../model/listagem/listagem.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import ProcessoPreview from '../model/listagem/processo-preview.model';
 import Cliente from '../model/cadastro/cliente.model';
 import { ClientesService } from '../../clientes/services/clientes.service';
 import { map } from 'rxjs/operators';
@@ -22,8 +22,8 @@ export class ProcessosJuridicosService {
     private clientesService: ClientesService
   ) { }
 
-  public obterProcessos(): Observable<ProcessoPreview[]> {
-    return this.httpClient.get<ProcessoPreview[]>(this.baseUrl);
+  public obterProcessos(): Observable<Listagem> {
+    return this.httpClient.get<Listagem>(this.baseUrl);
   }
 
   public obterProcesso(codigo: string): Observable<Processo> {
@@ -34,6 +34,7 @@ export class ProcessosJuridicosService {
     return this.clientesService.getClientes().pipe(
       map(clientesOriginal => {
         return clientesOriginal
+          .clientes
           .map(c => new Cliente(c.codigo, `${c.nome} ${c.sobrenome}`))
           .sort((a, b) => {
             return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;

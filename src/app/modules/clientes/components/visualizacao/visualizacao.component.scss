@@ -45,3 +45,15 @@ table {
     }
   }
 }
+
+.align-collumn-right {
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 768px) { 
+  .table-processos {
+    .cdk-column-tipoDePapel, .cdk-column-status {
+      display: none;
+    }
+  }
+}

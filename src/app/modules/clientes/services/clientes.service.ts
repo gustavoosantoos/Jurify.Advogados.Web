@@ -1,3 +1,4 @@
+import { Listagem } from './../model/listagem/listagem.model';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -20,8 +21,8 @@ export class ClientesService {
   ) { }
 
 
-  public getClientes(): Observable<ClientePreview[]> {
-    return this.http.get<ClientePreview[]>(this.baseUrl);
+  public getClientes(): Observable<Listagem> {
+    return this.http.get<Listagem>(this.baseUrl);
   }
 
   public getCliente(id: string): Observable<Cliente> {

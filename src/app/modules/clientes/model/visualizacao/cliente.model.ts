@@ -1,5 +1,6 @@
 import Endereco from './endereco.model';
 import Anexo from './anexo.model';
+import { Processo } from './processos.model';
 
 export default class Cliente {
     codigo: string;
@@ -11,6 +12,7 @@ export default class Cliente {
     cpf: string;
     enderecos: Endereco[];
     anexos: Anexo[];
+    processosJuridicos: Processo[];
     dataCriacao: Date;
     dataUltimaAlteracao: Date;
     nomeUsuarioUltimaAlteracao: string;
@@ -18,5 +20,6 @@ export default class Cliente {
     constructor() {
         this.enderecos = [];
         this.anexos = [];
+        this.processosJuridicos = [];
     }
 }

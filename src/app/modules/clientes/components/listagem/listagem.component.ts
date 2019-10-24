@@ -21,6 +21,9 @@ export class ListagemComponent implements OnInit {
 
   @ViewChild('templateRemocaoCliente', { static: true })
   templateRemocaoCliente: TemplateRef<any>;
+  
+  quantidadeClientesAtivos: number;
+  quantidadeClientesComProcessoAtivo: number;
 
   constructor(
     private clienteService: ClientesService,
@@ -39,7 +42,10 @@ export class ListagemComponent implements OnInit {
     this.loadingService.isLoading.next(true);
     this.clienteService.getClientes()
       .subscribe(clientes => {
-        this.clientes = clientes;
+        this.clientes = clientes.clientes;
+        this.quantidadeClientesAtivos = clientes.clientesAtivos;
+        this.quantidadeClientesComProcessoAtivo = clientes.clientesComProcessoAtivo;
+        
         this.dataSource = new MatTableDataSource(this.clientes);
         this.loadingService.isLoading.next(false);
       }, error => {

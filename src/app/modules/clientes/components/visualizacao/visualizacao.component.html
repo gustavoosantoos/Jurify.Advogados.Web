@@ -33,7 +33,9 @@
   <div fxLayout="row wrap" flex="100" class="mt-2">
     <mat-card fxFlex="100">
       <mat-tab-group mat-stretch-tabs>
-        <mat-tab label="Processos Jurídicos"></mat-tab>
+        <mat-tab label="Processos Jurídicos">
+          <ng-container *ngTemplateOutlet="templateProcessosJuridicos"></ng-container>          
+        </mat-tab>
       </mat-tab-group>
     </mat-card>
   </div>
@@ -107,7 +109,7 @@
     
       <mat-header-row *matHeaderRowDef="enderecosFields"></mat-header-row>
       <mat-row *matRowDef="let endereco; columns: enderecosFields;"></mat-row>
-      </table>
+    </table>
   </ng-template>
 
   <!-- Anexos -->
@@ -126,6 +128,43 @@
         </button>
       </li>
     </ul>
+  </ng-template>
+
+  <!-- Processos Jurídicos -->
+  <ng-template #templateProcessosJuridicos>
+    <table mat-table [dataSource]="processosDataSource" class="mat-elevation-z8 table-processos">
+      <ng-container matColumnDef="numero">
+        <mat-header-cell *matHeaderCellDef>Número</mat-header-cell>
+          <mat-cell *matCellDef="let processo">{{ processo.numero }}</mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="titulo">
+        <mat-header-cell *matHeaderCellDef>Título</mat-header-cell>
+        <mat-cell *matCellDef="let processo">{{ processo.titulo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tipoDePapel">
+        <mat-header-cell *matHeaderCellDef>Papel</mat-header-cell>
+        <mat-cell *matCellDef="let processo">{{ processo.tipoDePapel }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *matCellDef="let processo">{{ processo.status }}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="acoes">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let processo" class="align-collumn-right">
+          <button *ngIf="usuario.ehAdministrador || usuario.codigoUsuario == processo.codigoAdvogadoResponsavel" mat-stroked-button color="primary" (click)="mostrarDetalhesProcesso(processo)">
+            <mat-icon>toc</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+        
+      <mat-header-row *matHeaderRowDef="processosFields"></mat-header-row>
+      <mat-row *matRowDef="let processo; columns: processosFields;"></mat-row>
+    </table>
   </ng-template>
 </div>
 

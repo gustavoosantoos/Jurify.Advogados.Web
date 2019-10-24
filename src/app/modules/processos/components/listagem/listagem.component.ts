@@ -13,7 +13,9 @@ export class ListagemComponent implements OnInit {
   isLoading = false;
 
   processos: ProcessoPreview[] = [];
-  processosAtivos = 0;
+  quantidadeProcessos = 0;
+  quantidadeProcessosAtivos = 0;
+
   dataSource: MatTableDataSource<ProcessoPreview> = new MatTableDataSource([]);
   displayedColumns: string[] = ['titulo', 'numero', 'uf', 'criacao', 'responsavel', 'status', 'acoes'];
   value = '';
@@ -38,8 +40,11 @@ export class ListagemComponent implements OnInit {
   getProcessos(): void {
     this.loadingService.isLoading.next(true);
     this.processosService.obterProcessos().subscribe(processos => {
-      this.processos = processos;
-      processos.forEach(processo => {
+      this.processos = processos.processos;
+      this.quantidadeProcessos = processos.quantidadeProcessos;
+      this.quantidadeProcessosAtivos = processos.quantidadeProcessosAtivos;
+
+      this.processos.forEach(processo => {
         switch(processo.status) {
           case 0:
             processo.statusT = 'Aberto';
@@ -83,10 +88,6 @@ export class ListagemComponent implements OnInit {
           default:
             processo.statusT = 'Desconhecido';
             break;
-        }
-
-        if(processo.status !== 0) {
-          this.processosAtivos++;
         }
       });
       this.dataSource = new MatTableDataSource(this.processos);

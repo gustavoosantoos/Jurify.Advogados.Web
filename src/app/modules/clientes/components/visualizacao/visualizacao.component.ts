@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../../../shared/services/authentication.service';
 import { saveAs } from 'file-saver';
 import { Component, OnInit, ViewEncapsulation, TemplateRef, ViewChild } from '@angular/core';
 import { ClientesService } from '../../services/clientes.service';
@@ -8,6 +9,8 @@ import { LoadingScreenService } from 'src/app/shared/services/loading-screen.ser
 import ClienteAtualizacao from '../../model/atualizacao/cliente-atualizacao.model';
 import Endereco from '../../model/visualizacao/endereco.model';
 import Anexo from '../../model/visualizacao/anexo.model';
+import Usuario from 'src/app/shared/model/usuario';
+import { Processo } from '../../model/visualizacao/processos.model';
 
 @Component({
   selector: 'app-visualizacao',
@@ -15,12 +18,16 @@ import Anexo from '../../model/visualizacao/anexo.model';
   styleUrls: ['./visualizacao.component.scss']
 })
 export class VisualizacaoComponent implements OnInit {
+  public usuario: Usuario;
   public cliente: Cliente;
   public codigoCliente: string;
   public enderecoRemocao: Endereco;
 
   public enderecosDataSource: MatTableDataSource<Endereco> = new MatTableDataSource<Endereco>([]);
   public enderecosFields = ['rua', 'cidade', 'estado', 'tipo', 'acoes'];
+
+  public processosDataSource: MatTableDataSource<Processo> = new MatTableDataSource<Processo>([]);
+  public processosFields = ['numero', 'titulo', 'tipoDePapel', 'status', 'acoes'];
 
   @ViewChild('templateRemocaoEndereco', { static: true })
   templateRemocaoEndereco: TemplateRef<any>;
@@ -31,7 +38,8 @@ export class VisualizacaoComponent implements OnInit {
     private loadingService: LoadingScreenService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -39,6 +47,8 @@ export class VisualizacaoComponent implements OnInit {
       this.codigoCliente = r.get('codigo');
       this.getCliente();
     });
+
+    this.usuario = this.authService.getUserInfo();
   }
 
   getCliente() {
@@ -63,6 +73,7 @@ export class VisualizacaoComponent implements OnInit {
       });
 
       this.enderecosDataSource = new MatTableDataSource<Endereco>(this.cliente.enderecos);
+      this.processosDataSource = new MatTableDataSource<Processo>(this.cliente.processosJuridicos);
       this.loadingService.isLoading.next(false);
     }, error => {
       this.loadingService.isLoading.next(false);
@@ -142,6 +153,10 @@ export class VisualizacaoComponent implements OnInit {
 
   mostrarDetalhesEndereco(endereco: Endereco) {
 
+  }
+
+  mostrarDetalhesProcesso(processo: Processo): void {
+    this.router.navigateByUrl(`/processos/cadastro/${processo.codigo}`);
   }
 
   removerEndereco(endereco: Endereco) {
