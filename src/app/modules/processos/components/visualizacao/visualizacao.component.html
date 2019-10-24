@@ -19,20 +19,20 @@
             <form (ngSubmit)="editarProcesso()">
               <h4>Dados do processo</h4>
               <div fxLayout="row wrap" fxLayoutAlign="space-between center" flex="33" flex.lg="33" flex.md="50" flex.sm="100">
-                <mat-form-field>
+                <mat-form-field fxFlex.lg="32">
                   <input matInput placeholder="Título" [(ngModel)]="processo.titulo" name="titulo" required>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field fxFlex.lg="32">
                   <textarea matInput placeholder="Descrição" [(ngModel)]="processo.descricao" name="descricao" required></textarea>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field fxFlex.lg="32">
                   <input matInput placeholder="Juíz Responsável" [(ngModel)]="processo.juizResponsavel" name="juiz">
                 </mat-form-field>
 
-                <mat-form-field>
+                <mat-form-field fxFlex.lg="32">
                   <input matInput placeholder="Número do Processo" [(ngModel)]="processo.numero" name="numero">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field fxFlex.lg="32">
                   <mat-label>UF</mat-label>
                   <mat-select [(ngModel)]="processo.codigoUF" name="uf">
                     <mat-option *ngFor="let uf of estadosBrasileiros" [value]="uf.codigo">
@@ -41,7 +41,7 @@
                   </mat-select>
                 </mat-form-field>
 
-                <mat-form-field>
+                <mat-form-field fxFlex.lg="32">
                   <mat-label>Status</mat-label>
                   <mat-select [(ngModel)]="processo.status" name="status">
                     <mat-option [value]="0">Aberto</mat-option>
@@ -60,7 +60,7 @@
                   </mat-select>
                 </mat-form-field>
 
-                <mat-form-field>
+                <mat-form-field fxFlex.lg="32">
                   <mat-label>Tipo de Papel</mat-label>
                   <mat-select [(ngModel)]="processo.tipoDePapel" name="tipo">
                     <mat-option [value]="0">Acusação</mat-option>
