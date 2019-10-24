@@ -14,6 +14,6 @@ export const environment = {
   },
   endpoints: {
     autenticador: 'https://jurify-autenticador.azurewebsites.net/api/',
-    advogados: 'http://jurify-advogados.azurewebsites.net/api/'
+    advogados: 'https://jurify-advogados.azurewebsites.net/api/'
   }
 };
