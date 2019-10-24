@@ -1,0 +1,83 @@
+<div class="container" *ngIf="!isLoading">
+  <h1>Mensagens</h1>
+
+  <mat-grid-list cols="2" rowHeight="4:1">
+    <mat-grid-tile>
+      <mat-card class="dashboard-clientes-card">
+        <span>{{ dados.mensagensPendentes }}</span>
+        <p>Mensagens Pendentes</p>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card class="dashboard-clientes-card">
+        <span>{{ dados.mensagensLidas }}</span>
+        <p>Mensagens Arquivadas</p>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+      <mat-cell *matCellDef="let mensagem">{{ mensagem.nomeCliente }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="cpf">
+      <mat-header-cell *matHeaderCellDef>CPF</mat-header-cell>
+      <mat-cell *matCellDef="let mensagem">{{ mensagem.cpfCliente }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="contato">
+      <mat-header-cell *matHeaderCellDef>Contato</mat-header-cell>
+      <mat-cell *matCellDef="let mensagem">{{ mensagem.contatoCliente }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="texto">
+      <mat-header-cell *matHeaderCellDef>Mensagem</mat-header-cell>
+      <mat-cell *matCellDef="let mensagem">
+        <a mat-button color="primary" (click)="mostrarTextoMensagem(mensagem)">
+          Conteúdo
+        </a>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let mensagem" class="align-collumn-right">
+        <a *ngIf="mensagem.codigoCliente" routerLink="/clientes/cadastro/{{mensagem.codigoCliente}}" mat-stroked-button color="primary" matTooltip="Ir para cadastro do cliente">
+          <mat-icon>person</mat-icon>
+        </a>
+        <button *ngIf="!mensagem.codigoCliente" mat-stroked-button color="primary" (click)="cadastrarCliente(mensagem)" matTooltip="Cadastrar cliente">
+          <mat-icon>person_add</mat-icon>
+        </button>
+        <button mat-stroked-button color="accent" (click)="removerMensagem(mensagem)" matTooltip="Remover mensagem">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
+<ng-template #templateMensagem>
+    <h1 mat-dialog-title>Conteúdo da mensagem do cliente {{ mensagemAtual.nomeCliente }}:</h1>
+    <div mat-dialog-content>
+      <p>{{ mensagemAtual.texto }}</p>
+    </div>
+    <div mat-dialog-actions class="actions-container">
+      <button mat-button (click)="fecharTextoMensagem()">Fechar</button>
+    </div>
+</ng-template>
+
+<ng-template #templateRemocaoMensagem>
+  <h1 mat-dialog-title>Atenção!</h1>
+  <div mat-dialog-content>
+    <p>Você deseja realmente remover a mensagem do cliente {{ mensagemRemocao.nomeCliente }}?</p>
+  </div>
+  <div mat-dialog-actions class="actions-container">
+    <button mat-button (click)="cancelarRemocao()">Cancelar</button>
+    <button mat-button color="accent" (click)="confirmarRemocao()" cdkFocusInitial>Remover</button>
+  </div>
+</ng-template>

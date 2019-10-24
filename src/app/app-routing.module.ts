@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'clientes', loadChildren: () => import('./modules/clientes/clientes.module').then(m => m.ClientesModule) },
   { path: 'processos', loadChildren: () => import('./modules/processos/processos.module').then(m => m.ProcessosModule) },
   { path: 'chat', loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule) },
+  { path: 'mensagens', loadChildren: () => import('./modules/mensagens-recebidas/mensagens-recebidas.module').then(m => m.MensagensRecebidasModule) },
   { path: 'configuracoes', loadChildren: () => import('./modules/configuracoes/configuracoes.module').then(m => m.ConfiguracoesModule) }
 ];
 
