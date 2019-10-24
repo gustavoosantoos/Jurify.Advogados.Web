@@ -1,3 +1,4 @@
+import { MensagensService } from './../../../modules/mensagens-recebidas/services/mensagens.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { MatSnackBar } from '@angular/material';
@@ -10,10 +11,12 @@ import { MatSnackBar } from '@angular/material';
 export class MenuLateralComponent implements OnInit {
   isAuthenticated: boolean;
   isAdmin: boolean;
+  quantidadeMensagensPendentes: number;
 
   constructor(
     private authService: AuthenticationService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private mensagensService: MensagensService
   ) { }
 
   ngOnInit() {
@@ -21,6 +24,9 @@ export class MenuLateralComponent implements OnInit {
 
     if (this.isAuthenticated) {
       this.isAdmin = this.authService.getUserInfo().ehAdministrador;
+      this.mensagensService.obterMensagens().subscribe(r => {
+        this.quantidadeMensagensPendentes = r.mensagensPendentes;
+      });
     }
   }
 
