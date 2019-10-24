@@ -16,8 +16,8 @@
       <mat-form-field fxFlex.lg="32">
         <mat-label>Administrador:</mat-label>
         <mat-select [(ngModel)]="usuario.permissoes[0].valor">
-          <mat-option [value]="true">Sim</mat-option>
-          <mat-option [value]="false">Não</mat-option>
+          <mat-option [value]="'true'">Sim</mat-option>
+          <mat-option [value]="'false'">Não</mat-option>
         </mat-select>
       </mat-form-field>
       <button mat-stroked-button color="primary" (click)="atualizarDadosUsuario();" fxFlex.lg="100">Atualizar
