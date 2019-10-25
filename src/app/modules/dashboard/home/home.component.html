@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="dashboard-cards">
+  <div class="dashboard-cards" *ngIf="dados">
     <div class="card">
-      <h2>100 clientes cadastrados</h2>
+      <h2>{{ dados?.clientes }} clientes cadastrados</h2>
     </div>
     <div class="card">
-      <h2>80 processos em andamento</h2>
+      <h2>{{ dados?.processos }} processos em andamento</h2>
     </div>
     <div class="card">
-      <h2>3 compromissos essa semana</h2>
+      <h2>{{ dados?.compromissos }} compromissos essa semana</h2>
     </div>
   </div>
 </div>
