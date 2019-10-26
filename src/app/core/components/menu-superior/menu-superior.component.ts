@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import Usuario from 'src/app/shared/model/usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-superior',
@@ -16,7 +17,8 @@ export class MenuSuperiorComponent implements OnInit {
   public toggleMenu = new EventEmitter<any>();
 
   constructor(
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,11 @@ export class MenuSuperiorComponent implements OnInit {
     } else {
       this.showLogo = !this.showLogo;
     }
+  }
+
+  editarUsuario(): void {
+    const codigoUsuario = this.authService.getUserInfo().codigoUsuario;
+    this.router.navigateByUrl('/usuarios/cadastro-usuario/' + codigoUsuario);
   }
 
   sair() {
