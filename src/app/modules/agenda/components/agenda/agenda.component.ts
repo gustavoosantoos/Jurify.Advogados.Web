@@ -48,7 +48,9 @@ export class AgendaComponent implements OnInit {
   novoCompromisso: NovoCompromisso = new NovoCompromisso();
 
   compromissos: Compromisso[] = [];
+  compromisso: Compromisso;
   compromissosCalendar: any[];
+  dialogOpen: string;
 
   constructor(
     private agendaService: AgendaService,
@@ -89,6 +91,17 @@ export class AgendaComponent implements OnInit {
     }
 
     this.novoCompromisso.inicio = event.date;
+    this.dialogOpen = 'new';
+    this.dialog.open(this.templateNovoCompromisso);
+  }
+
+  abrirEvento(event) {
+    this.compromissos.filter(obj => {
+      if ( obj.titulo == event.event.title) {
+        this.compromisso = obj;
+      }
+    });
+    this.dialogOpen = 'view';
     this.dialog.open(this.templateNovoCompromisso);
   }
 

@@ -13,3 +13,13 @@ mat-form-field {
 .fc-button-group, .fc-day-top, .fc-day-header, .fc-title, .fc-time {
     font-family: 'Helvetica', sans-serif;
 }
+
+.fc-event-container a {
+    cursor: pointer;
+}
+
+.mat-dialog-content {
+    p, strong {
+        font-family: 'Helvetica', sans-serif;
+    }
+}

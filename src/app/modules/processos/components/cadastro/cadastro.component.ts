@@ -11,6 +11,8 @@ import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { NovoProcesso } from '../../model/cadastro/novo-processo.model';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-cadastro',
@@ -29,6 +31,7 @@ export class CadastroComponent implements OnInit {
   constructor(
     private processosService: ProcessosJuridicosService,
     private cadastrosService: CadastrosService,
+    private authService: AuthenticationService,
     private loadingService: LoadingScreenService,
     private snackBar: MatSnackBar,
     private formBuilder: RxFormBuilder,
@@ -77,7 +80,13 @@ export class CadastroComponent implements OnInit {
       this.snackBar.open('Dados inválidos', 'Fechar');
       return;
     }
-
+    let codigoAdvogado;
+    let userInfo = this.authService.getUserInfo();
+    this.authService.getUsuario(userInfo.codigoUsuario).subscribe(user => {
+      if(user.credenciais.numeroOab !== "") {
+        this.novoProcesso.codigoAdvogadoResponsavel = user.codigo;
+      }
+    });
     this.loadingService.isLoading.next(true);
 
     this.processosService.salvarProcesso(this.novoProcesso).subscribe(r => {

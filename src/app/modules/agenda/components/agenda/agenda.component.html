@@ -1,34 +1,40 @@
-<full-calendar
-    defaultView="dayGridMonth"
-    [plugins]="calendarPlugins"
-    [header]="header"
-    [titleFormat]="formatoTitulo"
-    [buttonText]="buttons"
-    [locale]="localeInfo"
-    [height]="'auto'"
-    [aspectRatio]="2.5"
-    [nowIndicator]="true"
-    [events]="compromissosCalendar"
-    (dateClick)="novoEvento($event)">
+<full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins" [header]="header" [titleFormat]="formatoTitulo"
+    [buttonText]="buttons" [locale]="localeInfo" [height]="'auto'" [aspectRatio]="2.5" [nowIndicator]="true"
+    [events]="compromissosCalendar" (dateClick)="novoEvento($event)" (eventClick)="abrirEvento($event)">
 </full-calendar>
 
 <ng-template #templateNovoCompromisso>
-    <h1 mat-dialog-title>Novo Compromisso</h1>
-    <div mat-dialog-content>
-        <form *ngIf="novoCompromissoForm" [formGroup]="novoCompromissoForm">
-            <mat-form-field>
-                <input formControlName="titulo" matInput placeholder="Título" required>
-            </mat-form-field>
-            <mat-form-field>
-                <input formControlName="horaInicio" type="time" matInput placeholder="Início" required>
-            </mat-form-field>
-            <mat-form-field>
-                <input formControlName="horaFinal" type="time" matInput placeholder="Fim" required>
-            </mat-form-field>
-        </form>
+    <div *ngIf="dialogOpen == 'new'; else elseBlock">
+        <h1 mat-dialog-title>Novo Compromisso</h1>
+        <div mat-dialog-content>
+            <form *ngIf="novoCompromissoForm" [formGroup]="novoCompromissoForm">
+                <mat-form-field>
+                    <input formControlName="titulo" matInput placeholder="Título" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="horaInicio" type="time" matInput placeholder="Início" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="horaFinal" type="time" matInput placeholder="Fim" required>
+                </mat-form-field>
+            </form>
+        </div>
+        <div mat-dialog-actions class="actions-container">
+            <button mat-button (click)="cancelarNovoCompromisso()">Cancelar</button>
+            <button mat-button color="primary" (click)="salvarNovoCompromisso()" cdkFocusInitial>Salvar</button>
+        </div>
     </div>
-    <div mat-dialog-actions class="actions-container">
-      <button mat-button (click)="cancelarNovoCompromisso()">Cancelar</button>
-      <button mat-button color="primary" (click)="salvarNovoCompromisso()" cdkFocusInitial>Salvar</button>
-    </div>
+    <ng-template #elseBlock>
+        <h1 mat-dialog-title>{{compromisso.titulo}}</h1>
+        <div mat-dialog-content>
+            <div><strong>Descrição:</strong> <p [innerHtml]="compromisso.descricao"></p></div>
+            <p><strong>Início:</strong> {{compromisso.inicio | date: 'HH:mm'}}</p>
+            <p><strong>Fim:</strong> {{compromisso.final | date: 'HH:mm'}}</p>
+            <div *ngIf="compromisso.codigoCliente">
+                <a routerLink="/clientes/cadastro/{{compromisso.codigoCliente}}" mat-stroked-button color="primary">
+                    Ver cliente
+                </a>
+            </div>
+        </div>
+    </ng-template>
 </ng-template>

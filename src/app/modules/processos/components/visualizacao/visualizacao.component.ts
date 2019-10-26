@@ -13,6 +13,9 @@ import { Anexo } from '../../model/visualizacao/anexo.model';
 import EstadoBrasileiro from 'src/app/shared/model/estado-brasileiro.model';
 import { CadastrosService } from 'src/app/shared/services/cadastros.service';
 import { ProcessoAtualizacao } from '../../model/atualizacao/processo-atualizacao.model';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { CadastroUsuario } from 'src/app/modules/configuracoes/geral/usuarios/model/usuario.model';
+import { UsuariosService } from 'src/app/modules/configuracoes/geral/usuarios/services/usuarios.service';
 
 @Component({
   selector: 'app-visualizacao',
@@ -24,6 +27,8 @@ export class VisualizacaoComponent implements OnInit {
   constructor(
     private processoService: ProcessosJuridicosService,
     private cadastrosService: CadastrosService,
+    private authService: AuthenticationService,
+    private usersService: UsuariosService,
     private activatedRoute: ActivatedRoute,
     private loadingService: LoadingScreenService,
     private router: Router,
@@ -37,6 +42,8 @@ export class VisualizacaoComponent implements OnInit {
   evento: NovoEvento;
   eventoFormGroup: FormGroup;
   estadosBrasileiros: EstadoBrasileiro[] = [];
+  isAdmin: boolean;
+  advogados: CadastroUsuario[];
 
   @ViewChild('templateRemocaoEvento', { static: true })
   templateRemocaoEvento: TemplateRef<any>;
@@ -57,6 +64,8 @@ export class VisualizacaoComponent implements OnInit {
     this.cadastrosService.obterEstadosBrasileiros().subscribe(estados => {
       this.estadosBrasileiros = estados;
     });
+    this.getAdvogados();
+    this.isAdmin = this.authService.getUserInfo().ehAdministrador;
   }
 
   getProcesso(): void {
@@ -68,6 +77,19 @@ export class VisualizacaoComponent implements OnInit {
       this.loadingService.isLoading.next(false);
       this.snackBar.open('Erro ao carregar processo', 'Fechar', { duration: 10000 });
       this.router.navigateByUrl('/processos');
+    });
+  }
+
+  getAdvogados() {
+    let advogado: CadastroUsuario;
+    this.usersService.getUsuarios().subscribe(usuarios => {
+    this.advogados = usuarios.filter(obj => {
+        if(obj.numeroOab !== "") {
+          advogado = obj;
+          return advogado;
+        }
+      });
+    console.log(this.advogados);
     });
   }
 
