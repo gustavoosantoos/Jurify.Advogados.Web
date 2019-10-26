@@ -4,7 +4,7 @@
 </full-calendar>
 
 <ng-template #templateNovoCompromisso>
-    <div *ngIf="!compromisso; else elseBlock">
+    <div *ngIf="dialogOpen == 'new'; else elseBlock">
         <h1 mat-dialog-title>Novo Compromisso</h1>
         <div mat-dialog-content>
             <form *ngIf="novoCompromissoForm" [formGroup]="novoCompromissoForm">
@@ -27,7 +27,7 @@
     <ng-template #elseBlock>
         <h1 mat-dialog-title>{{compromisso.titulo}}</h1>
         <div mat-dialog-content>
-            <p><strong>Descrição:</strong> {{compromisso.descricao}}</p>
+            <div><strong>Descrição:</strong> <p [innerHtml]="compromisso.descricao"></p></div>
             <p><strong>Início:</strong> {{compromisso.inicio | date: 'HH:mm'}}</p>
             <p><strong>Fim:</strong> {{compromisso.final | date: 'HH:mm'}}</p>
             <div *ngIf="compromisso.codigoCliente">
