@@ -25,7 +25,7 @@
     </mat-card>
     <mat-card fxFlex.lg="calc(30% - 20px)" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
       <h3>Foto OAB</h3>
-      <img *ngIf="!(usuario.credenciais.caminhoFoto != '' || usuario.credenciais.caminhoFoto !== null); else elseBlock" src="{{usuario.credenciais.caminhoFoto}}"
+      <img *ngIf="usuario.credenciais.caminhoFoto != ''; else elseBlock" src="{{usuario.credenciais.caminhoFoto}}"
         class="foto" alt="">
       <ng-template #elseBlock>
         <img src="../../../../../../assets/images/avatar.png" alt="" class="foto">
