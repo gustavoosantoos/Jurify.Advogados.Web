@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule, MatTooltipModule, MatSlideToggleModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatSelectModule, MatProgressSpinnerModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatListModule, MatTableModule, MatGridListModule, MatCardModule, MatSnackBar, MatSnackBarModule, MatTabsModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatDialogModule, MatTooltipModule, MatSlideToggleModule, MatExpansionModule } from '@angular/material';
 import { AuthGuard } from './guards/auth-guard';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -25,6 +25,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
       MatNativeDateModule,
       MatProgressSpinnerModule,
       MatDialogModule,
+      MatExpansionModule,
       FormsModule,
       ReactiveFormsModule,
       RouterModule,
@@ -52,6 +53,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
       MatTabsModule,
       MatDatepickerModule,
       MatTooltipModule,
+      MatExpansionModule,
       FormsModule,
       ReactiveFormsModule,
       RouterModule,
