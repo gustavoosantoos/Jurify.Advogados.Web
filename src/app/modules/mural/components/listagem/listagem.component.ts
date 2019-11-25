@@ -17,9 +17,11 @@ export class ListagemComponent implements OnInit {
     private loadingService: LoadingScreenService
   ) { }
 
+  isLoading = false;
   mensagens: MensagemPublica[];
 
   ngOnInit() {
+    this.loadingService.isLoading.subscribe(r => this.isLoading = r);
     this.getMensagens();
   }
 
