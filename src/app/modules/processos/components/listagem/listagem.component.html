@@ -62,7 +62,7 @@
     <ng-container matColumnDef="acoes">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let processo" class="align-collumn-right">
-        <a matTooltip="Dados do cliente" routerLink="/clientes/cadastro/{{processo.codigoCliente}}" mat-stroked-button color="primary">
+        <a matTooltip="{{processo.nomeCliente}}" routerLink="/clientes/cadastro/{{processo.codigoCliente}}" mat-stroked-button color="primary">
           <mat-icon>person</mat-icon>
         </a>
         <a matTooltip="Detalhes do processo" routerLink="/processos/cadastro/{{processo.codigo}}" mat-stroked-button color="primary">

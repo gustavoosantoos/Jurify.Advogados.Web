@@ -55,7 +55,7 @@
           <!--Aqui alterar para o router link de edicao ou abrir detalhes-->
           <mat-icon>toc</mat-icon>
         </a>
-        <button mat-stroked-button color="accent" (click)="removerUsuario(usuario.codigoUsuario)">
+        <button mat-stroked-button color="accent" (click)="removerUsuario(usuario)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-cell>
@@ -66,10 +66,10 @@
   </mat-table>
 </div>
 
-<ng-template #templateRemocaousuario>
+<ng-template #templateRemocaoUsuario>
   <h1 mat-dialog-title>Atenção!</h1>
   <div mat-dialog-content>
-    <p>Você deseja realmente remover o usuario {{ usuarioRemocao.PrimeiroNome }}?</p>
+    <p>Você deseja realmente remover o usuario {{ UsuarioRemocao.PrimeiroNome }}?</p>
   </div>
   <div mat-dialog-actions class="actions-container">
     <button mat-button (click)="cancelarRemocao()">Cancelar</button>

@@ -11,7 +11,7 @@
         {{ userInfo.nomeUsuario  }} <mat-icon>expand_more</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="editarUsuario()">
           <mat-icon>person</mat-icon>
           <span>Meu Perfil</span>
         </button>
