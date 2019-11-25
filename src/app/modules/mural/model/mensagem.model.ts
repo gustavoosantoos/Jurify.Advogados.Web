@@ -1,5 +1,7 @@
 export class MensagemPublica {
-    codigoMensagem: string;
-    titulo: string;
-    descricao: string;
+    codigo: string;
+    cpf: string;
+    email: string;
+    nome: string;
+    texto: string;
 }

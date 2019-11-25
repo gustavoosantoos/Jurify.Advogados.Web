@@ -6,27 +6,50 @@
       <mat-tab-group mat-stretch-tabs>
         <mat-tab label="Mensagens Públicas">
           <div class="tab-content">
-            <mat-accordion>
+            <mat-accordion *ngFor="let mensagem of mural">
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    Nome Sobrenome
+                    {{mensagem.nome}}
                   </mat-panel-title>
                   <mat-panel-description>
-                    Resumo da mensagem...
+                    {{mensagem.email}}
                   </mat-panel-description>
-
-                  <button mat-button mat-icon-button (click)="marcarInteresse(mensagem.codigoMensagem)">
-                    <mat-icon> star_border</mat-icon>
-                  </button>
                 </mat-expansion-panel-header>
-                <p>Mensagem inteira...</p>
+                <p>{{mensagem.texto}}</p>
+
+                <button mat-stroked-button color="primary" (click)="marcarInteresse(mensagem.codigo)">
+                  Marcar interesse
+                  <mat-icon> star_border</mat-icon>
+                </button>
               </mat-expansion-panel>
             </mat-accordion>
           </div>
         </mat-tab>
         <mat-tab label="Mensagens Marcadas">
           <div class="tab-content">
+            <mat-accordion *ngFor="let mensagem of marcadas">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{mensagem.nome}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    {{mensagem.email}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="info">
+                  <p><strong>Nome:</strong> {{mensagem.nome}}</p>
+                  <p><strong>CPF:</strong> {{mensagem.cpf}}</p>
+                  <p><strong>E-mail:</strong> {{mensagem.email}}</p>
+                </div>
+                <p>{{mensagem.texto}}</p>
+
+                <button mat-stroked-button color="accent" (click)="desmarcarMensagem(mensagem.codigo)">
+                  Desmarcar mensagem
+                </button>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
         </mat-tab>
       </mat-tab-group>
